@@ -33,12 +33,12 @@
   --accent-foreground: oklch(0.2976 0.0274 62.5142);
 
   /* Destructive - softened red for gentle warnings */
-  --destructive: oklch(0.6872 0.0998 46.7847);
+  --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.98 0.005 50);
 
   /* Borders and inputs with subtle definition */
   --border: oklch(0.7582 0.0459 124.98);
-  --input: oklch(0.8382 0.0359 124.98);
+  --input: oklch(0.7492 0.0359 124.98);
   --ring: oklch(0.7015 0.0553 159.02);
 
   /* Chart colors - harmonized palette */
@@ -59,9 +59,14 @@
   --sidebar-ring: oklch(0.7015 0.0553 159.02);
 
   /* Typography */
-  --font-sans: system-ui, sans-serif;
-  --font-serif: serif;
-  --font-mono: Menlo, monospace;
+  --font-sans: var(--font-agrandir), system-ui, sans-serif;
+  --font-serif: var(--font-playfairDisplay), serif;
+  --font-sans: var(--font-agrandir), system-ui, sans-serif;
+  --font-serif: var(--font-playfairDisplay), serif;
+  --font-playfair: var(--font-playfairDisplay);
+  --font-agrandir: var(--font-agrandir);
+  --font-agrandir-narrow: var(--font-agrandir-narrow);
+  --font-playfair: var(--font-playfairDisplay);
   --radius: 0.5rem;
 
   /* Softer shadows for peaceful feel */
@@ -118,7 +123,7 @@
   --accent-foreground: oklch(0.9426 0.0157 58.105);
 
   /* Gentle destructive for dark mode */
-  --destructive: oklch(0.6072 0.0998 46.7847);
+  --destructive: oklch(0.704 0.191 22.216);
   --destructive-foreground: oklch(0.95 0.005 50);
 
   /* Borders with subtle definition */
@@ -144,9 +149,12 @@
   --sidebar-ring: oklch(0.6872 0.1298 46.78);
 
   /* Typography */
-  --font-sans: system-ui, sans-serif;
-  --font-serif: serif;
-  --font-mono: Menlo, monospace;
+  --font-sans: var(--font-agrandir), system-ui, sans-serif;
+  --font-serif: var(--font-playfairDisplay), serif;
+  --font-playfair: var(--font-playfairDisplay);
+  --font-agrandir: var(--font-agrandir);
+  --font-agrandir-narrow: var(--font-agrandir-narrow);
+  --font-playfair: var(--font-playfairDisplay);
   --radius: 0.5rem;
 
   /* Softer shadows with warm undertones for dark mode */
@@ -204,10 +212,10 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-mono);
-  --font-serif: var(--font-serif);
-
+  --font-sans: var(--font-agrandir);
+  --font-mono: var(--font-agrandir-narrow);
+  --font-serif: var(--font-playfairDisplay);
+  --font-quote: var(--font-dancingScript);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);

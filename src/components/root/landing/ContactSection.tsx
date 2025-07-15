@@ -15,6 +15,7 @@ import {
   Clock,
   MailIcon,
 } from 'lucide-react';
+import BlurVignette from '@/components/ui/blur-vignette';
 
 export default function ContactSection() {
   const [name, setName] = useState('');
@@ -95,9 +96,9 @@ export default function ContactSection() {
           transition={{ duration: 0.8, ease: 'easeOut' }}
           className="mx-auto mb-16 max-w-3xl text-center"
         >
-          <h2 className="mb-6 bg-gradient-to-r from-foreground via-foreground/90 to-foreground/80 bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-5xl md:text-6xl">
+          <h2 className="mb-6 bg-gradient-to-r from-foreground via-foreground/90 to-foreground/80 bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-5xl md:text-6xl font-mono">
             Connect With
-            <span className="block bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+            <span className="block bg-gradient-to-r from-primary to-secondary/70 bg-clip-text text-transparent">
               Our Community
             </span>
           </h2>
@@ -119,10 +120,10 @@ export default function ContactSection() {
                 transition={{ duration: 0.5, delay: 0.1 }}
                 className="mb-8"
               >
-                <h3 className="mb-2 text-3xl font-bold text-foreground">
+                <h3 className="mb-2 text-3xl font-bold text-foreground font-sans">
                   Send us a message
                 </h3>
-                <p className="text-muted-foreground">
+                <p className="text-muted-foreground font-serif text-balance">
                   We'd love to hear from you and help you begin your wellness
                   journey.
                 </p>
@@ -269,11 +270,18 @@ export default function ContactSection() {
                   transition={{ duration: 0.8, delay: 0.8 }}
                   className="mt-8 overflow-hidden rounded-2xl"
                 >
-                  <img
-                    src="https://images.pexels.com/photos/3822864/pexels-photo-3822864.jpeg?auto=compress&cs=tinysrgb&w=600"
-                    alt="Yoga Studio Interior"
-                    className="h-48 w-full object-cover"
-                  />
+                  <BlurVignette
+                    inset="20px"
+                    transitionLength="120px"
+                    blur="4px"
+                    className="rounded-2xl"
+                  >
+                    <img
+                      src="https://images.pexels.com/photos/3822864/pexels-photo-3822864.jpeg?auto=compress&cs=tinysrgb&w=600"
+                      alt="Yoga Studio Interior"
+                      className="h-48 w-full object-cover"
+                    />
+                  </BlurVignette>
                 </motion.div>
               </motion.div>
             </div>

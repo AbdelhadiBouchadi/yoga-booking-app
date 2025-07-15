@@ -28,7 +28,6 @@ export function UserDropdownSkeleton() {
   return (
     <Button variant="ghost" size="lg" className="hover:bg-transparent" disabled>
       <Skeleton className="size-9 rounded-full" />
-      <Skeleton className="ml-2 h-4 w-4" />
     </Button>
   );
 }

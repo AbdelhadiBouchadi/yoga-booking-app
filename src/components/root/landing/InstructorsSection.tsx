@@ -68,13 +68,13 @@ export default function InstructorsSection() {
           transition={{ duration: 0.8, ease: 'easeOut' }}
           className="mx-auto mb-16 max-w-3xl text-center space-y-4"
         >
-          <h2 className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
+          <h2 className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl font-mono">
             Meet Your
             <span className="block bg-gradient-to-r from-primary to-primary/30 bg-clip-text text-transparent py-3">
               Guiding Teachers
             </span>
           </h2>
-          <p className="text-xl text-muted-foreground md:text-2xl">
+          <p className="text-xl text-muted-foreground md:text-2xl font-serif">
             Our experienced instructors are here to support you on every step of
             your yoga journey with wisdom, compassion, and expertise.
           </p>
@@ -99,19 +99,17 @@ export default function InstructorsSection() {
 
               {/* Image */}
               <div className="relative h-64 overflow-hidden">
-                <BlurVignette inset="20px" transitionLength="120px" blur="40px">
-                  <Image
-                    src={instructor.image}
-                    alt={instructor.name}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    width={200}
-                    height={200}
-                  />
-                </BlurVignette>
+                <Image
+                  src={instructor.image}
+                  alt={instructor.name}
+                  className="h-full w-full object-fill transition-transform duration-500 group-hover:scale-110"
+                  width={200}
+                  height={200}
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
 
                 {/* Rating Badge */}
-                <div className="absolute right-4 top-4">
+                <div className="absolute right-4 top-4 font-sans">
                   <div className="flex items-center gap-1 rounded-full bg-background/90 px-2 py-1 backdrop-blur-sm">
                     <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
                     <span className="text-xs font-medium text-foreground">
@@ -121,7 +119,7 @@ export default function InstructorsSection() {
                 </div>
 
                 {/* Experience Badge */}
-                <div className="absolute bottom-4 left-4">
+                <div className="absolute bottom-4 left-4 font-sans">
                   <Badge className="bg-primary/90 text-primary-foreground backdrop-blur-sm">
                     {instructor.experience} experience
                   </Badge>
@@ -130,19 +128,21 @@ export default function InstructorsSection() {
 
               {/* Content */}
               <div className="relative z-10 p-6">
-                <div className="mb-2">
+                <div className="mb-2 font-sans">
                   <h3 className="text-2xl font-bold text-foreground">
                     {instructor.name}
                   </h3>
-                  <p className="text-primary font-medium">{instructor.title}</p>
+                  <p className="text-primary font-medium ">
+                    {instructor.title}
+                  </p>
                 </div>
 
-                <p className="mb-4 text-sm text-muted-foreground leading-relaxed">
+                <p className="mb-4 text-sm text-muted-foreground leading-relaxed font-serif">
                   {instructor.bio}
                 </p>
 
                 {/* Specialties */}
-                <div className="mb-4">
+                <div className="mb-4 font-sans">
                   <h4 className="mb-2 text-sm font-semibold text-foreground">
                     Specialties
                   </h4>
@@ -160,7 +160,7 @@ export default function InstructorsSection() {
                 </div>
 
                 {/* Certifications */}
-                <div className="border-t border-border/20 pt-4">
+                <div className="border-t border-border/20 pt-4 font-sans">
                   <div className="flex items-center gap-2 mb-2">
                     <Award className="h-4 w-4 text-primary" />
                     <h4 className="text-sm font-semibold text-foreground">
@@ -189,10 +189,10 @@ export default function InstructorsSection() {
         >
           <div className="mx-auto rounded-2xl border border-border/40 bg-gradient-to-br from-card/60 to-card/20 p-8 backdrop-blur-sm">
             <Heart className="mx-auto mb-4 h-12 w-12 text-primary" />
-            <h3 className="mb-4 text-2xl font-bold text-foreground">
+            <h3 className="mb-4 text-2xl font-bold text-foreground font-mono">
               Ready to Begin Your Journey?
             </h3>
-            <p className="text-muted-foreground">
+            <p className="text-muted-foreground font-serif">
               Our teachers are here to guide you with personalized attention and
               genuine care for your growth.
             </p>

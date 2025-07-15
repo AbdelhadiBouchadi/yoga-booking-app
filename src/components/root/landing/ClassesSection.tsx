@@ -74,13 +74,13 @@ export default function ClassesSection() {
           transition={{ duration: 0.6, ease: 'easeOut' }}
           className="mx-auto mb-16 max-w-3xl text-center"
         >
-          <h2 className="mb-6 bg-gradient-to-r from-foreground via-foreground/90 to-foreground/80 bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-5xl md:text-6xl">
+          <h2 className="mb-6 bg-gradient-to-r from-foreground via-foreground/90 to-foreground/80 bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-5xl md:text-6xl font-mono">
             Discover Your
             <span className="block bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
               Perfect Practice
             </span>
           </h2>
-          <p className="text-xl text-muted-foreground md:text-2xl">
+          <p className="text-xl text-muted-foreground md:text-2xl font-serif">
             From gentle beginnings to advanced flows, find the class that
             resonates with your journey and current needs.
           </p>
@@ -124,7 +124,7 @@ export default function ClassesSection() {
 
               {/* Content */}
               <div className="relative z-10 p-6">
-                <div className="mb-3 flex items-center justify-between">
+                <div className="mb-3 flex items-center justify-between  font-sans">
                   <h3 className="text-2xl font-bold text-foreground">
                     {yogaClass.title}
                   </h3>
@@ -136,7 +136,7 @@ export default function ClassesSection() {
                   </div>
                 </div>
 
-                <p className="mb-4 text-muted-foreground">
+                <p className="mb-4 text-muted-foreground font-serif">
                   {yogaClass.description}
                 </p>
 
@@ -168,7 +168,7 @@ export default function ClassesSection() {
                 >
                   <Button
                     asChild
-                    className="w-full bg-primary text-primary-foreground"
+                    className="w-full bg-primary text-primary-foreground font-sans"
                   >
                     <Link
                       href={`/book-class/${yogaClass.title.toLowerCase().replace(' ', '-')}`}

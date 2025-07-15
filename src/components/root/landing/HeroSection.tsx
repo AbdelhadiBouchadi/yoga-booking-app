@@ -44,7 +44,7 @@ export default function HeroSection() {
                 isInView ? { scale: 1, opacity: 1 } : { scale: 0.9, opacity: 0 }
               }
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="mb-6 inline-flex items-center gap-2 rounded-full border border-border/40 bg-primary/10 dark:bg-secondary/10 px-4 py-2 text-sm font-medium text-muted-foreground backdrop-blur-sm"
+              className="mb-6 inline-flex items-center gap-2 rounded-full border border-border/40 bg-primary/10 dark:bg-secondary/10 px-4 py-2 text-sm font-medium text-muted-foreground backdrop-blur-sm font-sans"
             >
               <Sparkles className="h-4 w-4 text-primary" />
               Find Your Inner Peace
@@ -54,7 +54,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="mb-6 bg-gradient-to-r from-foreground via-foreground/90 to-foreground/80 bg-clip-text text-5xl font-bold tracking-tight text-transparent sm:text-6xl md:text-7xl lg:text-8xl"
+              className="mb-6 bg-gradient-to-r from-foreground via-foreground/90 to-foreground/80 bg-clip-text text-5xl font-bold tracking-tight text-transparent sm:text-6xl md:text-7xl lg:text-8xl font-mono py-2"
             >
               Transform Your
               <span className="block bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
@@ -66,7 +66,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="mx-auto mb-8 max-w-2xl text-xl text-muted-foreground md:text-2xl"
+              className="mx-auto mb-8 max-w-2xl text-xl text-muted-foreground md:text-2xl font-serif"
             >
               Join our serene yoga community and discover the perfect balance
               between strength, flexibility, and mindfulness. Book your

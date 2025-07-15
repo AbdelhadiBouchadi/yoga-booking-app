@@ -57,13 +57,13 @@ export default function AboutSection() {
           transition={{ duration: 0.6, ease: 'easeOut' }}
           className="mx-auto mb-20 max-w-3xl text-center"
         >
-          <h2 className="mb-6 bg-gradient-to-r from-foreground via-foreground/90 to-foreground/80 bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-5xl md:text-6xl">
+          <h2 className="mb-6 bg-gradient-to-r from-foreground via-foreground/90 to-foreground/80 bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-5xl md:text-6xl font-mono">
             Your Journey to
             <span className="block bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
               Inner Harmony
             </span>
           </h2>
-          <p className="text-xl text-muted-foreground md:text-2xl">
+          <p className="text-xl text-muted-foreground md:text-2xl font-serif">
             At our studio, we believe yoga is more than just physical
             exercise—it's a path to discovering your authentic self and finding
             peace in the present moment.
@@ -88,7 +88,7 @@ export default function AboutSection() {
                 <Flower2Icon className="h-8 w-8 text-primary" />
               </div>
 
-              <h3 className="mb-4 bg-gradient-to-r from-primary/90 to-primary/70 bg-clip-text text-3xl font-bold text-transparent">
+              <h3 className="mb-4 bg-gradient-to-r from-primary/90 to-primary/70 bg-clip-text text-3xl font-bold text-transparent font-sans">
                 Our Mission
               </h3>
 
@@ -114,11 +114,11 @@ export default function AboutSection() {
                 <Heart className="h-8 w-8 text-foreground" />
               </div>
 
-              <h3 className="mb-4 text-3xl font-bold text-foreground">
+              <h3 className="mb-4 text-3xl font-bold text-foreground font-sans">
                 Our Vision
               </h3>
 
-              <p className="text-lg leading-relaxed text-muted-foreground">
+              <p className="text-lg leading-relaxed text-muted-foreground font-serif">
                 To inspire a global community where yoga becomes a
                 transformative force for healing, self-discovery, and conscious
                 living, one breath at a time.
@@ -137,10 +137,10 @@ export default function AboutSection() {
             transition={{ duration: 0.6, ease: 'easeOut' }}
             className="mb-12 text-center"
           >
-            <h3 className="mb-4 bg-gradient-to-r from-foreground/80 via-foreground to-foreground/80 bg-clip-text text-3xl font-bold tracking-tight text-transparent sm:text-4xl">
+            <h3 className="mb-4 bg-gradient-to-r from-foreground/80 via-foreground to-foreground/80 bg-clip-text text-3xl font-bold tracking-tight text-transparent sm:text-4xl font-mono">
               Our Core Values
             </h3>
-            <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
+            <p className="mx-auto max-w-2xl text-lg text-muted-foreground font-serif">
               The guiding principles that shape every class, every breath, and
               every moment of transformation.
             </p>
@@ -171,11 +171,11 @@ export default function AboutSection() {
                       <IconComponent className="h-6 w-6 text-primary" />
                     </div>
 
-                    <h4 className="mb-3 text-xl font-semibold text-foreground">
+                    <h4 className="mb-3 text-xl font-semibold text-foreground font-sans">
                       {value.title}
                     </h4>
 
-                    <p className="text-sm leading-relaxed text-muted-foreground">
+                    <p className="text-sm leading-relaxed text-muted-foreground font-serif">
                       {value.description}
                     </p>
                   </div>

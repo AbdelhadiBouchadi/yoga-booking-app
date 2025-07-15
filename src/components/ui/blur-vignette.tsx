@@ -72,7 +72,7 @@ const BlurVignette = ({
           }
         `}
       </style>
-      <div className={`blur-vignette `} />
+      <div className={`blur-vignette active rounded-2xl`} />
       {children}
     </div>
   );

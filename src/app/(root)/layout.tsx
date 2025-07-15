@@ -6,7 +6,7 @@ export default function MainLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div>
+    <div className="font-sans">
       <Navbar />
       <main className="container mx-auto">{children}</main>
     </div>

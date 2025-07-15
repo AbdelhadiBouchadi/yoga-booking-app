@@ -4,6 +4,7 @@ import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Star, Quote } from 'lucide-react';
 import BlurVignette from '@/components/ui/blur-vignette';
+import CountUp from '../CountUp';
 
 const testimonials = [
   {
@@ -73,7 +74,7 @@ export default function TestimonialsSection() {
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
   return (
-    <section className="relative w-full overflow-hidden bg-gradient-to-b from-secondary/10 to-background py-20 md:py-32">
+    <section className="relative w-full overflow-hidden bg-gradient-to-b from-secondary/10 to-background py-20">
       {/* Background Elements */}
       <div
         className="absolute right-1/4 top-1/4 h-80 w-80 rounded-full opacity-5 blur-3xl"
@@ -93,13 +94,13 @@ export default function TestimonialsSection() {
           transition={{ duration: 0.8, ease: 'easeOut' }}
           className="mx-auto mb-16 max-w-3xl text-center"
         >
-          <h2 className="mb-6 bg-gradient-to-r from-foreground via-foreground/90 to-foreground/80 bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-5xl md:text-6xl">
+          <h2 className="mb-6 bg-gradient-to-r from-foreground via-foreground/90 to-foreground/80 bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-5xl md:text-6xl font-mono py-2">
             Stories of
-            <span className="block bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+            <span className="block bg-gradient-to-r from-primary to-primary/30 bg-clip-text text-transparent py-1">
               Transformation
             </span>
           </h2>
-          <p className="text-xl text-muted-foreground md:text-2xl">
+          <p className="text-xl text-muted-foreground md:text-2xl font-serif">
             Hear from our community members about their journey of growth,
             healing, and self-discovery.
           </p>
@@ -137,31 +138,25 @@ export default function TestimonialsSection() {
                 </div>
 
                 {/* Content */}
-                <p className="mb-6 text-muted-foreground leading-relaxed">
+                <p className="mb-6 text-muted-foreground leading-relaxed font-quote">
                   "{testimonial.content}"
                 </p>
 
                 {/* Author Info */}
                 <div className="flex items-center gap-4">
-                  <BlurVignette
-                    inset="20px"
-                    transitionLength="120px"
-                    blur="35px"
-                  >
-                    <img
-                      src={testimonial.image}
-                      alt={testimonial.name}
-                      className="h-12 w-12 rounded-full object-cover"
-                    />
-                  </BlurVignette>
+                  <img
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    className="h-12 w-12 rounded-full object-cover"
+                  />
                   <div>
-                    <h4 className="font-semibold text-foreground">
+                    <h4 className="font-semibold text-foreground font-sans">
                       {testimonial.name}
                     </h4>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm text-muted-foreground font-serif">
                       {testimonial.role}
                     </p>
-                    <p className="text-xs text-primary font-medium">
+                    <p className="text-xs text-primary font-medium font-serif">
                       {testimonial.class} Student
                     </p>
                   </div>
@@ -178,19 +173,43 @@ export default function TestimonialsSection() {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="mt-16"
         >
-          <div className="mx-auto rounded-3xl border border-border/40 bg-gradient-to-br from-card/60 to-card/20 p-8 backdrop-blur-sm md:p-12">
+          <div className="mx-auto rounded-3xl border border-border/40 bg-gradient-to-br from-card/60 to-card/20 p-8 backdrop-blur-sm md:p-12 font-sans">
             <div className="grid gap-8 text-center md:grid-cols-3">
               <div>
-                <div className="mb-2 text-4xl font-bold text-primary">500+</div>
+                <div className="mb-2 text-4xl font-bold text-primary">
+                  <CountUp
+                    from={0}
+                    to={500}
+                    separator=","
+                    direction="up"
+                    duration={1}
+                  />
+                  +
+                </div>
                 <div className="text-muted-foreground">Happy Students</div>
               </div>
               <div>
-                <div className="mb-2 text-4xl font-bold text-primary">4.9</div>
+                <div className="mb-2 text-4xl font-bold text-primary">
+                  <CountUp
+                    from={0}
+                    to={4.9}
+                    separator=","
+                    direction="up"
+                    duration={1}
+                  />
+                </div>
                 <div className="text-muted-foreground">Average Rating</div>
               </div>
               <div>
                 <div className="mb-2 text-4xl font-bold text-primary">
-                  1000+
+                  <CountUp
+                    from={0}
+                    to={1000}
+                    separator=","
+                    direction="up"
+                    duration={1}
+                  />
+                  +
                 </div>
                 <div className="text-muted-foreground">Classes Completed</div>
               </div>
