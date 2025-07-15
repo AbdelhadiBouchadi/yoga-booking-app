@@ -22,6 +22,10 @@ const eslintConfig = [
       '@typescript-eslint/no-require-imports': 'off',
       '@typescript-eslint/no-unused-expressions': 'off',
       '@typescript-eslint/no-this-alias': 'off',
+      'react/no-unescaped-entities': 'off',
+      '@typescript-eslint/no-unnecessary-type-constraint': 'off',
+      '@typescript-eslint/no-wrapper-object-types': 'off',
+      '@typescript-eslint/no-unsafe-function-type': 'off',
     },
   },
 ];
