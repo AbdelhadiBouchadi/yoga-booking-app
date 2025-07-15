@@ -21,6 +21,9 @@ import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useState, useTransition } from 'react';
 import { toast } from 'sonner';
+import LogoGreen from '../../../public/logo-green.webp';
+import LogoOrange from '../../../public/logo-orange.webp';
+import { useTheme } from 'next-themes';
 
 export default function VerifyEmail() {
   const [otp, setOtp] = useState('');
@@ -31,6 +34,7 @@ export default function VerifyEmail() {
   const isOTPCompleted = otp.length === 6;
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { theme } = useTheme();
 
   function VerifyOTP() {
     startTransition(async () => {
@@ -57,22 +61,16 @@ export default function VerifyEmail() {
 
   return (
     <div className="flex flex-col items-center gap-y-4">
-      <div className="flex items-center justify-center gap-x-4 select-none">
-        <Image
-          src="/logo.svg"
-          alt="Logo Image"
-          className="pointer-events-none object-cover"
-          width={64}
-          height={64}
-        />
-        <h2 className="text-primary text-2xl font-bold md:text-4xl">
-          LearnVex
-        </h2>
-      </div>
       <Card className="mx-auto w-full max-w-xl">
         <CardHeader className="text-center">
-          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full">
-            <MailIcon className="h-8 w-8" />
+          <div className="mx-auto flex items-center justify-center rounded-full">
+            <Image
+              src={theme === 'light' ? LogoGreen : LogoOrange}
+              alt="Logo Image"
+              className="pointer-events-none object-cover"
+              width={96}
+              height={96}
+            />
           </div>
           <CardTitle className="text-xl">Please Check Your Email</CardTitle>
           <CardDescription>
