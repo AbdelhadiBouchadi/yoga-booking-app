@@ -18,11 +18,13 @@ const agrandirNarrow = localFont({
 const playfairDisplay = Playfair_Display({
   weight: ['400', '500', '600', '700', '800', '900'],
   variable: '--font-playfairDisplay',
+  subsets: ['latin'],
 });
 
 const dancingScript = Dancing_Script({
   weight: ['400', '500', '600', '700'],
   variable: '--font-dancingScript',
+  subsets: ['latin'],
 });
 
 export const metadata: Metadata = {
