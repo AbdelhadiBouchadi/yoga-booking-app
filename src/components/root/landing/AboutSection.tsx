@@ -92,7 +92,7 @@ export default function AboutSection() {
                 Our Mission
               </h3>
 
-              <p className="text-lg leading-relaxed text-muted-foreground">
+              <p className="text-lg leading-relaxed text-muted-foreground font-serif">
                 To create a sacred space where individuals can reconnect with
                 their inner wisdom, build physical strength, and cultivate
                 lasting peace through the ancient practice of yoga.
