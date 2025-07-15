@@ -42,7 +42,7 @@ const signupOptions = {
   rateLimit: rateLimitOptions,
 } satisfies ProtectSignupOptions<[]>;
 
-async function protect(req: NextRequest): Promise<ArcjetDecision> {
+async function protect(req: NextRequest, body?: any): Promise<ArcjetDecision> {
   const session = await auth.api.getSession({
     headers: req.headers,
   });
@@ -60,13 +60,10 @@ async function protect(req: NextRequest): Promise<ArcjetDecision> {
   // If this is a signup then use the special protectSignup rule
   // See https://docs.arcjet.com/signup-protection/quick-start
   if (req.nextUrl.pathname.startsWith('/api/auth/sign-up')) {
-    // Better-Auth reads the body, so we need to clone the request preemptively
-    const body = await req.clone().json();
-
     // If the email is in the body of the request then we can run
     // the email validation checks as well. See
     // https://www.better-auth.com/docs/concepts/hooks#example-enforce-email-domain-restriction
-    if (typeof body.email === 'string') {
+    if (body && typeof body.email === 'string') {
       return aj
         .withRule(protectSignup(signupOptions))
         .protect(req, { email: body.email, fingerprint: userId });
@@ -91,7 +88,29 @@ export const { GET } = authHandlers;
 
 // Wrap the POST handler with Arcjet protections
 export const POST = async (req: NextRequest) => {
-  const decision = await protect(req);
+  let body: any = null;
+  let clonedRequest = req;
+
+  // Only read the body for signup requests to avoid unnecessary parsing
+  if (req.nextUrl.pathname.startsWith('/api/auth/sign-up')) {
+    try {
+      // Clone the request and read the body
+      const requestClone = req.clone();
+      body = await requestClone.json();
+
+      // Create a new request with the same body for Better Auth
+      clonedRequest = new NextRequest(req.url, {
+        method: req.method,
+        headers: req.headers,
+        body: JSON.stringify(body),
+      });
+    } catch (error) {
+      console.error('Error parsing request body:', error);
+      // If we can't parse the body, continue without it
+    }
+  }
+
+  const decision = await protect(req, body);
 
   console.log('Arcjet Decision:', decision);
 
@@ -120,5 +139,6 @@ export const POST = async (req: NextRequest) => {
     }
   }
 
-  return authHandlers.POST(req);
+  // Use the cloned request (with reconstructed body for signup) or original request
+  return authHandlers.POST(clonedRequest);
 };

@@ -48,7 +48,10 @@ export default function UserDropdown({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="lg" className="hover:bg-transparent">
+        <Button
+          variant="ghost"
+          className="hover:bg-transparent rounded-full size-10"
+        >
           {image ? (
             <Avatar>
               <AvatarImage src={image} />
