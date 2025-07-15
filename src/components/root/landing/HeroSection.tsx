@@ -5,6 +5,7 @@ import { useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Calendar, Heart, Sparkles } from 'lucide-react';
 import Link from 'next/link';
+import { AnimatedShinyText } from './AnimatedShinyText';
 
 export default function HeroSection() {
   const heroRef = useRef(null);
@@ -46,8 +47,10 @@ export default function HeroSection() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="mb-6 inline-flex items-center gap-2 rounded-full border border-border/40 bg-primary/10 dark:bg-secondary/10 px-4 py-2 text-sm font-medium text-muted-foreground backdrop-blur-sm font-sans"
             >
-              <Sparkles className="h-4 w-4 text-primary" />
-              Find Your Inner Peace
+              <AnimatedShinyText className="flex justify-center items-center transition ease-out hover:text-neutral-600 hover:duration-300 hover:dark:text-neutral-400 gap-x-2">
+                <Sparkles className="h-4 w-4 text-primary" />
+                Find Your Inner Peace
+              </AnimatedShinyText>
             </motion.div>
 
             <motion.h1
