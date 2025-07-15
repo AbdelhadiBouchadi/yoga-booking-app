@@ -1,0 +1,324 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Core brand colors - keeping your yoga-inspired palette */
+  --background: oklch(0.8182 0.0359 124.98);
+  --foreground: oklch(0.3976 0.0274 62.5142);
+
+  /* Card surfaces with subtle warmth */
+  --card: oklch(0.8882 0.0259 124.98);
+  --card-foreground: oklch(0.3976 0.0274 62.5142);
+
+  /* Popover with gentle elevation */
+  --popover: oklch(0.8182 0.0259 124.98);
+  --popover-foreground: oklch(0.3976 0.0274 62.5142);
+
+  /* Primary - your calming green, slightly softened */
+  --primary: oklch(0.7015 0.0353 159.02);
+  --primary-foreground: oklch(0.98 0.005 120);
+
+  /* Secondary - warm earth tone, harmonized */
+  --secondary: oklch(0.6872 0.1298 46.78);
+  --secondary-foreground: oklch(0.98 0.005 50);
+
+  /* Muted areas with gentle warmth */
+  --muted: oklch(0.8782 0.0259 124.98);
+  --muted-foreground: oklch(0.5976 0.0274 62.5142);
+
+  /* Accent - balanced between primary and secondary */
+  --accent: oklch(0.7782 0.0359 124.98);
+  --accent-foreground: oklch(0.2976 0.0274 62.5142);
+
+  /* Destructive - softened red for gentle warnings */
+  --destructive: oklch(0.6872 0.0998 46.7847);
+  --destructive-foreground: oklch(0.98 0.005 50);
+
+  /* Borders and inputs with subtle definition */
+  --border: oklch(0.7582 0.0459 124.98);
+  --input: oklch(0.8382 0.0359 124.98);
+  --ring: oklch(0.7015 0.0553 159.02);
+
+  /* Chart colors - harmonized palette */
+  --chart-1: oklch(0.7015 0.0353 159.02); /* Primary green */
+  --chart-2: oklch(0.6872 0.1298 46.78); /* Secondary earth */
+  --chart-3: oklch(0.7215 0.0653 102.5); /* Accent sage */
+  --chart-4: oklch(0.6515 0.0653 140.5); /* Deeper green */
+  --chart-5: oklch(0.7372 0.0898 75.78); /* Warm sage */
+
+  /* Sidebar with gentle contrast */
+  --sidebar: oklch(0.8082 0.0359 124.98);
+  --sidebar-foreground: oklch(0.3976 0.0274 62.5142);
+  --sidebar-primary: oklch(0.7015 0.0353 159.02);
+  --sidebar-primary-foreground: oklch(0.98 0.005 120);
+  --sidebar-accent: oklch(0.7215 0.0653 102.5);
+  --sidebar-accent-foreground: oklch(0.2976 0.0274 62.5142);
+  --sidebar-border: oklch(0.7782 0.0359 124.98);
+  --sidebar-ring: oklch(0.7015 0.0553 159.02);
+
+  /* Typography */
+  --font-sans: system-ui, sans-serif;
+  --font-serif: serif;
+  --font-mono: Menlo, monospace;
+  --radius: 0.5rem;
+
+  /* Softer shadows for peaceful feel */
+  --shadow-2xs: 0.1rem 0.1rem 0.3rem 0.05rem hsl(123 20% 50% / 0.03);
+  --shadow-xs: 0.1rem 0.1rem 0.4rem 0.05rem hsl(123 20% 50% / 0.04);
+  --shadow-sm:
+    0.1rem 0.1rem 0.5rem 0.05rem hsl(123 20% 50% / 0.06),
+    0.1rem 1px 2px -0.5px hsl(123 20% 50% / 0.06);
+  --shadow:
+    0.1rem 0.1rem 0.6rem 0.05rem hsl(123 20% 50% / 0.08),
+    0.1rem 1px 3px -0.5px hsl(123 20% 50% / 0.08);
+  --shadow-md:
+    0.1rem 0.1rem 0.8rem 0.05rem hsl(123 20% 50% / 0.1),
+    0.1rem 2px 4px -0.5px hsl(123 20% 50% / 0.1);
+  --shadow-lg:
+    0.1rem 0.1rem 1rem 0.05rem hsl(123 20% 50% / 0.12),
+    0.1rem 4px 6px -0.5px hsl(123 20% 50% / 0.12);
+  --shadow-xl:
+    0.1rem 0.1rem 1.2rem 0.05rem hsl(123 20% 50% / 0.15),
+    0.1rem 8px 10px -0.5px hsl(123 20% 50% / 0.15);
+  --shadow-2xl: 0.1rem 0.1rem 1.5rem 0.1rem hsl(123 20% 50% / 0.2);
+
+  --tracking-normal: 0.025em;
+  --spacing: 0.25rem;
+}
+
+.dark {
+  /* Dark mode with warmer, more inviting tones */
+  --background: oklch(0.1914 0.0094 65.7097);
+  --foreground: oklch(0.8426 0.0357 58.105);
+
+  /* Cards with subtle warmth in dark mode */
+  --card: oklch(0.2414 0.0114 65.7097);
+  --card-foreground: oklch(0.8426 0.0357 58.105);
+
+  /* Elevated surfaces */
+  --popover: oklch(0.2814 0.0134 65.7097);
+  --popover-foreground: oklch(0.8426 0.0357 58.105);
+
+  /* Primary maintains its calming presence */
+  --primary: oklch(0.6872 0.1298 46.78);
+  --primary-foreground: oklch(0.15 0.01 120);
+
+  /* Secondary with better dark mode harmony */
+  --secondary: oklch(0.7015 0.0353 159.02);
+  --secondary-foreground: oklch(0.15 0.01 50);
+
+  /* Muted with gentle contrast */
+  --muted: oklch(0.2614 0.0114 65.7097);
+  --muted-foreground: oklch(0.7426 0.0357 58.105);
+
+  /* Accent balanced for dark mode */
+  --accent: oklch(0.5391 0.1298 46.78);
+  --accent-foreground: oklch(0.9426 0.0157 58.105);
+
+  /* Gentle destructive for dark mode */
+  --destructive: oklch(0.6072 0.0998 46.7847);
+  --destructive-foreground: oklch(0.95 0.005 50);
+
+  /* Borders with subtle definition */
+  --border: oklch(0.3214 0.0194 65.7097);
+  --input: oklch(0.2714 0.0134 65.7097);
+  --ring: oklch(0.6872 0.1298 46.78);
+
+  /* Harmonized chart colors for dark mode */
+  --chart-1: oklch(0.6872 0.1298 46.78); /* Primary earth */
+  --chart-2: oklch(0.7015 0.0353 159.02); /* Secondary green */
+  --chart-3: oklch(0.5815 0.0653 102.5); /* Accent sage */
+  --chart-4: oklch(0.6215 0.0653 140.5); /* Deeper green */
+  --chart-5: oklch(0.6572 0.0898 75.78); /* Warm sage */
+
+  /* Sidebar with gentle contrast */
+  --sidebar: oklch(0.1714 0.0094 65.7097);
+  --sidebar-foreground: oklch(0.8426 0.0357 58.105);
+  --sidebar-primary: oklch(0.6872 0.1298 46.78);
+  --sidebar-primary-foreground: oklch(0.15 0.01 120);
+  --sidebar-accent: oklch(0.5815 0.0653 102.5);
+  --sidebar-accent-foreground: oklch(0.9426 0.0157 58.105);
+  --sidebar-border: oklch(0.2814 0.0114 65.7097);
+  --sidebar-ring: oklch(0.6872 0.1298 46.78);
+
+  /* Typography */
+  --font-sans: system-ui, sans-serif;
+  --font-serif: serif;
+  --font-mono: Menlo, monospace;
+  --radius: 0.5rem;
+
+  /* Softer shadows with warm undertones for dark mode */
+  --shadow-2xs: 0.1rem 0.1rem 0.4rem 0.05rem hsl(123 15% 10% / 0.15);
+  --shadow-xs: 0.1rem 0.1rem 0.5rem 0.05rem hsl(123 15% 10% / 0.2);
+  --shadow-sm:
+    0.1rem 0.1rem 0.6rem 0.05rem hsl(123 15% 10% / 0.25),
+    0.1rem 1px 2px -0.5px hsl(123 15% 10% / 0.25);
+  --shadow:
+    0.1rem 0.1rem 0.8rem 0.05rem hsl(123 15% 10% / 0.3),
+    0.1rem 1px 3px -0.5px hsl(123 15% 10% / 0.3);
+  --shadow-md:
+    0.1rem 0.1rem 1rem 0.05rem hsl(123 15% 10% / 0.35),
+    0.1rem 2px 4px -0.5px hsl(123 15% 10% / 0.35);
+  --shadow-lg:
+    0.1rem 0.1rem 1.2rem 0.05rem hsl(123 15% 10% / 0.4),
+    0.1rem 4px 6px -0.5px hsl(123 15% 10% / 0.4);
+  --shadow-xl:
+    0.1rem 0.1rem 1.5rem 0.05rem hsl(123 15% 10% / 0.45),
+    0.1rem 8px 10px -0.5px hsl(123 15% 10% / 0.45);
+  --shadow-2xl: 0.1rem 0.1rem 2rem 0.1rem hsl(123 15% 10% / 0.5);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-serif: var(--font-serif);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --shadow-2xs: var(--shadow-2xs);
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow: var(--shadow);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
+  --shadow-2xl: var(--shadow-2xl);
+
+  --tracking-tighter: calc(var(--tracking-normal) - 0.05em);
+  --tracking-tight: calc(var(--tracking-normal) - 0.025em);
+  --tracking-normal: var(--tracking-normal);
+  --tracking-wide: calc(var(--tracking-normal) + 0.025em);
+  --tracking-wider: calc(var(--tracking-normal) + 0.05em);
+  --tracking-widest: calc(var(--tracking-normal) + 0.1em);
+}
+
+body {
+  letter-spacing: var(--tracking-normal);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+
+  /* Smooth transitions for interactive elements */
+  button,
+  [role='button'],
+  input,
+  select,
+  textarea {
+    transition: all 0.2s ease;
+  }
+
+  /* Enhanced focus states for accessibility and zen feel */
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+    transition: outline 0.2s ease;
+  }
+}
+
+/* view transition api */
+.page-transition {
+  opacity: 0;
+  transition: opacity 0.7s ease;
+}
+
+.page-transition.active {
+  opacity: 1;
+}
+
+@supports (view-transition-name: none) {
+  .page-transition {
+    transition: none;
+  }
+
+  ::view-transition-group(root) {
+    animation-duration: 0.7s;
+    animation-timing-function: linear(
+      0 0%,
+      0.2342 12.49%,
+      0.4374 24.99%,
+      0.6093 37.49%,
+      0.6835 43.74%,
+      0.7499 49.99%,
+      0.8086 56.25%,
+      0.8593 62.5%,
+      0.9023 68.75%,
+      0.9375 75%,
+      0.9648 81.25%,
+      0.9844 87.5%,
+      0.9961 93.75%,
+      1 100%
+    );
+  }
+
+  ::view-transition-new(root) {
+    mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><defs><filter id="blur"><feGaussianBlur stdDeviation="2"/></filter></defs><circle cx="0" cy="0" r="18" fill="white" filter="url(%23blur)"/></svg>')
+      top left / 0 no-repeat;
+    mask-origin: content-box;
+    animation: scale 1s;
+    transform-origin: top left;
+  }
+
+  ::view-transition-old(root),
+  .dark::view-transition-old(root) {
+    animation: scale 1s;
+    transform-origin: top left;
+    z-index: -1;
+  }
+
+  @keyframes scale {
+    to {
+      mask-size: 350vmax;
+    }
+  }
+}
