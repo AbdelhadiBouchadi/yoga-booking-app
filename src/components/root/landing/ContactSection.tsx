@@ -102,7 +102,7 @@ export default function ContactSection() {
               Our Community
             </span>
           </h2>
-          <p className="text-xl text-muted-foreground md:text-2xl">
+          <p className="text-xl text-muted-foreground md:text-2xl font-serif text-balance">
             Have questions about our classes or want to start your yoga journey?
             We're here to guide you every step of the way.
           </p>

@@ -192,7 +192,7 @@ export default function InstructorsSection() {
             <h3 className="mb-4 text-2xl font-bold text-foreground font-mono">
               Ready to Begin Your Journey?
             </h3>
-            <p className="text-muted-foreground font-serif">
+            <p className="text-muted-foreground font-serif text-balance max-w-md mx-auto">
               Our teachers are here to guide you with personalized attention and
               genuine care for your growth.
             </p>
