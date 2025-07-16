@@ -1,0 +1,217 @@
+{
+  "common": {
+    "language": "Language"
+  },
+  "nav": {
+    "home": "Home",
+    "sessions": "Sessions",
+    "admin": "Dashboard",
+    "signIn": "Sign In",
+    "bookSession": "Book A Session"
+  },
+  "hero": {
+    "badge": "Find Your Inner Peace",
+    "title": "Transform Your",
+    "titleHighlight": "Mind & Body",
+    "description": "Join our serene yoga community and discover the perfect balance between strength, flexibility, and mindfulness. Book your transformative session today.",
+    "bookSession": "Book Your Session",
+    "exploreClasses": "Explore Classes",
+    "stats": {
+      "happyYogis": "Happy Yogis",
+      "expertInstructors": "Expert Instructors"
+    }
+  },
+  "about": {
+    "title": "Your Journey to",
+    "titleHighlight": "Inner Harmony",
+    "description": "At our studio, we believe yoga is more than just physical exercise—it's a path to discovering your authentic self and finding peace in the present moment.",
+    "mission": {
+      "title": "Our Mission",
+      "description": "To create a sacred space where individuals can reconnect with their inner wisdom, build physical strength, and cultivate lasting peace through the ancient practice of yoga."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "description": "To inspire a global community where yoga becomes a transformative force for healing, self-discovery, and conscious living, one breath at a time."
+    },
+    "values": {
+      "title": "Our Core Values",
+      "description": "The guiding principles that shape every class, every breath, and every moment of transformation.",
+      "mindfulness": {
+        "title": "Mindfulness",
+        "description": "Cultivate present-moment awareness through guided meditation and breathing techniques."
+      },
+      "community": {
+        "title": "Community",
+        "description": "Join a supportive community of like-minded individuals on their wellness journey."
+      },
+      "wellness": {
+        "title": "Wellness",
+        "description": "Achieve holistic health through the perfect balance of physical and mental practices."
+      },
+      "growth": {
+        "title": "Growth",
+        "description": "Embrace continuous personal development and spiritual awakening in every session."
+      }
+    }
+  },
+  "classes": {
+    "title": "Discover Your",
+    "titleHighlight": "Perfect Practice",
+    "description": "From gentle beginnings to advanced flows, find the class that resonates with your journey and current needs.",
+    "viewAll": "View All Classes",
+    "bookClass": "Book This Class",
+    "types": {
+      "hatha": {
+        "title": "Hatha Yoga",
+        "description": "Perfect for beginners, focusing on basic postures and breathing techniques to build foundation and flexibility.",
+        "duration": "60 min",
+        "level": "Beginner",
+        "capacity": "12 people",
+        "price": "$25"
+      },
+      "vinyasa": {
+        "title": "Vinyasa Flow",
+        "description": "Dynamic sequences that synchronize breath with movement, creating a meditative flow of energy and strength.",
+        "duration": "75 min",
+        "level": "Intermediate",
+        "capacity": "15 people",
+        "price": "$30"
+      },
+      "yin": {
+        "title": "Yin Yoga",
+        "description": "Slow-paced practice with longer holds, promoting deep relaxation and inner stillness for mind and body.",
+        "duration": "90 min",
+        "level": "All Levels",
+        "capacity": "10 people",
+        "price": "$35"
+      }
+    }
+  },
+  "instructors": {
+    "title": "Meet Your",
+    "titleHighlight": "Guiding Teachers",
+    "description": "Our experienced instructors are here to support you on every step of your yoga journey with wisdom, compassion, and expertise.",
+    "experience": "experience",
+    "specialties": "Specialties",
+    "certifications": "Certifications",
+    "cta": {
+      "title": "Ready to Begin Your Journey?",
+      "description": "Our teachers are here to guide you with personalized attention and genuine care for your growth."
+    },
+    "team": {
+      "sarah": {
+        "name": "Sarah Chen",
+        "title": "Lead Instructor & Founder",
+        "bio": "Sarah discovered yoga during a transformative journey in India and has been sharing its healing power ever since.",
+        "experience": "12 years",
+        "specialties": {
+          "0": "Vinyasa",
+          "1": "Meditation",
+          "2": "Breathwork"
+        },
+        "certifications": {
+          "0": "RYT-500",
+          "1": "Yoga Teacher"
+        }
+      },
+      "marcus": {
+        "name": "Marcus Rodriguez",
+        "title": "Senior Instructor",
+        "bio": "Marcus brings a grounded approach to yoga, emphasizing alignment and the deeper philosophical teachings.",
+        "experience": "8 years",
+        "specialties": {
+          "0": "Hatha",
+          "1": "Yin Yoga",
+          "2": "Philosophy"
+        },
+        "certifications": {
+          "0": "RYT-200",
+          "1": "Yin Yoga Certified"
+        }
+      },
+      "luna": {
+        "name": "Luna Patel",
+        "title": "Wellness Coach",
+        "bio": "Luna specializes in creating safe, nurturing spaces for healing and personal growth through gentle practices.",
+        "experience": "6 years",
+        "specialties": {
+          "0": "Restorative",
+          "1": "Prenatal",
+          "2": "Ayurveda"
+        },
+        "certifications": {
+          "0": "RYT-200",
+          "1": "Prenatal Yoga",
+          "2": "Ayurveda Practitioner"
+        }
+      }
+    }
+  },
+  "testimonials": {
+    "title": "Stories of",
+    "titleHighlight": "Transformation",
+    "description": "Hear from our community members about their journey of growth, healing, and self-discovery.",
+    "stats": {
+      "happyStudents": "Happy Students",
+      "averageRating": "Average Rating",
+      "classesCompleted": "Classes Completed"
+    },
+    "reviews": {
+      "emma": {
+        "name": "Emma Thompson",
+        "role": "Marketing Manager",
+        "content": "This studio has completely transformed my relationship with stress and anxiety. The instructors create such a safe, welcoming space for growth.",
+        "class": "Vinyasa Flow"
+      },
+      "david": {
+        "name": "David Kim",
+        "role": "Software Engineer",
+        "content": "As someone who sits at a desk all day, yoga here has been a game-changer for my posture, flexibility, and mental clarity. Highly recommend!",
+        "class": "Hatha Yoga"
+      },
+      "maria": {
+        "name": "Maria Santos",
+        "role": "Teacher",
+        "content": "The prenatal classes helped me stay connected to my body during pregnancy. Luna is an incredible instructor with such gentle wisdom.",
+        "class": "Prenatal Yoga"
+      }
+    }
+  },
+  "contact": {
+    "title": "Connect With",
+    "titleHighlight": "Our Community",
+    "description": "Have questions about our classes or want to start your yoga journey? We're here to guide you every step of the way.",
+    "form": {
+      "title": "Send us a message",
+      "subtitle": "We'd love to hear from you and help you begin your wellness journey.",
+      "name": "Name",
+      "namePlaceholder": "Your full name",
+      "email": "Email",
+      "emailPlaceholder": "your.email@example.com",
+      "message": "Message",
+      "messagePlaceholder": "Tell us about your yoga goals or any questions you have...",
+      "send": "Send Message",
+      "sending": "Sending...",
+      "sent": "Message Sent!"
+    },
+    "info": {
+      "title": "Get in Touch",
+      "visit": {
+        "title": "Visit Our Studio",
+        "address": "123 Serenity Lane, Peaceful Valley, CA 90210"
+      },
+      "call": {
+        "title": "Call Us",
+        "phone": "+1 (555) 123-YOGA"
+      },
+      "email": {
+        "title": "Email Us",
+        "address": "hello@yogastudio.com"
+      },
+      "hours": {
+        "title": "Studio Hours",
+        "schedule": "Mon-Fri: 6AM-9PM\nSat-Sun: 7AM-7PM"
+      }
+    }
+  }
+}

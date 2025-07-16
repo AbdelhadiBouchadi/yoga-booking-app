@@ -1,0 +1,216 @@
+{
+  "common": {
+    "language": "Language"
+  },
+  "nav": {
+    "home": "Accueil",
+    "sessions": "Séances",
+    "admin": "Gestionnaire",
+    "signIn": "Se Connecter",
+    "bookSession": "Réserver une Séance"
+  },
+  "hero": {
+    "badge": "Trouvez Votre Paix Intérieure",
+    "title": "Transformez Votre",
+    "titleHighlight": "Corps & Esprit",
+    "description": "Rejoignez notre communauté de yoga sereine et découvrez l'équilibre parfait entre force, flexibilité et pleine conscience. Réservez votre séance transformatrice dès aujourd'hui.",
+    "bookSession": "Réserver Votre Séance",
+    "exploreClasses": "Explorer les Cours",
+    "stats": {
+      "happyYogis": "Yogis Heureux",
+      "expertInstructors": "Instructeurs Experts"
+    }
+  },
+  "about": {
+    "title": "Votre Voyage vers",
+    "titleHighlight": "l'Harmonie Intérieure",
+    "description": "Dans notre studio, nous croyons que le yoga est plus qu'un simple exercice physique—c'est un chemin pour découvrir votre moi authentique et trouver la paix dans le moment présent.",
+    "mission": {
+      "title": "Notre Mission",
+      "description": "Créer un espace sacré où les individus peuvent se reconnecter avec leur sagesse intérieure, développer leur force physique et cultiver une paix durable grâce à la pratique ancienne du yoga."
+    },
+    "vision": {
+      "title": "Notre Vision",
+      "description": "Inspirer une communauté mondiale où le yoga devient une force transformatrice pour la guérison, la découverte de soi et la vie consciente, une respiration à la fois."
+    },
+    "values": {
+      "title": "Nos Valeurs Fondamentales",
+      "description": "Les principes directeurs qui façonnent chaque cours, chaque respiration et chaque moment de transformation.",
+      "mindfulness": {
+        "title": "Pleine Conscience",
+        "description": "Cultivez la conscience du moment présent grâce à la méditation guidée et aux techniques de respiration."
+      },
+      "community": {
+        "title": "Communauté",
+        "description": "Rejoignez une communauté bienveillante de personnes partageant les mêmes idées dans leur parcours de bien-être."
+      },
+      "wellness": {
+        "title": "Bien-être",
+        "description": "Atteignez une santé holistique grâce à l'équilibre parfait entre les pratiques physiques et mentales."
+      },
+      "growth": {
+        "title": "Croissance",
+        "description": "Embrassez le développement personnel continu et l'éveil spirituel dans chaque séance."
+      }
+    }
+  },
+  "classes": {
+    "title": "Découvrez Votre",
+    "titleHighlight": "Pratique Parfaite",
+    "description": "Des débuts doux aux flux avancés, trouvez le cours qui résonne avec votre parcours et vos besoins actuels.",
+    "viewAll": "Voir Tous les Cours",
+    "bookClass": "Réserver ce Cours",
+    "types": {
+      "hatha": {
+        "title": "Hatha Yoga",
+        "description": "Parfait pour les débutants, se concentrant sur les postures de base et les techniques de respiration pour construire les fondations et la flexibilité.",
+        "duration": "60 min",
+        "level": "Débutant",
+        "capacity": "12 personnes",
+        "price": "25€"
+      },
+      "vinyasa": {
+        "title": "Vinyasa Flow",
+        "description": "Séquences dynamiques qui synchronisent la respiration avec le mouvement, créant un flux méditatif d'énergie et de force.",
+        "duration": "75 min",
+        "level": "Intermédiaire",
+        "capacity": "15 personnes",
+        "price": "30€"
+      },
+      "yin": {
+        "title": "Yin Yoga",
+        "description": "Pratique à rythme lent avec des maintiens plus longs, favorisant la relaxation profonde et la tranquillité intérieure pour le corps et l'esprit.",
+        "duration": "90 min",
+        "level": "Tous Niveaux",
+        "capacity": "10 personnes",
+        "price": "35€"
+      }
+    }
+  },
+  "instructors": {
+    "title": "Rencontrez Vos",
+    "titleHighlight": "Professeurs Guides",
+    "description": "Nos instructeurs expérimentés sont là pour vous accompagner à chaque étape de votre parcours de yoga avec sagesse, compassion et expertise.",
+    "experience": "d'expérience",
+    "specialties": "Spécialités",
+    "certifications": "Certifications",
+    "cta": {
+      "title": "Prêt à Commencer Votre Voyage?",
+      "description": "Nos professeurs sont là pour vous guider avec une attention personnalisée et un véritable souci de votre croissance."
+    },
+    "team": {
+      "sarah": {
+        "name": "Sarah Chen",
+        "title": "Instructrice Principale & Fondatrice",
+        "bio": "Sarah a découvert le yoga lors d'un voyage transformateur en Inde et partage depuis son pouvoir de guérison.",
+        "experience": "12 ans",
+        "specialties": {
+          "0": "Vinyasa",
+          "1": "Meditation",
+          "2": "Breathwork"
+        },
+        "certifications": {
+          "0": "RYT-500",
+          "1": "Yoga Teacher"
+        }
+      },
+      "marcus": {
+        "name": "Marcus Rodriguez",
+        "title": "Instructeur Senior",
+        "bio": "Marcus apporte une approche ancrée au yoga, mettant l'accent sur l'alignement et les enseignements philosophiques plus profonds.",
+        "experience": "8 ans",
+        "specialties": {
+          "0": "Vinyasa",
+          "1": "Meditation",
+          "2": "Breathwork"
+        },
+        "certifications": {
+          "0": "RYT-500",
+          "1": "Yoga Teacher"
+        }
+      },
+      "luna": {
+        "name": "Luna Patel",
+        "title": "Coach Bien-être",
+        "bio": "Luna se spécialise dans la création d'espaces sûrs et nourrissants pour la guérison et la croissance personnelle grâce à des pratiques douces.",
+        "experience": "6 ans",
+        "specialties": {
+          "0": "Vinyasa",
+          "1": "Meditation",
+          "2": "Breathwork"
+        },
+        "certifications": {
+          "0": "RYT-500",
+          "1": "Yoga Teacher"
+        }
+      }
+    }
+  },
+  "testimonials": {
+    "title": "Histoires de",
+    "titleHighlight": "Transformation",
+    "description": "Écoutez les membres de notre communauté parler de leur parcours de croissance, de guérison et de découverte de soi.",
+    "stats": {
+      "happyStudents": "Étudiants Heureux",
+      "averageRating": "Note Moyenne",
+      "classesCompleted": "Cours Terminés"
+    },
+    "reviews": {
+      "emma": {
+        "name": "Emma Thompson",
+        "role": "Responsable Marketing",
+        "content": "Ce studio a complètement transformé ma relation avec le stress et l'anxiété. Les instructeurs créent un espace si sûr et accueillant pour la croissance.",
+        "class": "Vinyasa Flow"
+      },
+      "david": {
+        "name": "David Kim",
+        "role": "Ingénieur Logiciel",
+        "content": "En tant que personne qui reste assise à un bureau toute la journée, le yoga ici a changé la donne pour ma posture, ma flexibilité et ma clarté mentale. Je recommande vivement!",
+        "class": "Hatha Yoga"
+      },
+      "maria": {
+        "name": "Maria Santos",
+        "role": "Enseignante",
+        "content": "Les cours prénataux m'ont aidée à rester connectée à mon corps pendant la grossesse. Luna est une instructrice incroyable avec une sagesse si douce.",
+        "class": "Yoga Prénatal"
+      }
+    }
+  },
+  "contact": {
+    "title": "Connectez-vous avec",
+    "titleHighlight": "Notre Communauté",
+    "description": "Vous avez des questions sur nos cours ou voulez commencer votre parcours de yoga? Nous sommes là pour vous guider à chaque étape.",
+    "form": {
+      "title": "Envoyez-nous un message",
+      "subtitle": "Nous aimerions avoir de vos nouvelles et vous aider à commencer votre parcours de bien-être.",
+      "name": "Nom",
+      "namePlaceholder": "Votre nom complet",
+      "email": "Email",
+      "emailPlaceholder": "votre.email@exemple.com",
+      "message": "Message",
+      "messagePlaceholder": "Parlez-nous de vos objectifs de yoga ou de toute question que vous pourriez avoir...",
+      "send": "Envoyer le Message",
+      "sending": "Envoi en cours...",
+      "sent": "Message Envoyé!"
+    },
+    "info": {
+      "title": "Contactez-nous",
+      "visit": {
+        "title": "Visitez Notre Studio",
+        "address": "123 Allée de la Sérénité, Vallée Paisible, CA 90210"
+      },
+      "call": {
+        "title": "Appelez-nous",
+        "phone": "+1 (555) 123-YOGA"
+      },
+      "email": {
+        "title": "Écrivez-nous",
+        "address": "bonjour@studioyoga.com"
+      },
+      "hours": {
+        "title": "Heures du Studio",
+        "schedule": "Lun-Ven: 6h-21h\nSam-Dim: 7h-19h"
+      }
+    }
+  }
+}

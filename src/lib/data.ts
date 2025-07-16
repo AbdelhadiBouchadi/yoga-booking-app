@@ -3,17 +3,17 @@ import { HomeIcon, LeafIcon } from 'lucide-react';
 
 export const navItems = [
   {
-    name: 'Home',
+    name: 'home',
     href: '/',
     icon: HomeIcon,
   },
   {
-    name: 'Sessions',
+    name: 'sessions',
     href: '/sessions',
     icon: LeafIcon,
   },
   {
-    name: 'Dashboard',
+    name: 'admin',
     href: '/admin',
     icon: IconDashboard,
   },

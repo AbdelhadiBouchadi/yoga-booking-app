@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Star, Award, Heart } from 'lucide-react';
 import BlurVignette from '@/components/ui/blur-vignette';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 const instructors = [
   {
@@ -44,8 +45,57 @@ const instructors = [
 ];
 
 export default function InstructorsSection() {
+  const t = useTranslations('instructors');
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
+
+  const instructors = [
+    {
+      name: t('team.sarah.name'),
+      title: t('team.sarah.title'),
+      specialties: Object.values(
+        t.raw('team.sarah.specialties') as Record<string, string>
+      ),
+      experience: t('team.sarah.experience'),
+      rating: 4.9,
+      bio: t('team.sarah.bio'),
+      image:
+        'https://images.pexels.com/photos/3822864/pexels-photo-3822864.jpeg?auto=compress&cs=tinysrgb&w=400',
+      certifications: Object.values(
+        t.raw('team.sarah.certifications') as Record<string, string>
+      ),
+    },
+    {
+      name: t('team.marcus.name'),
+      title: t('team.marcus.title'),
+      specialties: Object.values(
+        t.raw('team.marcus.specialties') as Record<string, string>
+      ),
+      experience: t('team.marcus.experience'),
+      rating: 4.8,
+      bio: t('team.marcus.bio'),
+      image:
+        'https://images.pexels.com/photos/3822906/pexels-photo-3822906.jpeg?auto=compress&cs=tinysrgb&w=400',
+      certifications: Object.values(
+        t.raw('team.marcus.certifications') as Record<string, string>
+      ),
+    },
+    {
+      name: t('team.luna.name'),
+      title: t('team.luna.title'),
+      specialties: Object.values(
+        t.raw('team.luna.specialties') as Record<string, string>
+      ),
+      experience: t('team.luna.experience'),
+      rating: 5.0,
+      bio: t('team.luna.bio'),
+      image:
+        'https://images.pexels.com/photos/3822622/pexels-photo-3822622.jpeg?auto=compress&cs=tinysrgb&w=400',
+      certifications: Object.values(
+        t.raw('team.luna.certifications') as Record<string, string>
+      ),
+    },
+  ];
 
   return (
     <section className="relative w-full overflow-hidden bg-gradient-to-b from-background to-secondary/10 py-20 md:py-32">
@@ -69,14 +119,13 @@ export default function InstructorsSection() {
           className="mx-auto mb-16 max-w-3xl text-center space-y-4"
         >
           <h2 className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl font-mono">
-            Meet Your
+            {t('title')}
             <span className="block bg-gradient-to-r from-primary to-primary/30 bg-clip-text text-transparent py-3">
-              Guiding Teachers
+              {t('titleHighlight')}
             </span>
           </h2>
           <p className="text-xl text-muted-foreground md:text-2xl font-serif">
-            Our experienced instructors are here to support you on every step of
-            your yoga journey with wisdom, compassion, and expertise.
+            {t('description')}
           </p>
         </motion.div>
 
@@ -121,7 +170,7 @@ export default function InstructorsSection() {
                 {/* Experience Badge */}
                 <div className="absolute bottom-4 left-4 font-sans">
                   <Badge className="bg-primary/90 text-primary-foreground backdrop-blur-sm">
-                    {instructor.experience} experience
+                    {instructor.experience} {t('experience')}
                   </Badge>
                 </div>
               </div>
@@ -144,7 +193,7 @@ export default function InstructorsSection() {
                 {/* Specialties */}
                 <div className="mb-4 font-sans">
                   <h4 className="mb-2 text-sm font-semibold text-foreground">
-                    Specialties
+                    {t('specialties')}
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {instructor.specialties.map((specialty) => (
@@ -164,7 +213,7 @@ export default function InstructorsSection() {
                   <div className="flex items-center gap-2 mb-2">
                     <Award className="h-4 w-4 text-primary" />
                     <h4 className="text-sm font-semibold text-foreground">
-                      Certifications
+                      {t('certifications')}
                     </h4>
                   </div>
                   <div className="flex flex-wrap gap-2">
@@ -190,11 +239,10 @@ export default function InstructorsSection() {
           <div className="mx-auto rounded-2xl border border-border/40 bg-gradient-to-br from-card/60 to-card/20 p-8 backdrop-blur-sm">
             <Heart className="mx-auto mb-4 h-12 w-12 text-primary" />
             <h3 className="mb-4 text-2xl font-bold text-foreground font-mono">
-              Ready to Begin Your Journey?
+              {t('cta.title')}
             </h3>
             <p className="text-muted-foreground font-serif text-balance max-w-md mx-auto">
-              Our teachers are here to guide you with personalized attention and
-              genuine care for your growth.
+              {t('cta.description')}
             </p>
           </div>
         </motion.div>

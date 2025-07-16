@@ -16,6 +16,7 @@ import {
   MailIcon,
 } from 'lucide-react';
 import BlurVignette from '@/components/ui/blur-vignette';
+import { useTranslations } from 'next-intl';
 
 export default function ContactSection() {
   const [name, setName] = useState('');
@@ -26,6 +27,8 @@ export default function ContactSection() {
 
   const formRef = useRef(null);
   const isInView = useInView(formRef, { once: true, amount: 0.3 });
+
+  const t = useTranslations('contact');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -52,23 +55,23 @@ export default function ContactSection() {
   const contactInfo = [
     {
       icon: MapPin,
-      title: 'Visit Our Studio',
-      content: 'Meknes, Morocco',
+      title: t('info.visit.title'),
+      content: t('info.visit.address'),
     },
     {
       icon: Phone,
-      title: 'Call Us',
-      content: '+212-697830605',
+      title: t('info.call.title'),
+      content: t('info.call.phone'),
     },
     {
       icon: Mail,
-      title: 'Email Us',
-      content: 'contact@lafabriquedubonheur.com',
+      title: t('info.email.title'),
+      content: t('info.email.address'),
     },
     {
       icon: Clock,
-      title: 'Studio Hours',
-      content: 'Mon-Fri: 6AM-9PM\nSat-Sun: 7AM-7PM',
+      title: t('info.hours.title'),
+      content: t('info.hours.schedule'),
     },
   ];
 
@@ -97,14 +100,13 @@ export default function ContactSection() {
           className="mx-auto mb-16 max-w-3xl text-center"
         >
           <h2 className="mb-6 bg-gradient-to-r from-foreground via-foreground/90 to-foreground/80 bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-5xl md:text-6xl font-mono">
-            Connect With
+            {t('title')}
             <span className="block bg-gradient-to-r from-primary to-secondary/70 bg-clip-text text-transparent">
-              Our Community
+              {t('titleHighlight')}
             </span>
           </h2>
           <p className="text-xl text-muted-foreground md:text-2xl font-serif text-balance">
-            Have questions about our classes or want to start your yoga journey?
-            We're here to guide you every step of the way.
+            {t('description')}
           </p>
         </motion.div>
 
@@ -121,11 +123,10 @@ export default function ContactSection() {
                 className="mb-8"
               >
                 <h3 className="mb-2 text-3xl font-bold text-foreground font-sans">
-                  Send us a message
+                  {t('form.title')}
                 </h3>
                 <p className="text-muted-foreground font-serif text-balance">
-                  We'd love to hear from you and help you begin your wellness
-                  journey.
+                  {t('form.description')}
                 </p>
               </motion.div>
 
@@ -145,12 +146,12 @@ export default function ContactSection() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 }}
                   >
-                    <Label htmlFor="name">Name</Label>
+                    <Label htmlFor="name">{t('form.name')}</Label>
                     <Input
                       id="name"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      placeholder="Your full name"
+                      placeholder={t('form.namePlaceholder')}
                       required
                       className="bg-background/50 backdrop-blur-sm"
                     />
@@ -162,13 +163,13 @@ export default function ContactSection() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5 }}
                   >
-                    <Label htmlFor="email">Email</Label>
+                    <Label htmlFor="email">{t('form.email')}</Label>
                     <Input
                       id="email"
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      placeholder="your.email@example.com"
+                      placeholder={t('form.emailPlaceholder')}
                       required
                       className="bg-background/50 backdrop-blur-sm"
                     />
@@ -181,12 +182,12 @@ export default function ContactSection() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 }}
                 >
-                  <Label htmlFor="message">Message</Label>
+                  <Label htmlFor="message">{t('form.message')}</Label>
                   <Textarea
                     id="message"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    placeholder="Tell us about your yoga goals or any questions you have..."
+                    placeholder={t('form.messagePlaceholder')}
                     required
                     className="h-32 resize-none bg-background/50 backdrop-blur-sm"
                   />
@@ -200,17 +201,17 @@ export default function ContactSection() {
                 >
                   {isSubmitting ? (
                     <>
-                      Sending...
+                      {t('form.sending')}
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                     </>
                   ) : isSubmitted ? (
                     <>
-                      <span>Message Sent!</span>
+                      <span>{t('form.sent')}</span>
                       <Check className="mr-2 h-4 w-4" />
                     </>
                   ) : (
                     <>
-                      Send Message
+                      {t('form.send')}
                       <MailIcon />
                     </>
                   )}
@@ -229,7 +230,7 @@ export default function ContactSection() {
                 className="h-full"
               >
                 <h3 className="mb-8 text-2xl font-bold text-foreground">
-                  Get in Touch
+                  {t('info.title')}
                 </h3>
 
                 <div className="space-y-6">

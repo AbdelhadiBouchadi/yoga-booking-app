@@ -3,6 +3,7 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Flower2Icon, Heart, Users, Zap } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 const values = [
   {
@@ -32,11 +33,35 @@ const values = [
 ];
 
 export default function AboutSection() {
+  const t = useTranslations('about');
   const aboutRef = useRef(null);
   const valuesRef = useRef(null);
 
   const aboutInView = useInView(aboutRef, { once: true, amount: 0.3 });
   const valuesInView = useInView(valuesRef, { once: true, amount: 0.3 });
+
+  const values = [
+    {
+      title: t('values.mindfulness.title'),
+      description: t('values.mindfulness.description'),
+      icon: Flower2Icon,
+    },
+    {
+      title: t('values.community.title'),
+      description: t('values.community.description'),
+      icon: Users,
+    },
+    {
+      title: t('values.wellness.title'),
+      description: t('values.wellness.description'),
+      icon: Heart,
+    },
+    {
+      title: t('values.growth.title'),
+      description: t('values.growth.description'),
+      icon: Zap,
+    },
+  ];
 
   return (
     <section className="relative w-full overflow-hidden bg-gradient-to-b from-background to-secondary/10 py-20 md:py-32">
@@ -58,15 +83,13 @@ export default function AboutSection() {
           className="mx-auto mb-20 max-w-3xl text-center"
         >
           <h2 className="mb-6 bg-gradient-to-r from-foreground via-foreground/90 to-foreground/80 bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-5xl md:text-6xl font-mono">
-            Your Journey to
+            {t('title')}
             <span className="block bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-              Inner Harmony
+              {t('titleHighlight')}
             </span>
           </h2>
           <p className="text-xl text-muted-foreground md:text-2xl font-serif">
-            At our studio, we believe yoga is more than just physical
-            exercise—it's a path to discovering your authentic self and finding
-            peace in the present moment.
+            {t('description')}
           </p>
         </motion.div>
 
@@ -89,13 +112,11 @@ export default function AboutSection() {
               </div>
 
               <h3 className="mb-4 bg-gradient-to-r from-primary/90 to-primary/70 bg-clip-text text-3xl font-bold text-transparent font-sans">
-                Our Mission
+                {t('mission.title')}
               </h3>
 
               <p className="text-lg leading-relaxed text-muted-foreground font-serif">
-                To create a sacred space where individuals can reconnect with
-                their inner wisdom, build physical strength, and cultivate
-                lasting peace through the ancient practice of yoga.
+                {t('mission.description')}
               </p>
             </div>
           </motion.div>
@@ -115,13 +136,11 @@ export default function AboutSection() {
               </div>
 
               <h3 className="mb-4 text-3xl font-bold text-foreground font-sans">
-                Our Vision
+                {t('vision.title')}
               </h3>
 
               <p className="text-lg leading-relaxed text-muted-foreground font-serif">
-                To inspire a global community where yoga becomes a
-                transformative force for healing, self-discovery, and conscious
-                living, one breath at a time.
+                {t('vision.description')}
               </p>
             </div>
           </motion.div>
@@ -138,11 +157,10 @@ export default function AboutSection() {
             className="mb-12 text-center"
           >
             <h3 className="mb-4 bg-gradient-to-r from-foreground/80 via-foreground to-foreground/80 bg-clip-text text-3xl font-bold tracking-tight text-transparent sm:text-4xl font-mono">
-              Our Core Values
+              {t('values.title')}
             </h3>
             <p className="mx-auto max-w-2xl text-lg text-muted-foreground font-serif">
-              The guiding principles that shape every class, every breath, and
-              every moment of transformation.
+              {t('values.description')}
             </p>
           </motion.div>
 

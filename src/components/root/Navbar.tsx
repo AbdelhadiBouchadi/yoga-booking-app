@@ -22,6 +22,8 @@ import { LeafIcon, LogInIcon, Menu, X } from 'lucide-react';
 import LogoGreen from '../../../public/logo-green.webp';
 import LogoOrange from '../../../public/logo-orange.webp';
 import { useTheme } from 'next-themes';
+import { useLocale, useTranslations } from 'next-intl';
+import { LocaleSwitcher } from './LocaleSwitcher';
 
 const mobileMenuVariants: Variants = {
   closed: {
@@ -60,6 +62,15 @@ const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [hovered, setHovered] = useState<number | null>(null);
   const { theme } = useTheme();
+  const t = useTranslations('nav');
+  const locale = useLocale();
+
+  const isRouteActive = (href: string) => {
+    const pathWithoutLocale = pathname.replace(`/${locale}`, '') || '/';
+    return href === '/'
+      ? pathWithoutLocale === '/'
+      : pathWithoutLocale.startsWith(href);
+  };
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
     if (latest > 100) {
@@ -125,10 +136,7 @@ const Navbar = () => {
           className="absolute inset-0 flex flex-1 flex-row items-center justify-center space-x-2 text-sm font-medium"
         >
           {navItems.map((item, idx) => {
-            const isActive =
-              item.href === '/'
-                ? pathname === '/'
-                : pathname.startsWith(item.href);
+            const isActive = isRouteActive(item.href);
             const Icon = item.icon;
 
             return (
@@ -151,7 +159,7 @@ const Navbar = () => {
                   />
                 )}
                 <Icon size={16} className="relative z-20" />
-                <span className="relative z-20">{item.name}</span>
+                <span className="relative z-20">{t(item.name)}</span>
               </Link>
             );
           })}
@@ -165,6 +173,7 @@ const Navbar = () => {
           className="flex items-center space-x-2"
         >
           <ModeToggle />
+          <LocaleSwitcher variant="desktop" />
           {isPending ? (
             <UserDropdownSkeleton />
           ) : session ? (
@@ -177,7 +186,7 @@ const Navbar = () => {
           ) : (
             <Button asChild className="z-20">
               <Link href="/sign-in">
-                Sign In
+                {t('signIn')}
                 <LogInIcon className="ml-2 size-4" />
               </Link>
             </Button>
@@ -268,10 +277,7 @@ const Navbar = () => {
                 <div className="space-y-6 p-6">
                   <div className="space-y-1">
                     {navItems.map((item, idx) => {
-                      const isActive =
-                        item.href === '/'
-                          ? pathname === '/'
-                          : pathname.startsWith(item.href);
+                      const isActive = isRouteActive(item.href);
                       const Icon = item.icon;
 
                       return (
@@ -291,7 +297,7 @@ const Navbar = () => {
                             )}
                           >
                             <Icon size={18} />
-                            {item.name}
+                            {t(item.name)}
                           </Link>
                         </motion.div>
                       );
@@ -311,7 +317,7 @@ const Navbar = () => {
                           'w-full justify-center'
                         )}
                       >
-                        Sign In
+                        {t('signIn')}
                         <LogInIcon className="ml-2 size-4" />
                       </Link>
                     ) : (
@@ -323,10 +329,14 @@ const Navbar = () => {
                           'w-full justify-center'
                         )}
                       >
-                        Book A Session
+                        {t('bookSession')}
                         <LeafIcon className="ml-2 size-4" />
                       </Link>
                     )}
+                    <LocaleSwitcher
+                      variant="mobile"
+                      onLocaleChange={() => setMobileMenuOpen(false)}
+                    />
                   </motion.div>
                 </div>
               </motion.div>

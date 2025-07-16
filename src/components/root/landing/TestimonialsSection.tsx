@@ -3,8 +3,8 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Star, Quote } from 'lucide-react';
-import BlurVignette from '@/components/ui/blur-vignette';
 import CountUp from '../CountUp';
+import { useTranslations } from 'next-intl';
 
 const testimonials = [
   {
@@ -72,6 +72,37 @@ const testimonials = [
 export default function TestimonialsSection() {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
+  const t = useTranslations('testimonials');
+
+  const testimonials = [
+    {
+      name: t('reviews.emma.name'),
+      role: t('reviews.emma.role'),
+      content: t('reviews.emma.content'),
+      rating: 5,
+      image:
+        'https://images.pexels.com/photos/3822864/pexels-photo-3822864.jpeg?auto=compress&cs=tinysrgb&w=200',
+      class: t('reviews.emma.class'),
+    },
+    {
+      name: t('reviews.david.name'),
+      role: t('reviews.david.role'),
+      content: t('reviews.david.content'),
+      rating: 5,
+      image:
+        'https://images.pexels.com/photos/3822906/pexels-photo-3822906.jpeg?auto=compress&cs=tinysrgb&w=200',
+      class: t('reviews.david.class'),
+    },
+    {
+      name: t('reviews.maria.name'),
+      role: t('reviews.maria.role'),
+      content: t('reviews.maria.content'),
+      rating: 5,
+      image:
+        'https://images.pexels.com/photos/3822622/pexels-photo-3822622.jpeg?auto=compress&cs=tinysrgb&w=200',
+      class: t('reviews.maria.class'),
+    },
+  ];
 
   return (
     <section className="relative w-full overflow-hidden bg-gradient-to-b from-secondary/10 to-background py-20">
@@ -95,14 +126,13 @@ export default function TestimonialsSection() {
           className="mx-auto mb-16 max-w-3xl text-center"
         >
           <h2 className="mb-6 bg-gradient-to-r from-foreground via-foreground/90 to-foreground/80 bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-5xl md:text-6xl font-mono py-2">
-            Stories of
+            {t('title')}
             <span className="block bg-gradient-to-r from-primary to-primary/30 bg-clip-text text-transparent py-1">
-              Transformation
+              {t('titleHightlight')}
             </span>
           </h2>
           <p className="text-xl text-muted-foreground md:text-2xl font-serif">
-            Hear from our community members about their journey of growth,
-            healing, and self-discovery.
+            {t('description')}
           </p>
         </motion.div>
 
@@ -157,7 +187,7 @@ export default function TestimonialsSection() {
                       {testimonial.role}
                     </p>
                     <p className="text-xs text-primary font-medium font-serif">
-                      {testimonial.class} Student
+                      {testimonial.class}
                     </p>
                   </div>
                 </div>
@@ -186,7 +216,9 @@ export default function TestimonialsSection() {
                   />
                   +
                 </div>
-                <div className="text-muted-foreground">Happy Students</div>
+                <div className="text-muted-foreground">
+                  {t('stats.happyStudents')}
+                </div>
               </div>
               <div>
                 <div className="mb-2 text-4xl font-bold text-primary">
@@ -198,7 +230,9 @@ export default function TestimonialsSection() {
                     duration={1}
                   />
                 </div>
-                <div className="text-muted-foreground">Average Rating</div>
+                <div className="text-muted-foreground">
+                  {t('stats.averageRating')}
+                </div>
               </div>
               <div>
                 <div className="mb-2 text-4xl font-bold text-primary">
@@ -211,7 +245,9 @@ export default function TestimonialsSection() {
                   />
                   +
                 </div>
-                <div className="text-muted-foreground">Classes Completed</div>
+                <div className="text-muted-foreground">
+                  {t('stats.classesCompleted')}
+                </div>
               </div>
             </div>
           </div>

@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Clock, Users, Star, Calendar } from 'lucide-react';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 const classes = [
   {
@@ -19,7 +20,7 @@ const classes = [
     price: '$25',
     image:
       'https://images.pexels.com/photos/3822622/pexels-photo-3822622.jpeg?auto=compress&cs=tinysrgb&w=600',
-    gradient: 'from-primary/20 to-seconday-500/5',
+    gradient: 'from-primary/20 to-secondary-500/5',
   },
   {
     title: 'Vinyasa Flow',
@@ -32,7 +33,7 @@ const classes = [
     price: '$30',
     image:
       'https://images.pexels.com/photos/3822906/pexels-photo-3822906.jpeg?auto=compress&cs=tinysrgb&w=600',
-    gradient: 'from-primary/20 to-seconday',
+    gradient: 'from-primary/20 to-secondary',
   },
   {
     title: 'Yin Yoga',
@@ -45,13 +46,53 @@ const classes = [
     price: '$35',
     image:
       'https://images.pexels.com/photos/3822864/pexels-photo-3822864.jpeg?auto=compress&cs=tinysrgb&w=600',
-    gradient: 'from-primary/20 to-seconday',
+    gradient: 'from-primary/20 to-secondary',
   },
 ];
 
 export default function ClassesSection() {
+  const t = useTranslations('classes');
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
+
+  const classes = [
+    {
+      title: t('types.hatha.title'),
+      description: t('types.hatha.description'),
+      duration: t('types.hatha.duration'),
+      level: t('types.hatha.level'),
+      capacity: t('types.hatha.capacity'),
+      rating: 4.9,
+      price: t('types.hatha.price'),
+      image:
+        'https://images.pexels.com/photos/3822622/pexels-photo-3822622.jpeg?auto=compress&cs=tinysrgb&w=600',
+      gradient: 'from-primary/20 to-secondary-500/5',
+    },
+    {
+      title: t('types.vinyasa.title'),
+      description: t('types.vinyasa.description'),
+      duration: t('types.vinyasa.duration'),
+      level: t('types.vinyasa.level'),
+      capacity: t('types.vinyasa.capacity'),
+      rating: 4.8,
+      price: t('types.vinyasa.price'),
+      image:
+        'https://images.pexels.com/photos/3822906/pexels-photo-3822906.jpeg?auto=compress&cs=tinysrgb&w=600',
+      gradient: 'from-primary/20 to-secondary-500/5',
+    },
+    {
+      title: t('types.yin.title'),
+      description: t('types.yin.description'),
+      duration: t('types.yin.duration'),
+      level: t('types.yin.level'),
+      capacity: t('types.yin.capacity'),
+      rating: 5.0,
+      price: t('types.yin.price'),
+      image:
+        'https://images.pexels.com/photos/3822864/pexels-photo-3822864.jpeg?auto=compress&cs=tinysrgb&w=600',
+      gradient: 'from-primary/20 to-secondary-500/5',
+    },
+  ];
 
   return (
     <section className="relative w-full overflow-hidden bg-gradient-to-b from-secondary/10 to-background py-20 md:py-32">
@@ -75,14 +116,13 @@ export default function ClassesSection() {
           className="mx-auto mb-16 max-w-3xl text-center"
         >
           <h2 className="mb-6 bg-gradient-to-r from-foreground via-foreground/90 to-foreground/80 bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-5xl md:text-6xl font-mono">
-            Discover Your
+            {t('title')}
             <span className="block bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-              Perfect Practice
+              {t('titleHighlight')}
             </span>
           </h2>
           <p className="text-xl text-muted-foreground md:text-2xl font-serif">
-            From gentle beginnings to advanced flows, find the class that
-            resonates with your journey and current needs.
+            {t('description')}
           </p>
         </motion.div>
 
@@ -174,7 +214,7 @@ export default function ClassesSection() {
                       href={`/book-class/${yogaClass.title.toLowerCase().replace(' ', '-')}`}
                     >
                       <Calendar className="mr-2 h-4 w-4" />
-                      Book This Class
+                      {t('bookClass')}
                     </Link>
                   </Button>
                 </motion.div>
@@ -197,7 +237,7 @@ export default function ClassesSection() {
               size="lg"
               className="border-border/40 bg-background/50 backdrop-blur-sm"
             >
-              <Link href="/classes">View All Classes</Link>
+              <Link href="/classes">{t('viewAll')}</Link>
             </Button>
           </motion.div>
         </motion.div>

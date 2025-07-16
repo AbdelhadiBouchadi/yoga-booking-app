@@ -6,8 +6,10 @@ import { Button } from '@/components/ui/button';
 import { Calendar, Heart, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 import { AnimatedShinyText } from './AnimatedShinyText';
+import { useTranslations } from 'next-intl';
 
 export default function HeroSection() {
+  const t = useTranslations('hero');
   const heroRef = useRef(null);
   const isInView = useInView(heroRef, { once: true, amount: 0.3 });
 
@@ -45,11 +47,11 @@ export default function HeroSection() {
                 isInView ? { scale: 1, opacity: 1 } : { scale: 0.9, opacity: 0 }
               }
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="mb-6 inline-flex items-center gap-2 rounded-full border border-border/40 bg-primary/10 dark:bg-secondary/10 px-4 py-2 text-sm font-medium text-muted-foreground backdrop-blur-sm font-sans"
+              className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 dark:bg-secondary/10 px-4 py-2 text-sm font-medium text-muted-foreground backdrop-blur-sm font-sans"
             >
               <AnimatedShinyText className="flex justify-center items-center transition ease-out hover:text-neutral-600 hover:duration-300 hover:dark:text-neutral-400 gap-x-2">
-                <Sparkles className="h-4 w-4 text-primary" />
-                Find Your Inner Peace
+                <Sparkles className="h-4 w-4 text-primary fill-primary" />
+                {t('badge')}
               </AnimatedShinyText>
             </motion.div>
 
@@ -59,9 +61,9 @@ export default function HeroSection() {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="mb-6 bg-gradient-to-r from-foreground via-foreground/90 to-foreground/80 bg-clip-text text-5xl font-bold tracking-tight text-transparent sm:text-6xl md:text-7xl lg:text-8xl font-mono py-2"
             >
-              Transform Your
+              {t('title')}
               <span className="block bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-                Mind & Body
+                {t('titleHighlight')}
               </span>
             </motion.h1>
 
@@ -71,9 +73,7 @@ export default function HeroSection() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="mx-auto mb-8 max-w-2xl text-xl text-muted-foreground md:text-2xl font-serif"
             >
-              Join our serene yoga community and discover the perfect balance
-              between strength, flexibility, and mindfulness. Book your
-              transformative session today.
+              {t('description')}
             </motion.p>
 
             <motion.div
@@ -89,7 +89,7 @@ export default function HeroSection() {
               >
                 <Link href="/book-session">
                   <Calendar className="mr-2 h-5 w-5 " />
-                  Book Your Session
+                  {t('bookSession')}
                 </Link>
               </Button>
 
@@ -101,7 +101,7 @@ export default function HeroSection() {
               >
                 <Link href="/classes">
                   <Heart className="mr-2 h-5 w-5" />
-                  Explore Classes
+                  {t('exploreClasses')}
                 </Link>
               </Button>
             </motion.div>
@@ -120,7 +120,7 @@ export default function HeroSection() {
               <div className="flex items-center gap-3">
                 <div className="h-3 w-3 rounded-full bg-primary"></div>
                 <span className="text-sm text-muted-foreground">
-                  500+ Happy Yogis
+                  500+ {t('stats.happyYogis')}
                 </span>
               </div>
             </div>
@@ -138,7 +138,7 @@ export default function HeroSection() {
               <div className="flex items-center gap-3">
                 <div className="h-3 w-3 rounded-full bg-primary"></div>
                 <span className="text-sm text-muted-foreground">
-                  Expert Instructors
+                  {t('stats.expertInstructors')}
                 </span>
               </div>
             </div>
