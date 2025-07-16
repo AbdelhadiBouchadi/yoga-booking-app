@@ -211,7 +211,12 @@ const Navbar = () => {
         {/* Mobile Header */}
         <div className="flex w-full flex-row items-center justify-between">
           <Link href="/" className="flex items-center space-x-2">
-            <Image src={Logo} alt="Yoga Studio Logo" width={48} height={48} />
+            <Image
+              src={theme === 'light' ? LogoGreen : LogoOrange}
+              alt="Yoga Studio Logo"
+              width={48}
+              height={48}
+            />
           </Link>
 
           <div className="flex items-center space-x-2">
