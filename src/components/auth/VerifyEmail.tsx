@@ -16,7 +16,7 @@ import {
   InputOTPSlot,
 } from '@/components/ui/input-otp';
 import { authClient } from '@/lib/auth-client';
-import { Loader2Icon, MailIcon } from 'lucide-react';
+import { Loader2Icon } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useState, useTransition } from 'react';

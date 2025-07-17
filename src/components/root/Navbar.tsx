@@ -2,8 +2,9 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import NextLink from 'next/link';
 import React, { useRef, useState } from 'react';
-import { navItems } from '@/lib/data';
+import { adminNavItem, navItems } from '@/lib/data';
 import { ModeToggle } from '@/components/ui/theme-toggle';
 import { authClient } from '@/lib/auth-client';
 import { Button, buttonVariants } from '@/components/ui/button';
@@ -63,8 +64,13 @@ const Navbar = () => {
   const { theme } = useTheme();
   const t = useTranslations('nav');
   const locale = useLocale();
+  const isAdmin = session?.user.role === 'admin';
 
   const isRouteActive = (href: string) => {
+    if (href === '/admin') {
+      return pathname === '/admin' || pathname.startsWith('/admin/');
+    }
+
     const pathWithoutLocale = pathname.replace(`/${locale}`, '') || '/';
     return href === '/'
       ? pathWithoutLocale === '/'
@@ -144,8 +150,10 @@ const Navbar = () => {
                 href={item.href}
                 onMouseEnter={() => setHovered(idx)}
                 className={cn(
-                  'relative px-4 py-2 flex items-center gap-2',
-                  isActive ? 'text-foreground ' : 'hover:text-foreground'
+                  'relative flex items-center justify-center space-x-1 rounded-full px-4 py-2 transition-colors',
+                  isActive
+                    ? 'text-foreground'
+                    : 'text-muted-foreground hover:text-foreground'
                 )}
               >
                 {(hovered === idx || isActive) && (
@@ -162,6 +170,35 @@ const Navbar = () => {
               </Link>
             );
           })}
+
+          {isAdmin && (
+            <a
+              key="admin-nav"
+              href={adminNavItem.href}
+              onMouseEnter={() => setHovered(navItems.length)}
+              className={cn(
+                'relative flex items-center justify-center space-x-1 rounded-full px-4 py-2 transition-colors',
+                isRouteActive(adminNavItem.href)
+                  ? 'text-foreground'
+                  : 'text-muted-foreground hover:text-foreground'
+              )}
+            >
+              {(hovered === navItems.length ||
+                isRouteActive(adminNavItem.href)) && (
+                <motion.div
+                  layoutId="hovered"
+                  className={cn(
+                    'absolute inset-0 h-full w-full rounded-full',
+                    isRouteActive(adminNavItem.href)
+                      ? 'bg-primary'
+                      : 'bg-primary/30'
+                  )}
+                />
+              )}
+              <adminNavItem.icon size={16} className="relative z-20" />
+              <span className="relative z-20">{t('admin')}</span>
+            </a>
+          )}
         </motion.div>
 
         {/* Right Side Actions */}

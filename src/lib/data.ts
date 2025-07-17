@@ -12,9 +12,10 @@ export const navItems = [
     href: '/sessions',
     icon: LeafIcon,
   },
-  {
-    name: 'admin',
-    href: '/admin',
-    icon: IconDashboard,
-  },
 ];
+
+export const adminNavItem = {
+  name: 'admin',
+  href: '/admin',
+  icon: IconDashboard,
+};
