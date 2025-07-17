@@ -1,44 +1,66 @@
-"use client"
+"use client";
 
 import {
-  IconCreditCard,
+  IconDashboard,
   IconDotsVertical,
   IconLogout,
-  IconNotification,
-  IconUserCircle,
-} from "@tabler/icons-react"
+} from "@tabler/icons-react";
 
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
+  DropdownMenuPortal,
   DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
+import { authClient } from "@/lib/auth-client";
+import Link from "next/link";
+import { Check, HomeIcon, Monitor, Moon, Sun, Tv2Icon } from "lucide-react";
+import { useTheme } from "next-themes";
+import { useSignOut } from "@/hooks/use-sign-out";
+import { Skeleton } from "./ui/skeleton";
 
-export function NavUser({
-  user,
-}: {
-  user: {
-    name: string
-    email: string
-    avatar: string
+export function NavUser() {
+  const { isMobile } = useSidebar();
+  const { theme, setTheme } = useTheme();
+  const { data: session, isPending } = authClient.useSession();
+
+  const user = session?.user;
+
+  const handleSignOut = useSignOut();
+
+  if (isPending) {
+    return (
+      <SidebarMenu>
+        <SidebarMenuItem>
+          <SidebarMenuButton
+            size="lg"
+            className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+          >
+            <Skeleton className="h-8 w-8 rounded-lg" />
+            <div className="grid flex-1 text-left text-sm leading-tight">
+              <Skeleton className="mb-1 h-4 w-24" />
+              <Skeleton className="h-3 w-32" />
+            </div>
+            <Skeleton className="ml-auto h-4 w-4" />
+          </SidebarMenuButton>
+        </SidebarMenuItem>
+      </SidebarMenu>
+    );
   }
-}) {
-  const { isMobile } = useSidebar()
 
   return (
     <SidebarMenu>
@@ -49,14 +71,26 @@ export function NavUser({
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
-              <Avatar className="h-8 w-8 rounded-lg grayscale">
-                <AvatarImage src={user.avatar} alt={user.name} />
-                <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+              <Avatar className="h-8 w-8 rounded-lg">
+                <AvatarImage
+                  src={
+                    user?.image ??
+                    `https://avatar.vercel.sh/${user?.email}?rounded=60`
+                  }
+                  alt="User Avatar Image"
+                />
+                <AvatarFallback className="rounded-lg">
+                  {user?.name && user.name.length > 0
+                    ? user.name.charAt(0).toUpperCase()
+                    : user?.email.charAt(0).toUpperCase()}
+                </AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">{user.name}</span>
+                <span className="truncate font-medium">
+                  {user?.name ?? " User"}
+                </span>
                 <span className="text-muted-foreground truncate text-xs">
-                  {user.email}
+                  {user?.email ?? "Email"}
                 </span>
               </div>
               <IconDotsVertical className="ml-auto size-4" />
@@ -71,34 +105,78 @@ export function NavUser({
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-lg">
-                  <AvatarImage src={user.avatar} alt={user.name} />
-                  <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                  <AvatarImage
+                    src={
+                      user?.image ??
+                      `https://avatar.vercel.sh/${user?.email}?rounded=60`
+                    }
+                    alt="User Avatar Image"
+                  />
+                  <AvatarFallback className="rounded-lg">
+                    {user?.name && user.name.length > 0
+                      ? user.name.charAt(0).toUpperCase()
+                      : user?.email.charAt(0).toUpperCase()}
+                  </AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">{user.name}</span>
+                  <span className="truncate font-medium">
+                    {user?.name ?? " User"}
+                  </span>
                   <span className="text-muted-foreground truncate text-xs">
-                    {user.email}
+                    {user?.email ?? "Email"}
                   </span>
                 </div>
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <IconUserCircle />
-                Account
+              <DropdownMenuItem asChild>
+                <Link href="/">
+                  <HomeIcon />
+                  Home
+                </Link>
               </DropdownMenuItem>
-              <DropdownMenuItem>
-                <IconCreditCard />
-                Billing
+              <DropdownMenuItem asChild>
+                <Link href="/admin">
+                  <IconDashboard />
+                  Dashboard
+                </Link>
               </DropdownMenuItem>
-              <DropdownMenuItem>
-                <IconNotification />
-                Notifications
+              <DropdownMenuItem asChild>
+                <Link href="/admin/sessions">
+                  <Tv2Icon />
+                  Lessons
+                </Link>
               </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger>
+                  <Tv2Icon className="mr-2 size-4" />
+                  Mode
+                </DropdownMenuSubTrigger>
+                <DropdownMenuPortal>
+                  <DropdownMenuSubContent>
+                    <DropdownMenuItem onClick={() => setTheme("system")}>
+                      <Monitor />
+                      System default
+                      {theme === "system" && <Check />}
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setTheme("light")}>
+                      <Sun />
+                      Light
+                      {theme === "light" && <Check />}
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setTheme("dark")}>
+                      <Moon />
+                      Dark
+                      {theme === "dark" && <Check />}
+                    </DropdownMenuItem>
+                  </DropdownMenuSubContent>
+                </DropdownMenuPortal>
+              </DropdownMenuSub>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={handleSignOut}>
               <IconLogout />
               Log out
             </DropdownMenuItem>
@@ -106,5 +184,5 @@ export function NavUser({
         </DropdownMenu>
       </SidebarMenuItem>
     </SidebarMenu>
-  )
+  );
 }

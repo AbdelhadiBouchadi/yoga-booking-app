@@ -78,3 +78,32 @@ model Verification {
 
   @@map("verification")
 }
+
+enum LessonLevel {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+enum LessonStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+model Lesson {
+  id               String       @id @default(uuid())
+  title            String
+  smallDescription String
+  description      String
+  category         String
+  imageUrl         String
+  teacher          String
+  location         String
+  startTime        DateTime
+  endTime          DateTime
+  level            LessonLevel  @default(BEGINNER)
+  status           LessonStatus @default(DRAFT)
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+}
