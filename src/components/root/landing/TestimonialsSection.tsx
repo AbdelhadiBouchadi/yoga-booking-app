@@ -128,7 +128,7 @@ export default function TestimonialsSection() {
           <h2 className="mb-6 bg-gradient-to-r from-foreground via-foreground/90 to-foreground/80 bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-5xl md:text-6xl font-mono py-2">
             {t('title')}
             <span className="block bg-gradient-to-r from-primary to-primary/30 bg-clip-text text-transparent py-1">
-              {t('titleHightlight')}
+              {t('titleHighlight')}
             </span>
           </h2>
           <p className="text-xl text-muted-foreground md:text-2xl font-serif">

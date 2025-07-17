@@ -3,7 +3,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useRef, useState } from 'react';
-import Logo from '../../../public/logo-orange.webp';
 import { navItems } from '@/lib/data';
 import { ModeToggle } from '@/components/ui/theme-toggle';
 import { authClient } from '@/lib/auth-client';

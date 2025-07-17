@@ -126,7 +126,7 @@ export default function ContactSection() {
                   {t('form.title')}
                 </h3>
                 <p className="text-muted-foreground font-serif text-balance">
-                  {t('form.description')}
+                  {t('form.subtitle')}
                 </p>
               </motion.div>
 

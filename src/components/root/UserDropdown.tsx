@@ -1,4 +1,4 @@
-import { BookOpenIcon, HomeIcon, LogOutIcon } from 'lucide-react';
+import { BookOpenIcon, HomeIcon, LeafIcon, LogOutIcon } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import {
@@ -15,6 +15,7 @@ import { useSignOut } from '@/hooks/use-sign-out';
 import GeneratedAvatar from '../generated-avatar';
 import { Skeleton } from '../ui/skeleton';
 import { IconDashboard } from '@tabler/icons-react';
+import { useLocale, useTranslations } from 'next-intl';
 
 interface UserDropdownProps {
   email?: string | null;
@@ -39,6 +40,7 @@ export default function UserDropdown({
   isLoading,
 }: UserDropdownProps) {
   const handleSignOut = useSignOut();
+  const locale = useLocale();
 
   if (isLoading) {
     return <UserDropdownSkeleton />;
@@ -80,17 +82,13 @@ export default function UserDropdown({
           <DropdownMenuItem asChild>
             <Link href="/">
               <HomeIcon size={16} className="opacity-60" aria-hidden="true" />
-              <span>Home</span>
+              <span>{locale === 'fr' ? 'Accueil' : 'Home'}</span>
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
             <Link href="/courses">
-              <BookOpenIcon
-                size={16}
-                className="opacity-60"
-                aria-hidden="true"
-              />
-              <span>Courses</span>
+              <LeafIcon size={16} className="opacity-60" aria-hidden="true" />
+              <span>{locale === 'fr' ? 'Séances' : 'Sessions'}</span>
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
@@ -100,14 +98,14 @@ export default function UserDropdown({
                 className="opacity-60"
                 aria-hidden="true"
               />
-              <span>Dashboard</span>
+              <span>{locale === 'fr' ? 'Gestionnaire' : 'Dashboard'}</span>
             </Link>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={handleSignOut}>
           <LogOutIcon size={16} className="opacity-60" aria-hidden="true" />
-          <span>Logout</span>
+          <span>{locale === 'fr' ? 'Se Déconnecter' : 'Sign Out'}</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
