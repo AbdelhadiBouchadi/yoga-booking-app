@@ -38,13 +38,26 @@ export const lessonSchema = z.object({
 export const instructorSchema = z.object({
   name: z.string().min(1, "Name is required"),
   email: z.string().email("Invalid email address"),
-  phone: z.string().min(1, "Phone number is required"),
+  phone: z
+    .string()
+    .min(1, "Phone number is required")
+    .refine(
+      (value) => {
+        // Basic phone number validation - allows international format
+        const phoneRegex = /^\+?[1-9]\d{1,14}$/;
+        return phoneRegex.test(value.replace(/[\s\-\(\)]/g, ""));
+      },
+      {
+        message: "Please enter a valid phone number",
+      },
+    ),
   bioFr: z.string().min(1, "Bio in french is required"),
   bioEn: z.string().min(1, { message: "English bio in required" }),
   specialties: z.array(z.string()).min(1, "At least one specialty is required"),
   certifications: z.array(z.string()).optional(),
   experience: z.number().min(0, "Experience must be 0 or greater"),
-  imageUrl: z.string().optional(),
+  image: z.string().optional(),
+  images: z.array(z.string()).optional(),
 });
 
 export const categorySchema = z.object({

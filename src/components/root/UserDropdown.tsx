@@ -1,6 +1,6 @@
-import { BookOpenIcon, HomeIcon, LeafIcon, LogOutIcon } from 'lucide-react';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
+import { BookOpenIcon, HomeIcon, LeafIcon, LogOutIcon } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,13 +9,13 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import Link from 'next/link';
-import { useSignOut } from '@/hooks/use-sign-out';
-import GeneratedAvatar from '../generated-avatar';
-import { Skeleton } from '../ui/skeleton';
-import { IconDashboard } from '@tabler/icons-react';
-import { useLocale, useTranslations } from 'next-intl';
+} from "@/components/ui/dropdown-menu";
+import Link from "next/link";
+import { useSignOut } from "@/hooks/use-sign-out";
+import GeneratedAvatar from "../generated-avatar";
+import { Skeleton } from "../ui/skeleton";
+import { IconDashboard } from "@tabler/icons-react";
+import { useLocale } from "next-intl";
 
 interface UserDropdownProps {
   email?: string | null;
@@ -51,7 +51,7 @@ export default function UserDropdown({
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
-          className="hover:bg-transparent rounded-full size-10"
+          className="size-10 rounded-full hover:bg-transparent"
         >
           {image ? (
             <Avatar>
@@ -71,10 +71,10 @@ export default function UserDropdown({
       <DropdownMenuContent align="end" className="max-w-64">
         <DropdownMenuLabel className="flex min-w-0 flex-col">
           <span className="text-foreground truncate text-sm font-medium">
-            {name || 'User'}
+            {name || "User"}
           </span>
           <span className="text-muted-foreground truncate text-xs font-normal">
-            {email || 'User Email'}
+            {email || "User Email"}
           </span>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
@@ -82,13 +82,13 @@ export default function UserDropdown({
           <DropdownMenuItem asChild>
             <Link href="/">
               <HomeIcon size={16} className="opacity-60" aria-hidden="true" />
-              <span>{locale === 'fr' ? 'Accueil' : 'Home'}</span>
+              <span>{locale === "fr" ? "Accueil" : "Home"}</span>
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
             <Link href="/courses">
               <LeafIcon size={16} className="opacity-60" aria-hidden="true" />
-              <span>{locale === 'fr' ? 'Séances' : 'Sessions'}</span>
+              <span>{locale === "fr" ? "Séances" : "Sessions"}</span>
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
@@ -98,14 +98,14 @@ export default function UserDropdown({
                 className="opacity-60"
                 aria-hidden="true"
               />
-              <span>{locale === 'fr' ? 'Gestionnaire' : 'Dashboard'}</span>
+              <span>{locale === "fr" ? "Gestionnaire" : "Dashboard"}</span>
             </Link>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={handleSignOut}>
           <LogOutIcon size={16} className="opacity-60" aria-hidden="true" />
-          <span>{locale === 'fr' ? 'Se Déconnecter' : 'Sign Out'}</span>
+          <span>{locale === "fr" ? "Se Déconnecter" : "Sign Out"}</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

@@ -16,6 +16,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { format } from "date-fns";
+import { RenderDescription } from "@/components/admin/rich-text-editor/RenderDescription";
 
 type Params = Promise<{ sessionId: string }>;
 
@@ -134,18 +135,12 @@ export default async function LessonPage({ params }: { params: Params }) {
             <CardContent className="space-y-6">
               <div>
                 <h4 className="text-foreground mb-3 font-medium">English</h4>
-                <div
-                  className="prose prose-sm prose-headings:text-foreground prose-p:text-muted-foreground prose-strong:text-foreground prose-ul:text-muted-foreground prose-ol:text-muted-foreground max-w-none"
-                  dangerouslySetInnerHTML={{ __html: data!.descriptionEn }}
-                />
+                <RenderDescription json={JSON.parse(data!.descriptionEn)} />
               </div>
               <Separator />
               <div>
                 <h4 className="text-foreground mb-3 font-medium">Français</h4>
-                <div
-                  className="prose prose-sm prose-headings:text-foreground prose-p:text-muted-foreground prose-strong:text-foreground prose-ul:text-muted-foreground prose-ol:text-muted-foreground max-w-none"
-                  dangerouslySetInnerHTML={{ __html: data!.descriptionFr }}
-                />
+                <RenderDescription json={JSON.parse(data!.descriptionFr)} />
               </div>
             </CardContent>
           </Card>

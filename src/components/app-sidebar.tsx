@@ -7,6 +7,7 @@ import {
   IconChartBar,
   IconDashboard,
   IconFolder,
+  IconTicket,
   IconUsers,
 } from "@tabler/icons-react";
 import { NavMain } from "@/components/nav-main";
@@ -55,9 +56,9 @@ const data = {
       icon: IconUsers,
     },
     {
-      title: "Analytics",
-      url: "/admin/stats",
-      icon: IconChartBar,
+      title: "Bookings",
+      url: "/admin/bookings",
+      icon: IconTicket,
     },
   ],
 };

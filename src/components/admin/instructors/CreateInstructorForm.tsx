@@ -37,6 +37,8 @@ import {
 } from "@/components/ui/card";
 import { Uploader } from "@/components/file-uploader/Uploader";
 import { SpecialtyInput } from "./SpecialtyInput";
+import { MultiImageUploader } from "@/components/file-uploader/MultipleImageUploader";
+import { PhoneInput } from "@/components/ui/phone-input";
 
 export default function CreateInstructorForm() {
   const [isPending, startTransition] = useTransition();
@@ -52,7 +54,8 @@ export default function CreateInstructorForm() {
       specialties: [],
       certifications: [],
       experience: 0,
-      imageUrl: "",
+      image: "",
+      images: [],
     },
   });
 
@@ -153,9 +156,10 @@ export default function CreateInstructorForm() {
                         Phone Number
                       </FormLabel>
                       <FormControl>
-                        <Input
-                          placeholder="+212-6 50 50 50 50"
+                        <PhoneInput
+                          placeholder="Enter phone number"
                           className="h-11"
+                          defaultCountry="MA"
                           {...field}
                         />
                       </FormControl>
@@ -224,7 +228,7 @@ export default function CreateInstructorForm() {
                 name="bioFr"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Biography</FormLabel>
+                    <FormLabel>Biography in French</FormLabel>
                     <FormControl>
                       <Textarea
                         placeholder="Tell us about the instructor's background in french, certifications, and teaching philosophy..."
@@ -267,13 +271,41 @@ export default function CreateInstructorForm() {
             <CardContent>
               <FormField
                 control={form.control}
-                name="imageUrl"
+                name="image"
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
                       <Uploader
                         value={field.value}
                         onValueChange={field.onChange}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </CardContent>
+          </Card>
+
+          {/* Profile Image */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Instructor Images</CardTitle>
+              <CardDescription>
+                Upload photos of the instructor (optional)
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <FormField
+                control={form.control}
+                name="images"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <MultiImageUploader
+                        value={field.value}
+                        onValueChange={field.onChange}
+                        maxFiles={5}
                       />
                     </FormControl>
                     <FormMessage />
