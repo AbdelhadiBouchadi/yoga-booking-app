@@ -28,6 +28,8 @@ model User {
   banExpires    DateTime?
   sessions      Session[]
   accounts      Account[]
+  reviews       Review[]
+  bookings      Booking[]
 
   @@unique([email])
   @@map("user")
@@ -80,30 +82,188 @@ model Verification {
 }
 
 enum LessonLevel {
-  BEGINNER
-  INTERMEDIATE
-  ADVANCED
+  Beginner
+  Intermediate
+  Advanced
 }
 
 enum LessonStatus {
-  DRAFT
-  PUBLISHED
-  ARCHIVED
+  Draft
+  Published
+  Archived
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+  NO_SHOW
+}
+
+enum CancellationReason {
+  USER_CANCELLED
+  INSTRUCTOR_CANCELLED
+  LESSON_CANCELLED
+  WEATHER
+  EMERGENCY
+  OTHER
+}
+
+model Category {
+  id        String   @id @default(uuid())
+  nameEn    String
+  nameFr    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  lessons   Lesson[]
 }
 
 model Lesson {
-  id               String       @id @default(uuid())
-  title            String
-  smallDescription String
-  description      String
-  category         String
-  imageUrl         String
-  teacher          String
-  location         String
-  startTime        DateTime
-  endTime          DateTime
-  level            LessonLevel  @default(BEGINNER)
-  status           LessonStatus @default(DRAFT)
-  createdAt        DateTime     @default(now())
-  updatedAt        DateTime     @updatedAt
+  id                        String       @id @default(uuid())
+  titleEn                   String
+  titleFr                   String
+  descriptionEn             String
+  descriptionFr             String
+  shortDescriptionEn        String
+  shortDescriptionFr        String
+  imageUrl                  String
+  location                  String
+  startTime                 DateTime
+  endTime                   DateTime
+  level                     LessonLevel  @default(Beginner)
+  status                    LessonStatus @default(Draft)
+  position                  Int
+  maxCapacity               Int
+  duration                  Int // Duration in minutes
+  isRecurring               Boolean      @default(false)
+  recurringPattern          String? // CRON-like pattern for recurring lessons
+  cancellationDeadlineHours Int          @default(24)
+  createdAt                 DateTime     @default(now())
+  updatedAt                 DateTime     @updatedAt
+  Instructor                Instructor?  @relation(fields: [instructorId], references: [id])
+  instructorId              String?
+  Category                  Category?    @relation(fields: [categoryId], references: [id])
+  categoryId                String?
+  Review                    Review[]
+  Booking                   Booking[]
+
+  @@index([startTime])
+  @@index([status])
+  @@index([instructorId])
+  @@index([categoryId])
+}
+
+model Booking {
+  id                 String              @id @default(uuid())
+  userId             String
+  lessonId           String
+  status             BookingStatus       @default(PENDING)
+  bookedAt           DateTime            @default(now())
+  confirmedAt        DateTime?
+  cancelledAt        DateTime?
+  cancellationReason CancellationReason?
+  cancellationNote   String?
+  attendanceMarked   Boolean             @default(false)
+  attended           Boolean?
+  position           Int? // Position in waiting list if lesson is full
+  isWaitingList      Boolean             @default(false)
+  notificationsSent  Json? // Track what notifications were sent
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+
+  // Relations
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lesson Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, lessonId]) // Prevent duplicate bookings
+  @@index([lessonId])
+  @@index([userId])
+  @@index([status])
+  @@index([bookedAt])
+}
+
+model IntructorReview {
+  id           String     @id @default(uuid())
+  instructorId String
+  rating       Int
+  comment      String?
+  lessonId     String?
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  Instructor   Instructor @relation(fields: [instructorId], references: [id])
+}
+
+model Instructor {
+  id             String   @id @default(uuid())
+  name           String
+  email          String   @unique
+  phone          String
+  bioEn          String?
+  bioFr          String?
+  imageUrl       String?
+  specialties    String[]
+  certifications String[]
+  experience     Int
+  rating         Decimal? @db.Decimal(3, 2)
+  isActive       Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  lessons Lesson[]
+  reviews IntructorReview[]
+  Review  Review[]
+
+  @@index([isActive])
+  @@index([rating])
+}
+
+model Review {
+  id           String   @id @default(uuid())
+  userId       String
+  lessonId     String?
+  instructorId String
+  rating       Int      @db.SmallInt // 1-5 rating
+  comment      String?
+  isAnonymous  Boolean  @default(false)
+  isApproved   Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Relations
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lesson     Lesson?    @relation(fields: [lessonId], references: [id], onDelete: SetNull)
+  instructor Instructor @relation(fields: [instructorId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, lessonId]) // One review per user per lesson
+  @@index([instructorId])
+  @@index([rating])
+  @@index([isApproved])
+}
+
+model BookingSettings {
+  id                       String   @id @default("settings")
+  maxAdvanceBookingDays    Int      @default(30)
+  defaultCancellationHours Int      @default(24)
+  waitingListEnabled       Boolean  @default(true)
+  autoConfirmBookings      Boolean  @default(false)
+  sendReminderHours        Int      @default(2)
+  maxBookingsPerUser       Int? // Optional limit per user
+  createdAt                DateTime @default(now())
+  updatedAt                DateTime @updatedAt
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String
+  type      String // BOOKING_CONFIRMED, LESSON_REMINDER, CANCELLATION, etc.
+  title     String
+  message   String
+  isRead    Boolean  @default(false)
+  data      Json? // Additional data for the notification
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([isRead])
+  @@index([createdAt])
 }

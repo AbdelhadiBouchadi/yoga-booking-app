@@ -2,16 +2,14 @@
 
 import * as React from "react";
 import {
+  IconCalendar,
+  IconChalkboardTeacher,
   IconChartBar,
   IconDashboard,
   IconFolder,
-  IconHelp,
-  IconSearch,
-  IconSettings,
   IconUsers,
 } from "@tabler/icons-react";
 import { NavMain } from "@/components/nav-main";
-import { NavSecondary } from "@/components/nav-secondary";
 import { NavUser } from "@/components/nav-user";
 import {
   Sidebar,
@@ -32,41 +30,34 @@ const data = {
   navMain: [
     {
       title: "Dashboard",
-      url: "#",
+      url: "/admin",
       icon: IconDashboard,
     },
-    {
-      title: "Analytics",
-      url: "#",
-      icon: IconChartBar,
-    },
+
     {
       title: "Sessions",
-      url: "#",
+      url: "/admin/sessions",
       icon: IconFolder,
     },
     {
+      title: "Instructors",
+      url: "/admin/instructors",
+      icon: IconChalkboardTeacher,
+    },
+    {
+      title: "Schedule",
+      url: "/admin/schedule",
+      icon: IconCalendar,
+    },
+    {
       title: "Users",
-      url: "#",
+      url: "/admin/users",
       icon: IconUsers,
     },
-  ],
-
-  navSecondary: [
     {
-      title: "Settings",
-      url: "#",
-      icon: IconSettings,
-    },
-    {
-      title: "Get Help",
-      url: "#",
-      icon: IconHelp,
-    },
-    {
-      title: "Search",
-      url: "#",
-      icon: IconSearch,
+      title: "Analytics",
+      url: "/admin/stats",
+      icon: IconChartBar,
     },
   ],
 };
@@ -96,7 +87,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
         <NavUser />

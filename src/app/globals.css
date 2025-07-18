@@ -1,7 +1,9 @@
-@import 'tailwindcss';
-@import 'tw-animate-css';
+@import "tailwindcss";
+@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
+
+@plugin "@tailwindcss/typography";
 
 :root {
   /* Core brand colors - keeping your yoga-inspired palette */
@@ -49,7 +51,7 @@
   --chart-5: oklch(0.7372 0.0898 75.78); /* Warm sage */
 
   /* Sidebar with gentle contrast */
-  --sidebar: oklch(0.8082 0.0359 124.98);
+  --sidebar: oklch(0.8682 0.0359 124.98);
   --sidebar-foreground: oklch(0.3976 0.0274 62.5142);
   --sidebar-primary: oklch(0.7015 0.0353 159.02);
   --sidebar-primary-foreground: oklch(0.98 0.005 120);
@@ -139,7 +141,7 @@
   --chart-5: oklch(0.6572 0.0898 75.78); /* Warm sage */
 
   /* Sidebar with gentle contrast */
-  --sidebar: oklch(0.1714 0.0094 65.7097);
+  --sidebar: oklch(0.2514 0.0094 65.7097);
   --sidebar-foreground: oklch(0.8426 0.0357 58.105);
   --sidebar-primary: oklch(0.6872 0.1298 46.78);
   --sidebar-primary-foreground: oklch(0.15 0.01 120);
@@ -267,13 +269,13 @@ body {
     @apply bg-background text-foreground;
   }
   button:not(:disabled),
-  [role='button']:not(:disabled) {
+  [role="button"]:not(:disabled) {
     cursor: pointer;
   }
 
   /* Smooth transitions for interactive elements */
   button,
-  [role='button'],
+  [role="button"],
   input,
   select,
   textarea {
