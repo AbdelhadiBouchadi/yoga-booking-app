@@ -1,3 +1,5 @@
+import { getInstructors } from "@/app/admin/instructors/actions";
+import { getCategories } from "@/app/data/admin/category-actions";
 import { getAdminLesson } from "@/app/data/admin/get-admin-lesson";
 import EditLessonForm from "@/components/admin/lessons/EditLessonForm";
 import {
@@ -15,12 +17,16 @@ type Params = Promise<{ sessionId: string }>;
 export default async function EditLessonPage({ params }: { params: Params }) {
   const { sessionId } = await params;
 
-  const data = await getAdminLesson(sessionId);
+  const [data, categories, instructors] = await Promise.all([
+    getAdminLesson(sessionId),
+    getCategories(),
+    getInstructors(),
+  ]);
 
   return (
     <div>
       <h1 className="mb-8 text-3xl font-bold">
-        Edit Course :{" "}
+        Edit Lesson :{" "}
         <span className="text-primary underline underline-offset-2">
           {data!.titleEn}
         </span>
@@ -28,7 +34,7 @@ export default async function EditLessonPage({ params }: { params: Params }) {
       <Tabs defaultValue="basic-info" className="w-full">
         <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="basic-info">Basic Info</TabsTrigger>
-          <TabsTrigger value="course-structure">Course Structure</TabsTrigger>
+          <TabsTrigger value="lesson-bookings">Lesson Bookings</TabsTrigger>
         </TabsList>
         <TabsContent value="basic-info">
           <Card>
@@ -39,16 +45,20 @@ export default async function EditLessonPage({ params }: { params: Params }) {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <EditLessonForm data={data} />
+              <EditLessonForm
+                data={data}
+                initialCategories={categories}
+                initialInstructors={instructors}
+              />
             </CardContent>
           </Card>
         </TabsContent>
-        <TabsContent value="course-structure">
+        <TabsContent value="lesson-bookings">
           <Card>
             <CardHeader>
-              <CardTitle>Course Structure</CardTitle>
+              <CardTitle>Lesson Bookings</CardTitle>
               <CardDescription>
-                Here you can edit your course structure
+                Here you can edit your lesson structure
               </CardDescription>
             </CardHeader>
             <CardContent>{/* <CourseStructure data={data} /> */}</CardContent>

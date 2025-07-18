@@ -39,7 +39,6 @@ import {
   lessonStatus,
 } from "@/lib/validator";
 import { tryCatch } from "@/hooks/try-catch";
-import { createLesson } from "@/app/admin/sessions/actions";
 import { toast } from "sonner";
 import {
   Card,
@@ -51,14 +50,8 @@ import {
 import { Uploader } from "@/components/file-uploader/Uploader";
 import { Separator } from "@/components/ui/separator";
 import { RichTextEditor } from "../rich-text-editor/Editor";
-import {
-  getCategories,
-  GetCategoryType,
-} from "@/app/data/admin/category-actions";
-import {
-  getInstructors,
-  GetInstructorType,
-} from "@/app/admin/instructors/actions";
+import { GetCategoryType } from "@/app/data/admin/category-actions";
+import { GetInstructorType } from "@/app/admin/instructors/actions";
 import CreateCategoryDialog from "../categories/CreateCategoryDialog";
 import DateTimePicker from "./DateTimePicker";
 import { AdminLessonSingularType } from "@/app/data/admin/get-admin-lesson";
@@ -66,37 +59,20 @@ import { editLesson } from "@/app/admin/sessions/[sessionId]/edit/actions";
 
 interface EditLessonProps {
   data: AdminLessonSingularType;
+  initialCategories: GetCategoryType[];
+  initialInstructors: GetInstructorType[];
 }
 
-export default function EditLessonForm({ data }: EditLessonProps) {
+export default function EditLessonForm({
+  data,
+  initialCategories,
+  initialInstructors,
+}: EditLessonProps) {
   const [isPending, startTransition] = useTransition();
-  const [categories, setCategories] = useState<GetCategoryType[]>([]);
-  const [instructors, setInstructors] = useState<GetInstructorType[]>([]);
-  const [isLoadingData, setIsLoadingData] = useState(true);
+  const [categories, setCategories] =
+    useState<GetCategoryType[]>(initialCategories);
+  const [instructors] = useState<GetInstructorType[]>(initialInstructors);
   const router = useRouter();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setIsLoadingData(true);
-
-        const [categoriesData, instructorsData] = await Promise.all([
-          getCategories(),
-          getInstructors(),
-        ]);
-
-        setCategories(categoriesData);
-        setInstructors(instructorsData);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        toast.error("Failed to load form data");
-      } finally {
-        setIsLoadingData(false);
-      }
-    };
-
-    fetchData();
-  }, []);
 
   const handleCategoryAdded = (newCategory: {
     id: string;

@@ -51,14 +51,8 @@ import {
 import { Uploader } from "@/components/file-uploader/Uploader";
 import { Separator } from "@/components/ui/separator";
 import { RichTextEditor } from "../rich-text-editor/Editor";
-import {
-  getCategories,
-  GetCategoryType,
-} from "@/app/data/admin/category-actions";
-import {
-  getInstructors,
-  GetInstructorType,
-} from "@/app/admin/instructors/actions";
+import { GetCategoryType } from "@/app/data/admin/category-actions";
+import { GetInstructorType } from "@/app/admin/instructors/actions";
 import CreateCategoryDialog from "../categories/CreateCategoryDialog";
 import DateTimePicker from "./DateTimePicker";
 
@@ -75,7 +69,6 @@ export default function CreateLessonForm({
   const [categories, setCategories] =
     useState<GetCategoryType[]>(initialCategories);
   const [instructors] = useState<GetInstructorType[]>(initialInstructors);
-  const [isLoadingData, setIsLoadingData] = useState(true);
   const router = useRouter();
 
   const handleCategoryAdded = (newCategory: {
