@@ -49,15 +49,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Uploader } from "@/components/file-uploader/Uploader";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { cn } from "@/lib/utils";
-import { format } from "date-fns";
 import { Separator } from "@/components/ui/separator";
-import { Calendar as CalendarComponent } from "@/components/ui/calendar";
 import { RichTextEditor } from "../rich-text-editor/Editor";
 import {
   getCategories,
@@ -70,35 +62,21 @@ import {
 import CreateCategoryDialog from "../categories/CreateCategoryDialog";
 import DateTimePicker from "./DateTimePicker";
 
-export default function CreateLessonForm() {
+interface CreateLessonFormProps {
+  initialCategories: GetCategoryType[];
+  initialInstructors: GetInstructorType[];
+}
+
+export default function CreateLessonForm({
+  initialCategories,
+  initialInstructors,
+}: CreateLessonFormProps) {
   const [isPending, startTransition] = useTransition();
-  const [categories, setCategories] = useState<GetCategoryType[]>([]);
-  const [instructors, setInstructors] = useState<GetInstructorType[]>([]);
+  const [categories, setCategories] =
+    useState<GetCategoryType[]>(initialCategories);
+  const [instructors] = useState<GetInstructorType[]>(initialInstructors);
   const [isLoadingData, setIsLoadingData] = useState(true);
   const router = useRouter();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setIsLoadingData(true);
-
-        const [categoriesData, instructorsData] = await Promise.all([
-          getCategories(),
-          getInstructors(),
-        ]);
-
-        setCategories(categoriesData);
-        setInstructors(instructorsData);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        toast.error("Failed to load form data");
-      } finally {
-        setIsLoadingData(false);
-      }
-    };
-
-    fetchData();
-  }, []);
 
   const handleCategoryAdded = (newCategory: {
     id: string;

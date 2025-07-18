@@ -1,6 +1,13 @@
+import { getCategories } from "@/app/data/admin/category-actions";
 import CreateLessonForm from "@/components/admin/lessons/CreateLessonForm";
+import { getInstructors } from "../../instructors/actions";
 
-export default function CreateLessonPage() {
+export default async function CreateLessonPage() {
+  const [categories, instructors] = await Promise.all([
+    getCategories(),
+    getInstructors(),
+  ]);
+
   return (
     <>
       <div className="space-y-2 text-center">
@@ -11,7 +18,10 @@ export default function CreateLessonPage() {
           Fill in the details below to create a new lesson session
         </p>
       </div>
-      <CreateLessonForm />
+      <CreateLessonForm
+        initialCategories={categories}
+        initialInstructors={instructors}
+      />
     </>
   );
 }

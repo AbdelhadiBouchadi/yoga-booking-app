@@ -2,6 +2,21 @@ import * as z from "zod";
 
 export const lessonLevels = ["Beginner", "Intermediate", "Advanced"] as const;
 export const lessonStatus = ["Draft", "Published", "Archived"] as const;
+export const bookingStatuses = [
+  "PENDING",
+  "CONFIRMED",
+  "CANCELLED",
+  "COMPLETED",
+  "NO_SHOW",
+] as const;
+export const cancellationReasons = [
+  "USER_CANCELLED",
+  "INSTRUCTOR_CANCELLED",
+  "LESSON_CANCELLED",
+  "WEATHER",
+  "EMERGENCY",
+  "OTHER",
+] as const;
 
 export const lessonSchema = z.object({
   titleEn: z.string().min(1, { message: "English title is required" }),
@@ -65,6 +80,30 @@ export const categorySchema = z.object({
   nameFr: z.string().min(1, "French name is required"),
 });
 
+export const createBookingSchema = z.object({
+  lessonId: z.string().min(1, "Lesson is required"),
+  userId: z.string().min(1, "User is required"),
+});
+
+export const updateBookingStatusSchema = z.object({
+  status: z.enum(bookingStatuses, { message: "Please select a valid status" }),
+  cancellationReason: z.enum(cancellationReasons).optional(),
+  cancellationNote: z.string().optional(),
+});
+
+export const markAttendanceSchema = z.object({
+  attended: z.boolean(),
+  bookingIds: z
+    .array(z.string())
+    .min(1, "At least one booking must be selected"),
+});
+
 export type InstructorSchemaType = z.infer<typeof instructorSchema>;
 export type CategorySchemaType = z.infer<typeof categorySchema>;
 export type LessonSchemaType = z.infer<typeof lessonSchema>;
+
+export type CreateBookingSchemaType = z.infer<typeof createBookingSchema>;
+export type UpdateBookingStatusSchemaType = z.infer<
+  typeof updateBookingStatusSchema
+>;
+export type MarkAttendanceSchemaType = z.infer<typeof markAttendanceSchema>;
