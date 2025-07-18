@@ -51,7 +51,7 @@ export default async function LessonPage({ params }: { params: Params }) {
   };
 
   return (
-    <div className="mx-auto max-w-6xl space-y-8">
+    <div className="mx-auto space-y-8">
       {/* Header Section */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div className="space-y-2">

@@ -38,19 +38,19 @@ export function AdminLessonCard({ data }: AdminLessonCardProps) {
             <DropdownMenuItem asChild>
               <Link href={`/admin/sessions/${data.id}/edit`}>
                 <PencilLineIcon />
-                Edit Lesson
+                Edit Session
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
               <Link href={`/admin/sessions/${data.id}`}>
                 <EyeIcon />
-                Preview Lesson
+                Preview Session
               </Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
               <Trash2Icon />
-              Delete Lesson
+              Delete Session
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
@@ -90,7 +90,7 @@ export function AdminLessonCard({ data }: AdminLessonCardProps) {
 
         <Button asChild className="mt-4 w-full">
           <Link href={`/admin/sessions/${data.id}/edit`}>
-            Edit Course
+            Edit Seesion
             <PencilLineIcon />
           </Link>
         </Button>

@@ -79,7 +79,7 @@ export default async function UserPage({ params }: { params: Params }) {
 
   return (
     <div className="bg-background min-h-screen">
-      <div className="container mx-auto max-w-7xl px-4 py-6">
+      <div className="container mx-auto px-4 py-6">
         {/* Header */}
         <div className="mb-8">
           <div className="mb-4 flex flex-col gap-4 sm:flex-row sm:items-center">
