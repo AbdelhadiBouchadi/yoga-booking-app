@@ -168,7 +168,7 @@ export async function createBooking(
     });
 
     revalidatePath("/bookings");
-    revalidatePath(`/lessons/${values.lessonId}`);
+    revalidatePath(`/sessions/${values.lessonId}`);
     revalidatePath("/admin/bookings");
 
     return {
@@ -285,7 +285,7 @@ export async function cancelBooking(
     });
 
     revalidatePath("/bookings");
-    revalidatePath(`/lessons/${result.lessonId}`);
+    revalidatePath(`/sessions/${result.lessonId}`);
     revalidatePath("/admin/bookings");
 
     return {
@@ -329,7 +329,7 @@ export async function updateBookingStatus(
     });
 
     revalidatePath("/admin/bookings");
-    revalidatePath(`/lessons/${booking.lessonId}`);
+    revalidatePath(`/sessions/${booking.lessonId}`);
 
     return {
       status: "success",
@@ -381,6 +381,92 @@ export async function markAttendance(
     return {
       status: "error",
       message: "Failed to mark attendance",
+    };
+  }
+}
+
+export async function deleteBooking(bookingId: string): Promise<APIResponse> {
+  try {
+    await requireAdmin();
+
+    const booking = await db.booking.findUnique({
+      where: { id: bookingId },
+      include: {
+        lesson: true,
+      },
+    });
+
+    if (!booking) {
+      return {
+        status: "error",
+        message: "Booking not found",
+      };
+    }
+
+    await db.$transaction(async (tx) => {
+      // Delete the booking
+      await tx.booking.delete({
+        where: { id: bookingId },
+      });
+
+      // If this was a confirmed booking, promote someone from waiting list
+      if (
+        !booking.isWaitingList &&
+        booking.status === BookingStatus.CONFIRMED
+      ) {
+        const nextWaitingBooking = await tx.booking.findFirst({
+          where: {
+            lessonId: booking.lessonId,
+            isWaitingList: true,
+            status: BookingStatus.PENDING,
+          },
+          orderBy: {
+            position: "asc",
+          },
+        });
+
+        if (nextWaitingBooking) {
+          await tx.booking.update({
+            where: { id: nextWaitingBooking.id },
+            data: {
+              status: BookingStatus.CONFIRMED,
+              isWaitingList: false,
+              position: null,
+              confirmedAt: new Date(),
+            },
+          });
+
+          // Update positions for remaining waiting list
+          await tx.booking.updateMany({
+            where: {
+              lessonId: booking.lessonId,
+              isWaitingList: true,
+              position: {
+                gt: nextWaitingBooking.position!,
+              },
+            },
+            data: {
+              position: {
+                decrement: 1,
+              },
+            },
+          });
+        }
+      }
+    });
+
+    revalidatePath("/admin/bookings");
+    revalidatePath(`/sessions/${booking.lessonId}`);
+
+    return {
+      status: "success",
+      message: "Booking deleted successfully",
+    };
+  } catch (error) {
+    console.error("Error deleting booking:", error);
+    return {
+      status: "error",
+      message: "Failed to delete booking",
     };
   }
 }

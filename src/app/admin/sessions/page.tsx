@@ -19,7 +19,7 @@ export default async function SessionsPage() {
           </Link>
         </Button>
       </div>
-      <div className="grid grid-cols-1 gap-7 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-7 md:grid-cols-2 lg:grid-cols-3">
         {data.map((course, idx) => {
           return <AdminLessonCard key={idx} data={course} />;
         })}
