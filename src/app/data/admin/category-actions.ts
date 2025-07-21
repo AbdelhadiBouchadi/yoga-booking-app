@@ -121,6 +121,8 @@ export async function deleteCategory(id: string): Promise<APIResponse> {
 }
 
 export async function getCategories() {
+  await requireAdmin();
+
   try {
     const categories = await db.category.findMany({
       orderBy: {

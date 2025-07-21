@@ -215,6 +215,11 @@
       }
     }
   },
+  "not-admin": {
+    "title": "Access Restricted",
+    "description": "You do not have permission to access this page. Please sign in with an admin account to continue.",
+    "goBack": "Go Back"
+  },
   "sessions": {
     "hero": {
       "badge": "Find your perfect practice",

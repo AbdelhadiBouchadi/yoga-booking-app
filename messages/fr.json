@@ -214,6 +214,11 @@
       }
     }
   },
+  "not-admin": {
+    "title": "Accès Refusé",
+    "description": "Vous n'avez pas les autorisations nécessaires pour accéder à cette page.",
+    "goBack": "Retour"
+  },
   "sessions": {
     "hero": {
       "badge": "Trouvez Votre Pratique Parfaite",
