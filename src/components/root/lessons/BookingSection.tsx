@@ -26,6 +26,8 @@ import {
 } from "lucide-react";
 import { LessonDetailType } from "@/app/data/lessons/lesson-actions";
 import { motion } from "framer-motion";
+import { useLocale, useTranslations } from "next-intl";
+import { useBookingStatusFormatter } from "@/lib/enum-formatters";
 
 interface BookingSectionProps {
   lesson: NonNullable<LessonDetailType>;
@@ -51,6 +53,10 @@ export default function BookingSection({
 }: BookingSectionProps) {
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
+  const t = useTranslations("sessionId.bookingSection");
+  const formatBookingStatus = useBookingStatusFormatter();
+  const locale = useLocale();
+  const isFrench = locale === "fr";
 
   const handleBookLesson = () => {
     if (!isAuthenticated) {
@@ -129,7 +135,7 @@ export default function BookingSection({
         return (
           <Badge className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
             <CheckCircle className="mr-1 h-3 w-3" />
-            Confirmed
+            {formatBookingStatus("CONFIRMED")}
           </Badge>
         );
       case "PENDING":
@@ -145,7 +151,7 @@ export default function BookingSection({
         return (
           <Badge variant="destructive">
             <X className="mr-1 h-3 w-3" />
-            Cancelled
+            {formatBookingStatus("CANCELLED")}
           </Badge>
         );
       default:
@@ -170,7 +176,7 @@ export default function BookingSection({
       <Card className="border-border/40 from-card/60 to-card/20 border bg-gradient-to-br backdrop-blur-sm">
         <CardHeader>
           <CardTitle className="flex items-center justify-between">
-            <span>Book This Class</span>
+            <span>{t("title")}</span>
             {getBookingStatusBadge()}
           </CardTitle>
         </CardHeader>
@@ -181,28 +187,38 @@ export default function BookingSection({
             <div className="bg-secondary/20 flex items-center gap-3 rounded-lg p-3">
               <Calendar className="text-primary h-4 w-4" />
               <div>
-                <p className="text-muted-foreground text-sm">Date & Time</p>
-                <p className="font-medium">
-                  {new Date(lesson.startTime).toLocaleDateString()} at{" "}
-                  {new Date(lesson.startTime).toLocaleTimeString([], {
-                    hour: "2-digit",
-                    minute: "2-digit",
-                  })}
-                </p>
+                <p className="text-muted-foreground text-sm">{t("dateTime")}</p>
+                {isFrench ? (
+                  <p className="font-medium">
+                    {new Date(lesson.startTime).toLocaleDateString("fr-FR")} Le{" "}
+                    {new Date(lesson.startTime).toLocaleTimeString([], {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
+                  </p>
+                ) : (
+                  <p className="font-medium">
+                    {new Date(lesson.startTime).toLocaleDateString()}{" "}
+                    {new Date(lesson.startTime).toLocaleTimeString([], {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
+                  </p>
+                )}
               </div>
             </div>
 
             <div className="bg-secondary/20 flex items-center gap-3 rounded-lg p-3">
               <Users className="text-primary h-4 w-4" />
               <div className="flex-1">
-                <p className="text-muted-foreground text-sm">Capacity</p>
+                <p className="text-muted-foreground text-sm">{t("capacity")}</p>
                 <div className="flex items-center justify-between">
                   <span className={`font-medium ${getCapacityColor()}`}>
-                    {totalBookings}/{lesson.maxCapacity} booked
+                    {totalBookings}/{lesson.maxCapacity} {t("booked")}
                   </span>
                   {availableSpots > 0 && (
-                    <Badge variant="outline" className="text-xs">
-                      {availableSpots} spots left
+                    <Badge variant="outline" className="text-xs capitalize">
+                      {availableSpots} {t("spotsLeft")}
                     </Badge>
                   )}
                 </div>
@@ -306,13 +322,9 @@ export default function BookingSection({
           {/* Cancellation Policy */}
           <div className="text-muted-foreground border-border/20 border-t pt-4 text-xs">
             <p className="font-sm mb-1 text-lg underline underline-offset-1">
-              Cancellation Policy
+              {t("cancelTitle")}
             </p>
-            <p>
-              You can cancel your booking up to{" "}
-              {lesson.cancellationDeadlineHours} hours before the class starts
-              for a full refund.
-            </p>
+            <p>{t("cancelDescription")}</p>
           </div>
         </CardContent>
       </Card>

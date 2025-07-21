@@ -9,19 +9,33 @@ import { motion } from "framer-motion";
 import { RenderDescription } from "@/components/admin/rich-text-editor/RenderDescription";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { useLocale, useTranslations } from "next-intl";
+import { useLessonLevelFormatter } from "@/lib/enum-formatters";
 
 interface LessonDetailsProps {
   lesson: NonNullable<LessonDetailType>;
 }
 
 export default function LessonDetails({ lesson }: LessonDetailsProps) {
+  const t = useTranslations("sessionId.lessonDetails");
+  const locale = useLocale();
+  const isFrench = locale === "fr";
+  const formatLessonLevel = useLessonLevelFormatter();
+
   const formatDate = (date: Date) => {
-    return new Date(date).toLocaleDateString("en-US", {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
+    return isFrench
+      ? new Date(date).toLocaleDateString("fr-FR", {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        })
+      : new Date(date).toLocaleDateString("en-US", {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        });
   };
 
   const formatTime = (date: Date) => {
@@ -68,13 +82,13 @@ export default function LessonDetails({ lesson }: LessonDetailsProps) {
             {lesson.Category && (
               <Badge
                 variant="secondary"
-                className="bg-primary/90 font-quote backdrop-blur-sm"
+                className="bg-primary/90 font-quote backdroup-blr-sm"
               >
-                {lesson.Category.nameEn}
+                {isFrench ? lesson.Category.nameFr : lesson.Category.nameEn}
               </Badge>
             )}
             <Badge className={cn(getLevelColor(lesson.level), "font-quote")}>
-              {lesson.level}
+              {formatLessonLevel(lesson.level)}
             </Badge>
           </div>
         </motion.div>
@@ -87,10 +101,10 @@ export default function LessonDetails({ lesson }: LessonDetailsProps) {
         transition={{ duration: 0.5, delay: 0.1 }}
       >
         <h1 className="from-foreground to-foreground/80 mb-4 bg-gradient-to-r bg-clip-text text-center font-mono text-4xl font-bold text-balance text-transparent md:text-5xl">
-          {lesson.titleEn}
+          {isFrench ? lesson.titleFr : lesson.titleEn}
         </h1>
         <p className="text-muted-foreground text-center font-serif text-xl leading-relaxed text-balance">
-          {lesson.shortDescriptionEn}
+          {isFrench ? lesson.shortDescriptionFr : lesson.shortDescriptionEn}
         </p>
       </motion.div>
 
@@ -104,7 +118,7 @@ export default function LessonDetails({ lesson }: LessonDetailsProps) {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Calendar className="text-primary h-5 w-5" />
-              Class Information
+              {t("title")}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -113,7 +127,7 @@ export default function LessonDetails({ lesson }: LessonDetailsProps) {
                 <div className="flex items-center gap-3">
                   <Calendar className="text-primary h-5 w-5" />
                   <div>
-                    <p className="text-muted-foreground text-sm">Date</p>
+                    <p className="text-muted-foreground text-sm">{t("date")}</p>
                     <p className="font-medium">
                       {formatDate(lesson.startTime)}
                     </p>
@@ -123,7 +137,7 @@ export default function LessonDetails({ lesson }: LessonDetailsProps) {
                 <div className="flex items-center gap-3">
                   <Clock className="text-primary h-5 w-5" />
                   <div>
-                    <p className="text-muted-foreground text-sm">Time</p>
+                    <p className="text-muted-foreground text-sm">{t("time")}</p>
                     <p className="font-medium">
                       {formatTime(lesson.startTime)} -{" "}
                       {formatTime(lesson.endTime)}
@@ -136,7 +150,9 @@ export default function LessonDetails({ lesson }: LessonDetailsProps) {
                 <div className="flex items-center gap-3">
                   <MapPin className="text-primary h-5 w-5" />
                   <div>
-                    <p className="text-muted-foreground text-sm">Location</p>
+                    <p className="text-muted-foreground text-sm">
+                      {t("location")}
+                    </p>
                     <p className="font-medium">{lesson.location}</p>
                   </div>
                 </div>
@@ -144,7 +160,9 @@ export default function LessonDetails({ lesson }: LessonDetailsProps) {
                 <div className="flex items-center gap-3">
                   <Users className="text-primary h-5 w-5" />
                   <div>
-                    <p className="text-muted-foreground text-sm">Capacity</p>
+                    <p className="text-muted-foreground text-sm">
+                      {t("capacity")}
+                    </p>
                     <p className="font-medium">
                       Max {lesson.maxCapacity} participants
                     </p>
@@ -165,7 +183,7 @@ export default function LessonDetails({ lesson }: LessonDetailsProps) {
         >
           <Card className="border-border/40 from-card/60 to-card/20 border bg-gradient-to-br backdrop-blur-sm">
             <CardHeader>
-              <CardTitle>Your Instructor</CardTitle>
+              <CardTitle>{t("instructor")}</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex items-start gap-6">
@@ -194,9 +212,11 @@ export default function LessonDetails({ lesson }: LessonDetailsProps) {
                     )}
                   </div>
 
-                  {lesson.instructor.bioEn && (
+                  {(lesson.instructor.bioEn || lesson.instructor.bioFr) && (
                     <p className="text-muted-foreground mb-4 leading-relaxed">
-                      {lesson.instructor.bioEn}
+                      {isFrench
+                        ? lesson.instructor.bioFr
+                        : lesson.instructor.bioEn}
                     </p>
                   )}
 
@@ -204,7 +224,9 @@ export default function LessonDetails({ lesson }: LessonDetailsProps) {
                     <div>
                       <div className="mb-2 flex items-center gap-2">
                         <Award className="text-primary h-4 w-4" />
-                        <span className="text-sm font-medium">Specialties</span>
+                        <span className="text-sm font-medium">
+                          {t("specialties")}
+                        </span>
                       </div>
                       <div className="flex flex-wrap gap-2">
                         {lesson.instructor.specialties.map(
@@ -236,10 +258,14 @@ export default function LessonDetails({ lesson }: LessonDetailsProps) {
       >
         <Card className="border-border/40 from-card/60 to-card/20 border bg-gradient-to-br backdrop-blur-sm">
           <CardHeader>
-            <CardTitle>About This Class</CardTitle>
+            <CardTitle>{t("aboutClass")}</CardTitle>
           </CardHeader>
           <CardContent>
-            <RenderDescription json={JSON.parse(lesson.descriptionEn)} />
+            <RenderDescription
+              json={JSON.parse(
+                isFrench ? lesson.descriptionFr : lesson.descriptionEn,
+              )}
+            />
           </CardContent>
         </Card>
       </motion.div>

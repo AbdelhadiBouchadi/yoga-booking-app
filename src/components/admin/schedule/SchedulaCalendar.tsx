@@ -19,11 +19,6 @@ export default function ScheduleCalendar({ lessons }: ScheduleCalendarProps) {
     return lessons.map((lesson) => lessonToCalendarEvent(lesson, "en"));
   }, [lessons]);
 
-  const handleEventCreate = (startTime: Date) => {
-    // For admin, show message about creating lessons through the admin panel
-    toast.info("Use the admin panel to create new lessons.");
-  };
-
   if (lessons.length === 0) {
     return (
       <Card className="border-border/40 from-card/60 to-card/20 border bg-gradient-to-br backdrop-blur-sm">
@@ -41,8 +36,6 @@ export default function ScheduleCalendar({ lessons }: ScheduleCalendarProps) {
   return (
     <EventCalendar
       events={events}
-      //   customEventDialog={LessonEventDialog}
-      //   onEventAdd={handleEventCreate}
       onEventUpdate={() => {}} // Read-only for now
       onEventDelete={() => {}} // Read-only for now
       initialView="month"

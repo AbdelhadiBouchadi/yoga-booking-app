@@ -251,5 +251,71 @@
       "full": "Complet",
       "spotsLeft": "restantes"
     }
+  },
+  "sessionId": {
+    "lessonDetails": {
+      "title": "Informations sur la séance",
+      "aboutClass": "A propos de cette séance",
+      "date": "Date",
+      "time": "Horaire",
+      "location": "Adresse",
+      "specialties": "Spécialités",
+      "capacity": "Capacité"
+    },
+    "bookingSection": {
+      "title": "Réservez cette séance",
+      "dateTime": "Date & Heure",
+      "capacity": "Capacité",
+      "bookSesison": "Réserver",
+      "booked": "Réservée",
+      "spotsLeft": "places réstantes",
+      "cancelTitle": "Politique d'Annulation",
+      "cancelDescription": "Vous pouvez annuler votre réservation jusqu'à 24 heures avant le début de la séance."
+    }
+  },
+  "bookings": {
+    "title": "Mes Réservations",
+    "description": "Gérez vos réservations de séances de yoga, consultez les détails et annulez si nécessaire.",
+    "totalBookings": "Total des Réservations",
+    "confirmed": "Confirmé",
+    "pending": "En attente",
+    "bookingsList": {
+      "noBookings": {
+        "title": "Aucune Réservation Trouvée",
+        "description": "Vous n'avez pas encore réservé de séances. Commencez à explorer nos cours!",
+        "bookNow": "Réservez Maintenant"
+      },
+      "dateTime": "Date & Heure",
+      "location": "Adresse",
+      "instructor": "Instructeur",
+      "waitlist": "Vous êtes sur la Liste d'Attente",
+      "cancel": "Annuler la Réservation",
+      "cancelled": "Cette réservation a été annulée",
+      "cancelReason": "Motif d'annulation",
+      "cancelTime": "Annulé le",
+      "viewClass": "Explorer la Séance"
+    }
+  },
+  "enums": {
+    "bookingStatus": {
+      "pending": "En attente ",
+      "confirmed": "Confirmé",
+      "cancelled": "Annulé",
+      "completed": "Terminé",
+      "noShow": "Absent"
+    },
+    "cancellationReason": {
+      "userCancelled": "Annulé par l'utilisateur",
+      "instructorCancelled": "Annulé par l'instructeur",
+      "lessonCancelled": "Cours annulé",
+      "weather": "Météo",
+      "emergency": "Urgence",
+      "other": "Autre"
+    },
+    "lessonLevel": {
+      "beginner": "Débutant",
+      "intermediate": "Intermédiaire",
+      "advanced": "Avancé"
+    }
   }
 }

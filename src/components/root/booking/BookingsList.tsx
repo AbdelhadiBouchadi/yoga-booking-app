@@ -20,6 +20,8 @@ import { tryCatch } from "@/hooks/try-catch";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { UserBookingType } from "@/app/data/bookings/get-bookings";
+import { useLocale, useTranslations } from "next-intl";
+import { useBookingStatusFormatter } from "@/lib/enum-formatters";
 
 interface BookingsListProps {
   initialBookings: UserBookingType[];
@@ -28,6 +30,10 @@ interface BookingsListProps {
 export default function BookingsList({ initialBookings }: BookingsListProps) {
   const [bookings, setBookings] = useState(initialBookings);
   const [isPending, startTransition] = useTransition();
+  const t = useTranslations("bookings.bookingsList");
+  const locale = useLocale();
+  const isFrench = locale === "fr";
+  const formatBookingStatus = useBookingStatusFormatter();
 
   const handleCancelBooking = (bookingId: string) => {
     startTransition(async () => {
@@ -113,14 +119,23 @@ export default function BookingsList({ initialBookings }: BookingsListProps) {
   };
 
   const formatDateTime = (date: Date) => {
-    return new Date(date).toLocaleDateString("en-US", {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-    });
+    return isFrench
+      ? new Date(date).toLocaleDateString("fr-FR", {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+        })
+      : new Date(date).toLocaleDateString("en-US", {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+        });
   };
 
   if (bookings.length === 0) {
@@ -128,13 +143,14 @@ export default function BookingsList({ initialBookings }: BookingsListProps) {
       <Card className="border-border/40 from-card/60 to-card/20 border bg-gradient-to-br backdrop-blur-sm">
         <CardContent className="py-12 text-center">
           <Calendar className="text-muted-foreground mx-auto mb-4 h-12 w-12" />
-          <h3 className="mb-2 text-lg font-semibold">No Bookings Yet</h3>
+          <h3 className="mb-2 text-lg font-semibold">
+            {t("noBookings.title")}
+          </h3>
           <p className="text-muted-foreground mb-4">
-            You haven't booked any yoga classes yet. Start your wellness journey
-            today!
+            {t("noBookings.description")}
           </p>
           <Button asChild>
-            <Link href="/sessions">Browse Classes</Link>
+            <Link href="/sessions">{t("noBookings.bookNow")}</Link>
           </Button>
         </CardContent>
       </Card>
@@ -158,11 +174,11 @@ export default function BookingsList({ initialBookings }: BookingsListProps) {
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <CardTitle className="text-xl">
-                    {booking.lesson.titleEn}
+                    {isFrench ? booking.lesson.titleFr : booking.lesson.titleEn}
                   </CardTitle>
                   <Badge className={statusConfig.color}>
                     <StatusIcon className="mr-1 h-3 w-3" />
-                    {booking.status}
+                    {formatBookingStatus(booking.status)}
                   </Badge>
                 </div>
               </CardHeader>
@@ -174,7 +190,7 @@ export default function BookingsList({ initialBookings }: BookingsListProps) {
                       <Calendar className="text-primary h-4 w-4" />
                       <div>
                         <p className="text-muted-foreground text-sm">
-                          Date & Time
+                          {t("dateTime")}
                         </p>
                         <p className="font-medium">
                           {formatDateTime(booking.lesson.startTime)}
@@ -186,7 +202,7 @@ export default function BookingsList({ initialBookings }: BookingsListProps) {
                       <MapPin className="text-primary h-4 w-4" />
                       <div>
                         <p className="text-muted-foreground text-sm">
-                          Location
+                          {t("location")}
                         </p>
                         <p className="font-medium">{booking.lesson.location}</p>
                       </div>
@@ -198,7 +214,7 @@ export default function BookingsList({ initialBookings }: BookingsListProps) {
                       <User className="text-primary h-4 w-4" />
                       <div>
                         <p className="text-muted-foreground text-sm">
-                          Instructor
+                          {t("instructor")}
                         </p>
                         <p className="font-medium">
                           {booking.lesson.instructor?.name}
@@ -213,8 +229,7 @@ export default function BookingsList({ initialBookings }: BookingsListProps) {
                     <div className="flex items-center gap-2">
                       <Clock className="h-4 w-4 text-yellow-600" />
                       <p className="text-sm text-yellow-800 dark:text-yellow-200">
-                        You're on the waiting list (Position: {booking.position}
-                        )
+                        {t("waitlist")}
                       </p>
                     </div>
                   </div>
@@ -229,16 +244,16 @@ export default function BookingsList({ initialBookings }: BookingsListProps) {
                       disabled={isPending}
                     >
                       <X className="mr-2 h-4 w-4" />
-                      Cancel Booking
+                      {t("cancel")}
                     </Button>
                   )}
 
                   {booking.status === "CANCELLED" && (
                     <div className="text-muted-foreground bg-muted rounded p-2 text-sm">
-                      <p>This booking was cancelled</p>
+                      <p>{t("cancelled")}</p>
                       {booking.cancellationReason && (
                         <p className="text-xs">
-                          Reason:{" "}
+                          {t("cancelReason")}:{" "}
                           {booking.cancellationReason
                             .replace("_", " ")
                             .toLowerCase()}
@@ -246,7 +261,7 @@ export default function BookingsList({ initialBookings }: BookingsListProps) {
                       )}
                       {booking.cancelledAt && (
                         <p className="text-xs">
-                          Cancelled on:{" "}
+                          {t("cancelTime")}:{" "}
                           {new Date(booking.cancelledAt).toLocaleDateString()}
                         </p>
                       )}
@@ -255,7 +270,7 @@ export default function BookingsList({ initialBookings }: BookingsListProps) {
 
                   <Button variant="outline" size="sm" asChild>
                     <Link href={`/sessions/${booking.lesson.id}`}>
-                      View Class Details
+                      {t("viewClass")}
                     </Link>
                   </Button>
                 </div>

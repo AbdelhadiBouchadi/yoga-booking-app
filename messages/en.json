@@ -252,5 +252,71 @@
       "full": "Full",
       "spotsLeft": "left"
     }
+  },
+  "sessionId": {
+    "lessonDetails": {
+      "title": "Class Information",
+      "aboutClass": "About This Class",
+      "date": "Date",
+      "time": "Time",
+      "location": "Location",
+      "specialties": "Specialties",
+      "capacity": "Capacity"
+    },
+    "bookingSection": {
+      "title": "Book this session",
+      "dateTime": "Date & Time",
+      "capacity": "Capacity",
+      "bookSesison": "Book Session",
+      "booked": "Booked",
+      "spotsLeft": "Spots Left",
+      "cancelTitle": "Cancellation Policy",
+      "cancelDescription": "You can cancel your booking up to 24 hours before the class starts."
+    }
+  },
+  "bookings": {
+    "title": "My Bookings",
+    "description": "Manage your yoga class bookings and view upcoming sessions",
+    "totalBookings": "Total Bookings",
+    "confirmed": "Confirmed",
+    "pending": "Pending",
+    "bookingsList": {
+      "noBookings": {
+        "title": "No Bookings Yet",
+        "description": "You haven't booked any yoga classes yet. Start your wellness journey today!",
+        "bookNow": "Book Now"
+      },
+      "dateTime": "Date & Time",
+      "location": "Location",
+      "instructor": "Instructor",
+      "waitlist": "You're on the waitlist",
+      "cancel": "Cancel Booking",
+      "cancelled": "This booking has been cancelled",
+      "cancelReason": "Cancellation Reason",
+      "cancelTime": "Cancellation Time",
+      "viewClass": "View Session Details"
+    }
+  },
+  "enums": {
+    "bookingStatus": {
+      "pending": "Pending",
+      "confirmed": "Confirmed",
+      "cancelled": "Cancelled",
+      "completed": "Completed",
+      "noShow": "No Show"
+    },
+    "cancellationReason": {
+      "userCancelled": "User Cancelled",
+      "instructorCancelled": "Instructor Cancelled",
+      "lessonCancelled": "Lesson Cancelled",
+      "weather": "Weather",
+      "emergency": "Emergency",
+      "other": "Other"
+    },
+    "lessonLevel": {
+      "beginner": "Beginner",
+      "intermediate": "Intermediate",
+      "advanced": "Advanced"
+    }
   }
 }

@@ -25,6 +25,7 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useLocale, useTranslations } from "next-intl";
+import { useLessonLevelFormatter } from "@/lib/enum-formatters";
 
 interface LessonCardProps {
   lesson: PublishedLessonType;
@@ -104,17 +105,18 @@ export default function LessonCard({ lesson }: LessonCardProps) {
   const t = useTranslations("sessions.card");
   const locale = useLocale();
   const isFrench = locale === "fr";
+  const formatLessonLevel = useLessonLevelFormatter();
 
   const formatDate = (date: Date) => {
     return isFrench
       ? new Date(date).toLocaleDateString("fr-FR", {
-          weekday: "short",
-          month: "short",
+          weekday: "long",
+          month: "long",
           day: "numeric",
         })
       : new Date(date).toLocaleDateString("en-US", {
-          weekday: "short",
-          month: "short",
+          weekday: "long",
+          month: "long",
           day: "numeric",
         });
   };
@@ -171,7 +173,7 @@ export default function LessonCard({ lesson }: LessonCardProps) {
 
             <div className="absolute top-3 right-3 flex flex-col gap-2">
               <Badge className={cn(getLevelColor(lesson.level), "font-quote")}>
-                {lesson.level}
+                {formatLessonLevel(lesson.level)}
               </Badge>
               {isFull && (
                 <Badge variant="destructive" className="backdrop-blur-sm">

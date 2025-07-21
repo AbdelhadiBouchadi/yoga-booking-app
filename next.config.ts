@@ -6,12 +6,12 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "images.pexels.com",
+        hostname: "utfs.io",
         port: "",
       },
       {
         protocol: "https",
-        hostname: "utfs.io",
+        hostname: "images.pexels.com",
         port: "",
       },
     ],
