@@ -22,22 +22,101 @@ import Link from "next/link";
 import { PublishedLessonType } from "@/app/data/lessons/lesson-actions";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
+import { Skeleton } from "@/components/ui/skeleton";
+import { useLocale, useTranslations } from "next-intl";
 
 interface LessonCardProps {
   lesson: PublishedLessonType;
+}
+
+export function LessonCardSkeleton() {
+  return (
+    <Card className="border-border/40 from-card/60 to-card/20 flex h-full flex-col overflow-hidden border bg-gradient-to-br backdrop-blur-sm">
+      {/* Image Skeleton */}
+      <div className="relative h-48">
+        <Skeleton className="h-full w-full" />
+        {/* Badge Skeletons */}
+        <div className="absolute top-3 left-3">
+          <Skeleton className="h-6 w-16 rounded-full" />
+        </div>
+        <div className="absolute top-3 right-3">
+          <Skeleton className="h-6 w-20 rounded-full" />
+        </div>
+      </div>
+
+      <CardHeader className="flex-shrink-0 pb-3">
+        <div className="space-y-2">
+          <Skeleton className="h-6 w-3/4" />
+          <Skeleton className="h-4 w-full" />
+          <Skeleton className="h-4 w-2/3" />
+        </div>
+      </CardHeader>
+
+      <CardContent className="flex-1 space-y-4">
+        {/* Instructor Skeleton */}
+        <div className="bg-secondary/20 flex items-center gap-3 rounded-lg p-3">
+          <Skeleton className="h-8 w-8 rounded-full" />
+          <div className="flex-1 space-y-1">
+            <Skeleton className="h-4 w-24" />
+            <Skeleton className="h-3 w-16" />
+          </div>
+        </div>
+
+        {/* Details Grid Skeleton */}
+        <div className="grid grid-cols-2 gap-3">
+          <div className="flex items-center gap-2">
+            <Skeleton className="h-4 w-4" />
+            <Skeleton className="h-4 w-16" />
+          </div>
+          <div className="flex items-center gap-2">
+            <Skeleton className="h-4 w-4" />
+            <Skeleton className="h-4 w-12" />
+          </div>
+          <div className="flex items-center gap-2">
+            <Skeleton className="h-4 w-4" />
+            <Skeleton className="h-4 w-20" />
+          </div>
+          <div className="flex items-center gap-2">
+            <Skeleton className="h-4 w-4" />
+            <Skeleton className="h-4 w-8" />
+          </div>
+        </div>
+
+        {/* Duration Skeleton */}
+        <div className="flex items-center justify-between">
+          <Skeleton className="h-4 w-16" />
+          <Skeleton className="h-4 w-20" />
+        </div>
+      </CardContent>
+
+      <CardFooter className="flex-shrink-0 pt-0">
+        <Skeleton className="h-10 w-full rounded-md" />
+      </CardFooter>
+    </Card>
+  );
 }
 
 export default function LessonCard({ lesson }: LessonCardProps) {
   const availableSpots = lesson.maxCapacity - lesson._count.Booking;
   const isAlmostFull = availableSpots <= 3 && availableSpots > 0;
   const isFull = availableSpots <= 0;
+  const t = useTranslations("sessions.card");
+  const locale = useLocale();
+  const isFrench = locale === "fr";
 
   const formatDate = (date: Date) => {
-    return new Date(date).toLocaleDateString("en-US", {
-      weekday: "short",
-      month: "short",
-      day: "numeric",
-    });
+    return isFrench
+      ? new Date(date).toLocaleDateString("fr-FR", {
+          weekday: "short",
+          month: "short",
+          day: "numeric",
+        })
+      : new Date(date).toLocaleDateString("en-US", {
+          weekday: "short",
+          month: "short",
+          day: "numeric",
+        });
   };
 
   const formatTime = (date: Date) => {
@@ -64,15 +143,17 @@ export default function LessonCard({ lesson }: LessonCardProps) {
     <motion.div
       whileHover={{ y: -8, scale: 1.02 }}
       transition={{ duration: 0.2 }}
+      className="h-full"
     >
-      <Card className="group border-border/40 from-card/60 to-card/20 overflow-hidden border bg-gradient-to-br backdrop-blur-sm transition-all duration-300 hover:shadow-xl">
+      <Card className="group border-border/40 from-card/60 to-card/20 flex h-full flex-col overflow-hidden border bg-gradient-to-br backdrop-blur-sm transition-all duration-300 hover:shadow-xl">
         {/* Image */}
         {lesson.imageUrl && (
           <div className="relative h-48 overflow-hidden">
-            <img
+            <Image
               src={lesson.imageUrl}
               alt={lesson.titleEn}
               className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+              fill
             />
             <div className="from-primary/20 absolute inset-0 bg-gradient-to-t to-transparent" />
 
@@ -83,7 +164,7 @@ export default function LessonCard({ lesson }: LessonCardProps) {
                   variant="secondary"
                   className="bg-secondary/50 text-foreground font-quote backdrop-blur-sm"
                 >
-                  {lesson.Category.nameEn}
+                  {isFrench ? lesson.Category.nameFr : lesson.Category.nameEn}
                 </Badge>
               )}
             </div>
@@ -95,32 +176,34 @@ export default function LessonCard({ lesson }: LessonCardProps) {
               {isFull && (
                 <Badge variant="destructive" className="backdrop-blur-sm">
                   <AlertCircle className="mr-1 h-3 w-3" />
-                  Full
+                  {t("full")}
                 </Badge>
               )}
               {isAlmostFull && !isFull && (
                 <Badge className="bg-primary/50 text-foreground backdrop-blur-sm">
-                  {availableSpots} left
+                  {availableSpots} {t("spotsLeft")}
                 </Badge>
               )}
             </div>
           </div>
         )}
 
-        <CardHeader className="pb-3">
+        <CardHeader className="flex-shrink-0 pb-3">
           <div className="flex items-start justify-between">
             <div className="flex-1">
               <h3 className="text-foreground group-hover:text-primary line-clamp-2 font-mono text-xl font-bold transition-colors">
-                {lesson.titleEn}
+                {isFrench ? lesson.titleFr : lesson.titleEn}
               </h3>
               <p className="text-muted-foreground mt-1 line-clamp-2 font-serif text-sm">
-                {lesson.shortDescriptionEn}
+                {isFrench
+                  ? lesson.shortDescriptionFr
+                  : lesson.shortDescriptionEn}
               </p>
             </div>
           </div>
         </CardHeader>
 
-        <CardContent className="space-y-4">
+        <CardContent className="flex-1 space-y-4">
           {/* Instructor */}
           {lesson.instructor && (
             <div className="bg-secondary/20 flex items-center gap-3 rounded-lg p-3">
@@ -179,7 +262,9 @@ export default function LessonCard({ lesson }: LessonCardProps) {
 
           {/* Duration */}
           <div className="flex items-center justify-between text-sm">
-            <span className="text-muted-foreground">Duration:</span>
+            <span className="text-muted-foreground capitalize">
+              {t("duration")}
+            </span>
             <span className="text-foreground font-medium">
               {lesson.duration} minutes
             </span>
@@ -195,12 +280,12 @@ export default function LessonCard({ lesson }: LessonCardProps) {
               {isFull ? (
                 <>
                   <ScrollTextIcon />
-                  <span>Join The Waitlist</span>
+                  <span className="capitalize">{t("joinWaitlist")}</span>
                 </>
               ) : (
                 <>
                   <Calendar />
-                  <span>Book Session</span>
+                  <span>{t("bookSession")}</span>
                 </>
               )}
             </Link>

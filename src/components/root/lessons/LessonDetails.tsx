@@ -8,6 +8,7 @@ import { LessonDetailType } from "@/app/data/lessons/lesson-actions";
 import { motion } from "framer-motion";
 import { RenderDescription } from "@/components/admin/rich-text-editor/RenderDescription";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 interface LessonDetailsProps {
   lesson: NonNullable<LessonDetailType>;
@@ -53,10 +54,12 @@ export default function LessonDetails({ lesson }: LessonDetailsProps) {
           transition={{ duration: 0.5 }}
           className="relative h-64 overflow-hidden rounded-2xl md:h-80"
         >
-          <img
+          <Image
             src={lesson.imageUrl}
             alt={lesson.titleEn}
-            className="h-full w-full object-cover"
+            className="h-full w-full object-contain"
+            quality={95}
+            fill
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
 
@@ -83,10 +86,10 @@ export default function LessonDetails({ lesson }: LessonDetailsProps) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.1 }}
       >
-        <h1 className="from-foreground to-foreground/80 mb-4 bg-gradient-to-r bg-clip-text font-mono text-4xl font-bold text-transparent md:text-5xl">
+        <h1 className="from-foreground to-foreground/80 mb-4 bg-gradient-to-r bg-clip-text text-center font-mono text-4xl font-bold text-balance text-transparent md:text-5xl">
           {lesson.titleEn}
         </h1>
-        <p className="text-muted-foreground font-serif text-xl leading-relaxed">
+        <p className="text-muted-foreground text-center font-serif text-xl leading-relaxed text-balance">
           {lesson.shortDescriptionEn}
         </p>
       </motion.div>

@@ -22,6 +22,7 @@ import {
   UserPlus,
   X,
   LogInIcon,
+  Loader2Icon,
 } from "lucide-react";
 import { LessonDetailType } from "@/app/data/lessons/lesson-actions";
 import { motion } from "framer-motion";
@@ -53,7 +54,7 @@ export default function BookingSection({
 
   const handleBookLesson = () => {
     if (!isAuthenticated) {
-      router.push("/auth/signin");
+      router.push("/sign-in");
       return;
     }
 
@@ -250,7 +251,10 @@ export default function BookingSection({
                 size="lg"
               >
                 {isPending ? (
-                  "Processing..."
+                  <>
+                    <Loader2Icon className="animate-spin" />
+                    Processing...
+                  </>
                 ) : isLessonFull ? (
                   <>
                     <UserPlus className="mr-2 h-4 w-4" />
@@ -274,7 +278,10 @@ export default function BookingSection({
                 size="lg"
               >
                 {isPending ? (
-                  "Cancelling..."
+                  <>
+                    <Loader2Icon className="animate-spin" />
+                    Cancelling...
+                  </>
                 ) : (
                   <>
                     <X className="mr-2 h-4 w-4" />

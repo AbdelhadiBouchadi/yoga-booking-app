@@ -5,6 +5,7 @@
   "nav": {
     "home": "Home",
     "sessions": "Sessions",
+    "bookings": "Bookings",
     "admin": "Dashboard",
     "signIn": "Sign In",
     "bookSession": "Book A Session"
@@ -212,6 +213,39 @@
         "title": "Studio Hours",
         "schedule": "Mon-Fri: 6AM-9PM\nSat-Sun: 7AM-7PM"
       }
+    }
+  },
+  "sessions": {
+    "hero": {
+      "badge": "Find your perfect practice",
+      "title": "Yoga",
+      "titleHighlight": "Classes",
+      "description": "Discover transformative yoga sessions led by expert instructors. Book your spot and begin your wellness journey today.",
+      "features": {
+        "scheduling": "Flexible Scheduling",
+        "classSize": "Small Class Sizes",
+        "instructors": "Expert Instructors"
+      }
+    },
+    "grid": {
+      "title": "Available Classes",
+      "noClasses": {
+        "title": "No Classes Available For The Moment",
+        "description": "Check back soon for new yoga sessions!"
+      },
+      "updated": "Updated daily",
+      "classCount": {
+        "single": "class available",
+        "multiple": "classes available"
+      }
+    },
+    "card": {
+      "duration": "Duration:",
+      "minutes": "minutes",
+      "bookSession": "Book Session",
+      "joinWaitlist": "Join The Waitlist",
+      "full": "Full",
+      "spotsLeft": "left"
     }
   }
 }

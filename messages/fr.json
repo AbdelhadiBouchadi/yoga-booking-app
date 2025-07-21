@@ -5,6 +5,7 @@
   "nav": {
     "home": "Accueil",
     "sessions": "Séances",
+    "bookings": "Réservations",
     "admin": "Gestionnaire",
     "signIn": "Se Connecter",
     "bookSession": "Réserver une Séance"
@@ -211,6 +212,39 @@
         "title": "Heures du Studio",
         "schedule": "Lun-Ven: 6h-21h\nSam-Dim: 7h-19h"
       }
+    }
+  },
+  "sessions": {
+    "hero": {
+      "badge": "Trouvez Votre Pratique Parfaite",
+      "title": "Cours de",
+      "titleHighlight": "Yoga",
+      "description": "Découvrez des séances de yoga transformatrices dirigées par des instructeurs experts. Réservez votre place et commencez votre voyage de bien-être dès aujourd'hui.",
+      "features": {
+        "scheduling": "Horaires Flexibles",
+        "classSize": "Petites Classes",
+        "instructors": "Instructeurs Experts"
+      }
+    },
+    "grid": {
+      "title": "Cours Disponibles",
+      "noClasses": {
+        "title": "Aucun Cours Disponible Pour Le Moment",
+        "description": "Revenez bientôt pour de nouvelles séances de yoga!"
+      },
+      "updated": "Mis à jour quotidiennement",
+      "classCount": {
+        "single": "cours disponible",
+        "multiple": "cours disponibles"
+      }
+    },
+    "card": {
+      "duration": "Durée:",
+      "minutes": "minutes",
+      "bookSession": "Réserver la Séance",
+      "joinWaitlist": "Rejoindre la Liste d'Attente",
+      "full": "Complet",
+      "spotsLeft": "restantes"
     }
   }
 }
