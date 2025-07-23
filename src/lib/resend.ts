@@ -1,30 +1,30 @@
-import { Resend } from 'resend';
-import { env } from './env';
-import { EmailTemplate } from '@/components/email/EmailTemplate';
+import { Resend } from "resend";
+import { env } from "./env";
+import { EmailTemplate } from "@/components/email/EmailTemplate";
 
 const resend = new Resend(env.RESEND_API_KEY);
 
 export async function sendVerificationEmail(
   email: string,
   firstName: string,
-  otp: string
+  otp: string,
 ) {
   try {
     const { data, error } = await resend.emails.send({
-      from: 'La Fabrique Du Bonheur <onboarding@resend.dev>',
+      from: "lafabriquedubonheur.meknes@gmail.com",
       to: [email],
-      subject: 'La Fabrique Du Bonheur - Verify Your Email Address',
+      subject: "La Fabrique Du Bonheur - Verify Your Email Address",
       react: EmailTemplate({ firstName, otp }) as React.ReactNode,
     });
 
     if (error) {
-      console.error('Error sending email:', error);
-      throw new Error('Failed to send verification email');
+      console.error("Error sending email:", error);
+      throw new Error("Failed to send verification email");
     }
 
     return { success: true, data };
   } catch (error) {
-    console.error('Error sending verification email:', error);
+    console.error("Error sending verification email:", error);
     throw error;
   }
 }
