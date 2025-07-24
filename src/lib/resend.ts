@@ -11,7 +11,7 @@ export async function sendVerificationEmail(
 ) {
   try {
     const { data, error } = await resend.emails.send({
-      from: "lafabriquedubonheur.meknes@gmail.com",
+      from: "contact@lafabriquedubonheur.co",
       to: [email],
       subject: "La Fabrique Du Bonheur - Verify Your Email Address",
       react: EmailTemplate({ firstName, otp }) as React.ReactNode,
