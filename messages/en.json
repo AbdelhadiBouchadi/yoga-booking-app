@@ -236,7 +236,7 @@
       "email": "Email",
       "emailPlaceholder": "your.email@example.com",
       "message": "Message",
-      "messagePlaceholder": "Tell us about your yoga goals or any questions you have...",
+      "messagePlaceholder": "Tell us about your goals or any questions you have...",
       "send": "Send Message",
       "sending": "Sending...",
       "sent": "Message Sent!"
@@ -244,16 +244,16 @@
     "info": {
       "title": "Get in Touch",
       "visit": {
-        "title": "Visit Our Studio",
-        "address": "123 Serenity Lane, Peaceful Valley, CA 90210"
+        "title": "Visit Us",
+        "address": "MAGAZIN N 7 RESIDENCE IKBAL C MEKNES (M)"
       },
       "call": {
         "title": "Call Us",
-        "phone": "+1 (555) 123-YOGA"
+        "phone": "+212-6 97 83 06 05"
       },
       "email": {
         "title": "Email Us",
-        "address": "hello@yogastudio.com"
+        "address": "contact@lafabriquedubonheur.com"
       },
       "hours": {
         "title": "Studio Hours",

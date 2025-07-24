@@ -235,7 +235,7 @@
       "email": "Email",
       "emailPlaceholder": "votre.email@exemple.com",
       "message": "Message",
-      "messagePlaceholder": "Parlez-nous de vos objectifs de yoga ou de toute question que vous pourriez avoir...",
+      "messagePlaceholder": "Parlez-nous de vos objectifs ou de toute question que vous pourriez avoir...",
       "send": "Envoyer le Message",
       "sending": "Envoi en cours...",
       "sent": "Message Envoyé!"
@@ -243,16 +243,16 @@
     "info": {
       "title": "Contactez-nous",
       "visit": {
-        "title": "Visitez Notre Studio",
-        "address": "123 Allée de la Sérénité, Vallée Paisible, CA 90210"
+        "title": "Visitez-nous",
+        "address": "MAGAZIN N 7 RESIDENCE IKBAL C MEKNES (M)"
       },
       "call": {
         "title": "Appelez-nous",
-        "phone": "+1 (555) 123-YOGA"
+        "phone": "+212-6 97 83 06 05"
       },
       "email": {
         "title": "Écrivez-nous",
-        "address": "bonjour@studioyoga.com"
+        "address": "contact@lafabriquedubonheur.com"
       },
       "hours": {
         "title": "Heures du Studio",
