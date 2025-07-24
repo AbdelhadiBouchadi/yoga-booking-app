@@ -1,128 +1,86 @@
-'use client';
+"use client";
 
-import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Clock, Users, Star, Calendar } from 'lucide-react';
-import Link from 'next/link';
-import { useTranslations } from 'next-intl';
-
-const classes = [
-  {
-    title: 'Hatha Yoga',
-    description:
-      'Perfect for beginners, focusing on basic postures and breathing techniques to build foundation and flexibility.',
-    duration: '60 min',
-    level: 'Beginner',
-    capacity: '12 people',
-    rating: 4.9,
-    price: '$25',
-    image:
-      'https://images.pexels.com/photos/3822622/pexels-photo-3822622.jpeg?auto=compress&cs=tinysrgb&w=600',
-    gradient: 'from-primary/20 to-secondary-500/5',
-  },
-  {
-    title: 'Vinyasa Flow',
-    description:
-      'Dynamic sequences that synchronize breath with movement, creating a meditative flow of energy and strength.',
-    duration: '75 min',
-    level: 'Intermediate',
-    capacity: '15 people',
-    rating: 4.8,
-    price: '$30',
-    image:
-      'https://images.pexels.com/photos/3822906/pexels-photo-3822906.jpeg?auto=compress&cs=tinysrgb&w=600',
-    gradient: 'from-primary/20 to-secondary',
-  },
-  {
-    title: 'Yin Yoga',
-    description:
-      'Slow-paced practice with longer holds, promoting deep relaxation and inner stillness for mind and body.',
-    duration: '90 min',
-    level: 'All Levels',
-    capacity: '10 people',
-    rating: 5.0,
-    price: '$35',
-    image:
-      'https://images.pexels.com/photos/3822864/pexels-photo-3822864.jpeg?auto=compress&cs=tinysrgb&w=600',
-    gradient: 'from-primary/20 to-secondary',
-  },
-];
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Clock, Users, Star, Calendar } from "lucide-react";
+import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 export default function ClassesSection() {
-  const t = useTranslations('classes');
+  const t = useTranslations("classes");
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
 
   const classes = [
     {
-      title: t('types.hatha.title'),
-      description: t('types.hatha.description'),
-      duration: t('types.hatha.duration'),
-      level: t('types.hatha.level'),
-      capacity: t('types.hatha.capacity'),
+      title: t("types.hatha.title"),
+      description: t("types.hatha.description"),
+      duration: t("types.hatha.duration"),
+      level: t("types.hatha.level"),
+      capacity: t("types.hatha.capacity"),
       rating: 4.9,
-      price: t('types.hatha.price'),
+      price: t("types.hatha.price"),
       image:
-        'https://images.pexels.com/photos/3822622/pexels-photo-3822622.jpeg?auto=compress&cs=tinysrgb&w=600',
-      gradient: 'from-primary/20 to-secondary-500/5',
+        "https://images.pexels.com/photos/3822622/pexels-photo-3822622.jpeg?auto=compress&cs=tinysrgb&w=600",
+      gradient: "from-primary/20 to-secondary-500/5",
     },
     {
-      title: t('types.vinyasa.title'),
-      description: t('types.vinyasa.description'),
-      duration: t('types.vinyasa.duration'),
-      level: t('types.vinyasa.level'),
-      capacity: t('types.vinyasa.capacity'),
+      title: t("types.vinyasa.title"),
+      description: t("types.vinyasa.description"),
+      duration: t("types.vinyasa.duration"),
+      level: t("types.vinyasa.level"),
+      capacity: t("types.vinyasa.capacity"),
       rating: 4.8,
-      price: t('types.vinyasa.price'),
+      price: t("types.vinyasa.price"),
       image:
-        'https://images.pexels.com/photos/3822906/pexels-photo-3822906.jpeg?auto=compress&cs=tinysrgb&w=600',
-      gradient: 'from-primary/20 to-secondary-500/5',
+        "https://images.pexels.com/photos/3822906/pexels-photo-3822906.jpeg?auto=compress&cs=tinysrgb&w=600",
+      gradient: "from-primary/20 to-secondary-500/5",
     },
     {
-      title: t('types.yin.title'),
-      description: t('types.yin.description'),
-      duration: t('types.yin.duration'),
-      level: t('types.yin.level'),
-      capacity: t('types.yin.capacity'),
+      title: t("types.yin.title"),
+      description: t("types.yin.description"),
+      duration: t("types.yin.duration"),
+      level: t("types.yin.level"),
+      capacity: t("types.yin.capacity"),
       rating: 5.0,
-      price: t('types.yin.price'),
+      price: t("types.yin.price"),
       image:
-        'https://images.pexels.com/photos/3822864/pexels-photo-3822864.jpeg?auto=compress&cs=tinysrgb&w=600',
-      gradient: 'from-primary/20 to-secondary-500/5',
+        "https://images.pexels.com/photos/3822864/pexels-photo-3822864.jpeg?auto=compress&cs=tinysrgb&w=600",
+      gradient: "from-primary/20 to-secondary-500/5",
     },
   ];
 
   return (
-    <section className="relative w-full overflow-hidden bg-gradient-to-b from-secondary/10 to-background py-20 md:py-32">
+    <section className="from-secondary/10 to-background relative w-full overflow-hidden bg-gradient-to-b py-20 md:py-32">
       {/* Background Elements */}
       <div
-        className="absolute right-0 top-1/4 h-80 w-80 rounded-full opacity-5 blur-3xl"
+        className="absolute top-1/4 right-0 h-80 w-80 rounded-full opacity-5 blur-3xl"
         style={{
           background: `radial-gradient(circle at center, hsl(var(--primary)), transparent 70%)`,
         }}
       />
 
       <div
-        className="container relative z-10 mx-auto px-4 md:px-6"
+        className="relative z-10 container mx-auto px-4 md:px-6"
         ref={sectionRef}
       >
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
           className="mx-auto mb-16 max-w-3xl text-center"
         >
-          <h2 className="mb-6 bg-gradient-to-r from-foreground via-foreground/90 to-foreground/80 bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-5xl md:text-6xl font-mono">
-            {t('title')}
-            <span className="block bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-              {t('titleHighlight')}
+          <h2 className="from-foreground via-foreground/90 to-foreground/80 mb-6 bg-gradient-to-r bg-clip-text font-mono text-4xl font-bold tracking-tight text-transparent sm:text-5xl md:text-6xl">
+            {t("title")}
+            <span className="from-primary to-primary/70 block bg-gradient-to-r bg-clip-text text-transparent">
+              {t("titleHighlight")}
             </span>
           </h2>
-          <p className="text-xl text-muted-foreground md:text-2xl font-serif">
-            {t('description')}
+          <p className="text-muted-foreground font-serif text-xl md:text-2xl">
+            {t("description")}
           </p>
         </motion.div>
 
@@ -135,10 +93,10 @@ export default function ClassesSection() {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
               transition={{
                 duration: 0.6,
-                ease: 'easeInOut',
+                ease: "easeInOut",
               }}
               whileHover={{ y: -8, scale: 1.02 }}
-              className="group relative overflow-hidden rounded-3xl border border-border/40 bg-gradient-to-br from-card/60 to-card/20 backdrop-blur-sm"
+              className="group border-border/40 from-card/60 to-card/20 relative overflow-hidden rounded-3xl border bg-gradient-to-br backdrop-blur-sm"
             >
               {/* Card Background Gradient */}
               <div
@@ -155,7 +113,7 @@ export default function ClassesSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
 
                 {/* Price Badge */}
-                <div className="absolute right-4 top-4">
+                <div className="absolute top-4 right-4">
                   <Badge className="bg-primary/90 text-secondary-foreground backdrop-blur-sm">
                     {yogaClass.price}
                   </Badge>
@@ -164,32 +122,32 @@ export default function ClassesSection() {
 
               {/* Content */}
               <div className="relative z-10 p-6">
-                <div className="mb-3 flex items-center justify-between  font-sans">
-                  <h3 className="text-2xl font-bold text-foreground">
+                <div className="mb-3 flex items-center justify-between font-sans">
+                  <h3 className="text-foreground text-2xl font-bold">
                     {yogaClass.title}
                   </h3>
                   <div className="flex items-center gap-1">
                     <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                    <span className="text-sm font-medium text-muted-foreground">
+                    <span className="text-muted-foreground text-sm font-medium">
                       {yogaClass.rating}
                     </span>
                   </div>
                 </div>
 
-                <p className="mb-4 text-muted-foreground font-serif">
+                <p className="text-muted-foreground mb-4 font-serif">
                   {yogaClass.description}
                 </p>
 
                 {/* Class Details */}
                 <div className="mb-6 grid grid-cols-3 gap-4 text-sm">
                   <div className="flex items-center gap-2">
-                    <Clock className="h-4 w-4 text-primary" />
+                    <Clock className="text-primary h-4 w-4" />
                     <span className="text-muted-foreground">
                       {yogaClass.duration}
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Users className="h-4 w-4 text-primary" />
+                    <Users className="text-primary h-4 w-4" />
                     <span className="text-muted-foreground">
                       {yogaClass.capacity}
                     </span>
@@ -208,13 +166,13 @@ export default function ClassesSection() {
                 >
                   <Button
                     asChild
-                    className="w-full bg-primary text-primary-foreground font-sans"
+                    className="bg-primary text-primary-foreground w-full font-sans"
                   >
                     <Link
-                      href={`/book-class/${yogaClass.title.toLowerCase().replace(' ', '-')}`}
+                      href={`/book-class/${yogaClass.title.toLowerCase().replace(" ", "-")}`}
                     >
                       <Calendar className="mr-2 h-4 w-4" />
-                      {t('bookClass')}
+                      {t("bookClass")}
                     </Link>
                   </Button>
                 </motion.div>
@@ -237,7 +195,7 @@ export default function ClassesSection() {
               size="lg"
               className="border-border/40 bg-background/50 backdrop-blur-sm"
             >
-              <Link href="/classes">{t('viewAll')}</Link>
+              <Link href="/classes">{t("viewAll")}</Link>
             </Button>
           </motion.div>
         </motion.div>

@@ -2,6 +2,52 @@
   "common": {
     "language": "Language"
   },
+  "auth": {
+    "signIn": {
+      "title": "Welcome Back 👋",
+      "description": "Sign In to your account",
+      "email": "Your Email Address",
+      "password": {
+        "label": "Your password",
+        "placeholder": "Enter your password"
+      },
+      "pending": "Signing in",
+      "signInBtn": "Sign In",
+      "continueWith": "Or continue with",
+      "dontHaveAccount": "Don't have an account?",
+      "createAccount": "Create one",
+      "privacyPolicy": {
+        "description": "By clicking continue, you agree to our",
+        "pp": "Privacy Policy",
+        "tos": "Terms of Service",
+        "and": "and"
+      }
+    },
+    "signUp": {
+      "title": "Let's get started 👋",
+      "description": "Create your account",
+      "email": "Your Email Address",
+      "name": {
+        "label": "Your Name",
+        "placeholder": "Enter your full name"
+      },
+      "password": {
+        "label": "Your password",
+        "confirmPassword": "Confirm your password"
+      },
+      "pending": "Signing Up",
+      "signUpBtn": "Sign Up",
+      "continueWith": "Or continue with",
+      "dontHaveAccount": "Already have an account?",
+      "createAccount": "Sign In",
+      "privacyPolicy": {
+        "description": "By clicking continue, you agree to our",
+        "pp": "Privacy Policy",
+        "tos": "Terms of Service",
+        "and": "and"
+      }
+    }
+  },
   "nav": {
     "home": "Home",
     "sessions": "Sessions",

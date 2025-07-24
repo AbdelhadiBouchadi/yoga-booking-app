@@ -1,131 +1,94 @@
-'use client';
+"use client";
 
-import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
-import { Badge } from '@/components/ui/badge';
-import { Star, Award, Heart } from 'lucide-react';
-import BlurVignette from '@/components/ui/blur-vignette';
-import Image from 'next/image';
-import { useTranslations } from 'next-intl';
-
-const instructors = [
-  {
-    name: 'Sarah Chen',
-    title: 'Lead Instructor & Founder',
-    specialties: ['Vinyasa', 'Meditation', 'Breathwork'],
-    experience: '12 years',
-    rating: 4.9,
-    bio: 'Sarah discovered yoga during a transformative journey in India and has been sharing its healing power ever since.',
-    image:
-      'https://images.pexels.com/photos/3822864/pexels-photo-3822864.jpeg?auto=compress&cs=tinysrgb&w=400',
-    certifications: ['RYT-500', 'Meditation Teacher'],
-  },
-  {
-    name: 'Marcus Rodriguez',
-    title: 'Senior Instructor',
-    specialties: ['Hatha', 'Yin Yoga', 'Philosophy'],
-    experience: '8 years',
-    rating: 4.8,
-    bio: 'Marcus brings a grounded approach to yoga, emphasizing alignment and the deeper philosophical teachings.',
-    image:
-      'https://images.pexels.com/photos/3822906/pexels-photo-3822906.jpeg?auto=compress&cs=tinysrgb&w=400',
-    certifications: ['RYT-200', 'Yin Yoga Certified'],
-  },
-  {
-    name: 'Luna Patel',
-    title: 'Wellness Coach',
-    specialties: ['Restorative', 'Prenatal', 'Ayurveda'],
-    experience: '6 years',
-    rating: 5.0,
-    bio: 'Luna specializes in creating safe, nurturing spaces for healing and personal growth through gentle practices.',
-    image:
-      'https://images.pexels.com/photos/3822622/pexels-photo-3822622.jpeg?auto=compress&cs=tinysrgb&w=400',
-    certifications: ['RYT-200', 'Prenatal Yoga', 'Ayurveda Practitioner'],
-  },
-];
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+import { Badge } from "@/components/ui/badge";
+import { Star, Award, Heart } from "lucide-react";
+import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 export default function InstructorsSection() {
-  const t = useTranslations('instructors');
+  const t = useTranslations("instructors");
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
   const instructors = [
     {
-      name: t('team.sarah.name'),
-      title: t('team.sarah.title'),
+      name: t("team.sarah.name"),
+      title: t("team.sarah.title"),
       specialties: Object.values(
-        t.raw('team.sarah.specialties') as Record<string, string>
+        t.raw("team.sarah.specialties") as Record<string, string>,
       ),
-      experience: t('team.sarah.experience'),
+      experience: t("team.sarah.experience"),
       rating: 4.9,
-      bio: t('team.sarah.bio'),
+      bio: t("team.sarah.bio"),
       image:
-        'https://images.pexels.com/photos/3822864/pexels-photo-3822864.jpeg?auto=compress&cs=tinysrgb&w=400',
+        "https://images.pexels.com/photos/3822864/pexels-photo-3822864.jpeg?auto=compress&cs=tinysrgb&w=400",
       certifications: Object.values(
-        t.raw('team.sarah.certifications') as Record<string, string>
+        t.raw("team.sarah.certifications") as Record<string, string>,
       ),
     },
     {
-      name: t('team.marcus.name'),
-      title: t('team.marcus.title'),
+      name: t("team.marcus.name"),
+      title: t("team.marcus.title"),
       specialties: Object.values(
-        t.raw('team.marcus.specialties') as Record<string, string>
+        t.raw("team.marcus.specialties") as Record<string, string>,
       ),
-      experience: t('team.marcus.experience'),
+      experience: t("team.marcus.experience"),
       rating: 4.8,
-      bio: t('team.marcus.bio'),
+      bio: t("team.marcus.bio"),
       image:
-        'https://images.pexels.com/photos/3822906/pexels-photo-3822906.jpeg?auto=compress&cs=tinysrgb&w=400',
+        "https://images.pexels.com/photos/3822906/pexels-photo-3822906.jpeg?auto=compress&cs=tinysrgb&w=400",
       certifications: Object.values(
-        t.raw('team.marcus.certifications') as Record<string, string>
+        t.raw("team.marcus.certifications") as Record<string, string>,
       ),
     },
     {
-      name: t('team.luna.name'),
-      title: t('team.luna.title'),
+      name: t("team.luna.name"),
+      title: t("team.luna.title"),
       specialties: Object.values(
-        t.raw('team.luna.specialties') as Record<string, string>
+        t.raw("team.luna.specialties") as Record<string, string>,
       ),
-      experience: t('team.luna.experience'),
+      experience: t("team.luna.experience"),
       rating: 5.0,
-      bio: t('team.luna.bio'),
+      bio: t("team.luna.bio"),
       image:
-        'https://images.pexels.com/photos/3822622/pexels-photo-3822622.jpeg?auto=compress&cs=tinysrgb&w=400',
+        "https://images.pexels.com/photos/3822622/pexels-photo-3822622.jpeg?auto=compress&cs=tinysrgb&w=400",
       certifications: Object.values(
-        t.raw('team.luna.certifications') as Record<string, string>
+        t.raw("team.luna.certifications") as Record<string, string>,
       ),
     },
   ];
 
   return (
-    <section className="relative w-full overflow-hidden bg-gradient-to-b from-background to-secondary/10 py-20 md:py-32">
+    <section className="from-background to-secondary/10 relative w-full overflow-hidden bg-gradient-to-b py-20 md:py-32">
       {/* Background Elements */}
       <div
-        className="absolute left-1/4 top-1/2 h-96 w-96 -translate-y-1/2 rounded-full opacity-5 blur-3xl"
+        className="absolute top-1/2 left-1/4 h-96 w-96 -translate-y-1/2 rounded-full opacity-5 blur-3xl"
         style={{
           background: `radial-gradient(circle at center, hsl(var(--primary)), transparent 70%)`,
         }}
       />
 
       <div
-        className="container relative z-10 mx-auto px-4 md:px-6"
+        className="relative z-10 container mx-auto px-4 md:px-6"
         ref={sectionRef}
       >
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="mx-auto mb-16 max-w-3xl text-center space-y-4"
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="mx-auto mb-16 max-w-3xl space-y-4 text-center"
         >
-          <h2 className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl font-mono">
-            {t('title')}
-            <span className="block bg-gradient-to-r from-primary to-primary/30 bg-clip-text text-transparent py-3">
-              {t('titleHighlight')}
+          <h2 className="mb-6 font-mono text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
+            {t("title")}
+            <span className="from-primary to-primary/30 block bg-gradient-to-r bg-clip-text py-3 text-transparent">
+              {t("titleHighlight")}
             </span>
           </h2>
-          <p className="text-xl text-muted-foreground md:text-2xl font-serif">
-            {t('description')}
+          <p className="text-muted-foreground font-serif text-xl md:text-2xl">
+            {t("description")}
           </p>
         </motion.div>
 
@@ -139,12 +102,12 @@ export default function InstructorsSection() {
               transition={{
                 duration: 0.6,
                 delay: index * 0.2,
-                ease: 'easeOut',
+                ease: "easeOut",
               }}
               whileHover={{ y: -8, scale: 1.02 }}
-              className="group relative overflow-hidden rounded-3xl border border-border/40 bg-gradient-to-br from-card/60 to-card/20 backdrop-blur-sm"
+              className="group border-border/40 from-card/60 to-card/20 relative overflow-hidden rounded-3xl border bg-gradient-to-br backdrop-blur-sm"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <div className="from-primary/5 absolute inset-0 bg-gradient-to-br to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
               {/* Image */}
               <div className="relative h-64 overflow-hidden">
@@ -158,10 +121,10 @@ export default function InstructorsSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
 
                 {/* Rating Badge */}
-                <div className="absolute right-4 top-4 font-sans">
-                  <div className="flex items-center gap-1 rounded-full bg-background/90 px-2 py-1 backdrop-blur-sm">
+                <div className="absolute top-4 right-4 font-sans">
+                  <div className="bg-background/90 flex items-center gap-1 rounded-full px-2 py-1 backdrop-blur-sm">
                     <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
-                    <span className="text-xs font-medium text-foreground">
+                    <span className="text-foreground text-xs font-medium">
                       {instructor.rating}
                     </span>
                   </div>
@@ -170,7 +133,7 @@ export default function InstructorsSection() {
                 {/* Experience Badge */}
                 <div className="absolute bottom-4 left-4 font-sans">
                   <Badge className="bg-primary/90 text-primary-foreground backdrop-blur-sm">
-                    {instructor.experience} {t('experience')}
+                    {instructor.experience} {t("experience")}
                   </Badge>
                 </div>
               </div>
@@ -178,22 +141,20 @@ export default function InstructorsSection() {
               {/* Content */}
               <div className="relative z-10 p-6">
                 <div className="mb-2 font-sans">
-                  <h3 className="text-2xl font-bold text-foreground">
+                  <h3 className="text-foreground text-2xl font-bold">
                     {instructor.name}
                   </h3>
-                  <p className="text-primary font-medium ">
-                    {instructor.title}
-                  </p>
+                  <p className="text-primary font-medium">{instructor.title}</p>
                 </div>
 
-                <p className="mb-4 text-sm text-muted-foreground leading-relaxed font-serif">
+                <p className="text-muted-foreground mb-4 font-serif text-sm leading-relaxed">
                   {instructor.bio}
                 </p>
 
                 {/* Specialties */}
                 <div className="mb-4 font-sans">
-                  <h4 className="mb-2 text-sm font-semibold text-foreground">
-                    {t('specialties')}
+                  <h4 className="text-foreground mb-2 text-sm font-semibold">
+                    {t("specialties")}
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {instructor.specialties.map((specialty) => (
@@ -209,11 +170,11 @@ export default function InstructorsSection() {
                 </div>
 
                 {/* Certifications */}
-                <div className="border-t border-border/20 pt-4 font-sans">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Award className="h-4 w-4 text-primary" />
-                    <h4 className="text-sm font-semibold text-foreground">
-                      {t('certifications')}
+                <div className="border-border/20 border-t pt-4 font-sans">
+                  <div className="mb-2 flex items-center gap-2">
+                    <Award className="text-primary h-4 w-4" />
+                    <h4 className="text-foreground text-sm font-semibold">
+                      {t("certifications")}
                     </h4>
                   </div>
                   <div className="flex flex-wrap gap-2">
@@ -234,15 +195,15 @@ export default function InstructorsSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="mt-16 text-center w-full"
+          className="mt-16 w-full text-center"
         >
-          <div className="mx-auto rounded-2xl border border-border/40 bg-gradient-to-br from-card/60 to-card/20 p-8 backdrop-blur-sm">
-            <Heart className="mx-auto mb-4 h-12 w-12 text-primary" />
-            <h3 className="mb-4 text-2xl font-bold text-foreground font-mono">
-              {t('cta.title')}
+          <div className="border-border/40 from-card/60 to-card/20 mx-auto rounded-2xl border bg-gradient-to-br p-8 backdrop-blur-sm">
+            <Heart className="text-primary mx-auto mb-4 h-12 w-12" />
+            <h3 className="text-foreground mb-4 font-mono text-2xl font-bold">
+              {t("cta.title")}
             </h3>
-            <p className="text-muted-foreground font-serif text-balance max-w-md mx-auto">
-              {t('cta.description')}
+            <p className="text-muted-foreground mx-auto max-w-md font-serif text-balance">
+              {t("cta.description")}
             </p>
           </div>
         </motion.div>

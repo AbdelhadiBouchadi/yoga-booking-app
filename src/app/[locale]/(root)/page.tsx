@@ -1,9 +1,8 @@
-import AboutSection from '@/components/root/landing/AboutSection';
-import ClassesSection from '@/components/root/landing/ClassesSection';
-import ContactSection from '@/components/root/landing/ContactSection';
-import HeroSection from '@/components/root/landing/HeroSection';
-import InstructorsSection from '@/components/root/landing/InstructorsSection';
-import TestimonialsSection from '@/components/root/landing/TestimonialsSection';
+import AboutSection from "@/components/root/landing/AboutSection";
+import ClassesSection from "@/components/root/landing/ClassesSection";
+import ContactSection from "@/components/root/landing/ContactSection";
+import HeroSection from "@/components/root/landing/HeroSection";
+import InstructorsSection from "@/components/root/landing/InstructorsSection";
 
 export default function Home() {
   return (
@@ -12,7 +11,6 @@ export default function Home() {
       <AboutSection />
       <ClassesSection />
       <InstructorsSection />
-      <TestimonialsSection />
       <ContactSection />
     </>
   );

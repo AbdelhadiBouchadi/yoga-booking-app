@@ -10,6 +10,52 @@
     "signIn": "Se Connecter",
     "bookSession": "Réserver une Séance"
   },
+  "auth": {
+    "signIn": {
+      "title": "Bon retour parmi nous 👋",
+      "description": "Connectez-vous à votre compte",
+      "email": "Votre adresse e-mail",
+      "password": {
+        "label": "Votre mot de passe",
+        "placeholder": "Entrez votre mot de passe"
+      },
+      "pending": "Connexion en cours",
+      "signInBtn": "Se connecter",
+      "continueWith": "Ou continuer avec",
+      "dontHaveAccount": "Vous n’avez pas de compte ?",
+      "createAccount": "Créer un compte",
+      "privacyPolicy": {
+        "description": "En cliquant sur continuer, vous acceptez notre",
+        "pp": "Politique de confidentialité",
+        "tos": "Conditions d'utilisation",
+        "and": "et"
+      }
+    },
+    "signUp": {
+      "title": "Commençons 👋",
+      "description": "Créez votre compte",
+      "email": "Votre adresse e-mail",
+      "name": {
+        "label": "Votre nom",
+        "placeholder": "Entrez votre nom complet"
+      },
+      "password": {
+        "label": "Votre mot de passe",
+        "confirmPassword": "Confirmez votre mot de passe"
+      },
+      "pending": "Création du compte",
+      "signUpBtn": "Créer un compte",
+      "continueWith": "Ou continuer avec",
+      "dontHaveAccount": "Vous avez déjà un compte ?",
+      "createAccount": "Se connecter",
+      "privacyPolicy": {
+        "description": "En cliquant sur continuer, vous acceptez notre",
+        "pp": "Politique de confidentialité",
+        "tos": "Conditions d'utilisation",
+        "and": "et"
+      }
+    }
+  },
   "hero": {
     "badge": "Trouvez Votre Paix Intérieure",
     "title": "Transformez Votre",

@@ -28,3 +28,17 @@ export async function sendVerificationEmail(
     throw error;
   }
 }
+
+export async function sendBookingConfirmationEmail(
+  email: string,
+  firstName: string,
+) {
+  try {
+    const { data, error } = await resend.emails.send({
+      from: "contact@lafabriquedubonheur.co",
+      to: [email],
+      subject: "La Fabrique Du Bonheur - Booking Confirmation",
+      react: EmailTemplate({ firstName, otp: email }) as React.ReactNode,
+    });
+  } catch (error) {}
+}

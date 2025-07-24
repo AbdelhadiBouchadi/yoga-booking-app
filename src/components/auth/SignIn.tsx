@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
-import { authClient } from '@/lib/auth-client';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Loader2, LogInIcon, OctagonAlertIcon } from 'lucide-react';
-import { Input } from '@/components/ui/input';
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { authClient } from "@/lib/auth-client";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Loader2, LogInIcon, OctagonAlertIcon } from "lucide-react";
+import { Input } from "@/components/ui/input";
 import {
   Form,
   FormControl,
@@ -17,19 +17,20 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
-import { Alert, AlertTitle } from '@/components/ui/alert';
-import { FcGoogle } from 'react-icons/fc';
-import Link from 'next/link';
-import Image from 'next/image';
-import { toast } from 'sonner';
-import LogoGreen from '../../../public/logo-green.webp';
-import LogoOrange from '../../../public/logo-orange.webp';
-import { useTheme } from 'next-themes';
+} from "@/components/ui/form";
+import { Alert, AlertTitle } from "@/components/ui/alert";
+import { FcGoogle } from "react-icons/fc";
+import Link from "next/link";
+import Image from "next/image";
+import { toast } from "sonner";
+import LogoGreen from "../../../public/logo-green.webp";
+import LogoOrange from "../../../public/logo-orange.webp";
+import { useTheme } from "next-themes";
+import { useTranslations } from "next-intl";
 
 const formSchema = z.object({
-  email: z.string().email({ message: 'Invalid email address' }),
-  password: z.string().min(1, { message: 'Password is required' }),
+  email: z.string().email({ message: "Invalid email address" }),
+  password: z.string().min(1, { message: "Password is required" }),
 });
 
 export const SignIn = () => {
@@ -38,12 +39,13 @@ export const SignIn = () => {
   const [pending, setPending] = useState(false);
   const [googlePending, setGooglePending] = useState(false);
   const { theme } = useTheme();
+  const t = useTranslations("auth.signIn");
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     },
   });
 
@@ -55,20 +57,20 @@ export const SignIn = () => {
       {
         email: data.email,
         password: data.password,
-        callbackURL: '/',
+        callbackURL: "/",
       },
       {
         onSuccess: () => {
           setPending(false);
-          toast.success('Signed in successfully');
-          router.push('/');
+          toast.success("Signed in successfully");
+          router.push("/");
         },
         onError: ({ error }) => {
           setPending(false);
           setError(error.message);
           toast.error(error.message);
         },
-      }
+      },
     );
   };
 
@@ -78,8 +80,8 @@ export const SignIn = () => {
 
     authClient.signIn.social(
       {
-        provider: 'google',
-        callbackURL: '/',
+        provider: "google",
+        callbackURL: "/",
       },
       {
         onSuccess: () => {
@@ -91,7 +93,7 @@ export const SignIn = () => {
           setError(error.message);
           toast.error(error.message);
         },
-      }
+      },
     );
   };
 
@@ -103,9 +105,9 @@ export const SignIn = () => {
             <form className="p-6 md:p-8" onSubmit={form.handleSubmit(onSubmit)}>
               <div className="flex flex-col gap-6">
                 <div className="flex flex-col items-center text-center">
-                  <h1 className="text-2xl font-bold">Welcome Back 👋</h1>
+                  <h1 className="text-2xl font-bold">{t("title")}</h1>
                   <p className="text-muted-foreground text-balance">
-                    Sign In to your account
+                    {t("description")}
                   </p>
                 </div>
                 <div className="grid gap-3">
@@ -114,7 +116,7 @@ export const SignIn = () => {
                     name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Email</FormLabel>
+                        <FormLabel>{t("email")}</FormLabel>
                         <FormControl>
                           <Input
                             type="email"
@@ -133,7 +135,7 @@ export const SignIn = () => {
                     name="password"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Password</FormLabel>
+                        <FormLabel>{t("password.label")}</FormLabel>
                         <FormControl>
                           <Input
                             type="password"
@@ -154,24 +156,24 @@ export const SignIn = () => {
                 )}
                 <Button
                   type="submit"
-                  className="w-full flex items-center"
+                  className="flex w-full items-center"
                   disabled={googlePending || pending}
                 >
                   {pending ? (
                     <>
-                      Signing in...
+                      {t("pending")}
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                     </>
                   ) : (
                     <>
-                      Sign In
+                      {t("signInBtn")}
                       <LogInIcon />
                     </>
                   )}
                 </Button>
                 <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
                   <span className="bg-card text-muted-foreground relative z-10 px-2">
-                    Or Continue With
+                    {t("continueWith")}
                   </span>
                 </div>
                 <div className="grid grid-cols-1">
@@ -193,12 +195,12 @@ export const SignIn = () => {
                   </Button>
                 </div>
                 <div className="text-center text-sm">
-                  Don&apos;t have an account?{' '}
+                  {t("dontHaveAccount")}{" "}
                   <Link
                     href="/sign-up"
                     className="underline underline-offset-4"
                   >
-                    Create one
+                    {t("createAccount")}
                   </Link>
                 </div>
               </div>
@@ -206,9 +208,9 @@ export const SignIn = () => {
           </Form>
           <div className="from-primary/10 to-primary/40 relative hidden flex-col items-center justify-center gap-y-4 bg-radial md:flex">
             <Image
-              src={theme === 'light' ? LogoGreen : LogoOrange}
+              src={theme === "light" ? LogoGreen : LogoOrange}
               alt="Image "
-              className="object-cover pointer-events-none"
+              className="pointer-events-none object-cover"
               width={148}
               height={148}
             />
@@ -217,8 +219,9 @@ export const SignIn = () => {
       </Card>
 
       <div className="text-muted-foreground *:[a]:hover:text-primary text-center text-xs text-balance *:[a]:underline *:[a]:underline-offset-4">
-        By clicking continue, you agree to our <a href="#">Terms Of Service</a>{' '}
-        and <a href="#">Privacy Policy</a>
+        {t("privacyPolicy.description")}{" "}
+        <a href="#">{t("privacyPolicy.tos")} </a> {t("privacyPolicy.and")}{" "}
+        <a href="#">{t("privacyPolicy.pp")} </a>
       </div>
     </div>
   );
