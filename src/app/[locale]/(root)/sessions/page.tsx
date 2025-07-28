@@ -52,13 +52,11 @@ export default async function LessonsPage() {
                 </Badge>
               </div>
 
-              <Suspense fallback={<LessonCardsGrid />}>
-                <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-                  {lessons.map((lesson) => (
-                    <LessonCard key={lesson.id} lesson={lesson} />
-                  ))}
-                </div>
-              </Suspense>
+              <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                {lessons.map((lesson) => (
+                  <LessonCard key={lesson.id} lesson={lesson} />
+                ))}
+              </div>
             </>
           )}
         </div>

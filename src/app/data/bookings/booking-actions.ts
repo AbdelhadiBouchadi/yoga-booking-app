@@ -16,6 +16,11 @@ import {
 import { APIResponse } from "@/types";
 import { request } from "@arcjet/next";
 import { revalidatePath } from "next/cache";
+import {
+  sendBookingConfirmationEmail,
+  sendWaitlistNotificationEmail,
+} from "@/lib/resend";
+import { format } from "date-fns";
 
 const arcjet = aj
   .withRule(
@@ -76,6 +81,8 @@ export async function createBooking(
           endTime: true,
           maxCapacity: true,
           status: true,
+          location: true,
+          instructor: true,
           cancellationDeadlineHours: true,
           _count: {
             select: {
@@ -116,6 +123,20 @@ export async function createBooking(
 
       if (existingBooking) {
         throw new Error("You already have a booking for this lesson");
+      }
+
+      // Get user details for email
+      const user = await tx.user.findUnique({
+        where: { id: values.userId },
+        select: {
+          email: true,
+          name: true,
+          role: true,
+        },
+      });
+
+      if (!user) {
+        throw new Error("User not found");
       }
 
       // Check capacity
@@ -159,13 +180,57 @@ export async function createBooking(
               titleFr: true,
               startTime: true,
               location: true,
+              instructor: {
+                select: {
+                  name: true,
+                },
+              },
             },
           },
         },
       });
 
-      return { booking, isWaitingList };
+      return { booking, isWaitingList, user, lesson };
     });
+
+    const lessonDate = format(
+      new Date(result.lesson.startTime),
+      "EEEE, MMMM do, yyyy",
+    );
+    const lessonTime = format(new Date(result.lesson.startTime), "h:mm a");
+    const instructorName =
+      result.user.role === "instructor"
+        ? `${result.lesson.instructor!.name} `
+        : undefined;
+
+    // Send appropriate email
+    try {
+      if (result.isWaitingList) {
+        await sendWaitlistNotificationEmail(
+          result.user.email,
+          result.user.name,
+          result.lesson.titleEn,
+          lessonDate,
+          lessonTime,
+          result.lesson.location,
+          result.booking.position!,
+          instructorName,
+        );
+      } else {
+        await sendBookingConfirmationEmail(
+          result.user.email,
+          result.user.name,
+          result.lesson.titleEn,
+          lessonDate,
+          lessonTime,
+          result.lesson.location,
+          instructorName,
+        );
+      }
+    } catch (emailError) {
+      console.error("Failed to send booking email:", emailError);
+      // Don't fail the booking if email fails
+    }
 
     revalidatePath("/bookings");
     revalidatePath(`/sessions/${values.lessonId}`);
