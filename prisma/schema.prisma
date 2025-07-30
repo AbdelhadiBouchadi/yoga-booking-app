@@ -31,6 +31,8 @@ model User {
   phone               String?
   bioEn               String?
   bioFr               String?
+  descriptionEn       String?
+  descriptionFr       String?
   specialties         String[]
   certifications      String[]
   experience          Int?

@@ -58,9 +58,9 @@
   },
   "hero": {
     "badge": "Trouvez Votre Paix Intérieure",
-    "title": "Transformez Votre",
-    "titleHighlight": "Corps & Esprit",
-    "description": "Rejoignez notre communauté de yoga sereine et découvrez l'équilibre parfait entre force, flexibilité et pleine conscience. Réservez votre séance transformatrice dès aujourd'hui.",
+    "title": "Bienvenue à ",
+    "titleHighlight": "La Fabrique du Bonheur",
+    "description": "À la Fabrique du Bonheur, nous croyons que le corps est une porte d’entrée puissante vers un mieux-être émotionnel, physique et mental. Il est possible d’aller mieux à travers le mouvement, le souffle et l’expression",
     "bookSession": "Réserver Votre Séance",
     "exploreClasses": "Explorer les Cours",
     "stats": {
@@ -74,11 +74,11 @@
     "description": "Dans notre studio, nous croyons que le yoga est plus qu'un simple exercice physique—c'est un chemin pour découvrir votre moi authentique et trouver la paix dans le moment présent.",
     "mission": {
       "title": "Notre Mission",
-      "description": "Créer un espace sacré où les individus peuvent se reconnecter avec leur sagesse intérieure, développer leur force physique et cultiver une paix durable grâce à la pratique ancienne du yoga."
+      "description": "Nous proposons une approche holistique unique qui mêle yoga, pranayama (exercices de respiration), méditation, danse, art-thérapie et d’autres pratiques créatives que nous souhaitons explorer avec vous."
     },
     "vision": {
       "title": "Notre Vision",
-      "description": "Inspirer une communauté mondiale où le yoga devient une force transformatrice pour la guérison, la découverte de soi et la vie consciente, une respiration à la fois."
+      "description": "La Fabrique du Bonheur est née d’une réflexion profonde autour du manque d’espaces communautaires créatifs dans notre ville. Dans notre philosophie, la créativité commence dans le corps. Tout commence par le corps. Un corps qui bouge librement est capable de penser plus clairement, de créer plus librement et de s’ouvrir aux autres. Lorsque le corps se transforme, l’esprit suit."
     },
     "values": {
       "title": "Nos Valeurs Fondamentales",
@@ -268,9 +268,9 @@
   "sessions": {
     "hero": {
       "badge": "Trouvez Votre Pratique Parfaite",
-      "title": "Cours de",
-      "titleHighlight": "Yoga",
-      "description": "Découvrez des séances de yoga transformatrices dirigées par des instructeurs experts. Réservez votre place et commencez votre voyage de bien-être dès aujourd'hui.",
+      "title": "Nos",
+      "titleHighlight": "Séances",
+      "description": "Découvrez des séances transformatrices dirigées par des instructeurs experts. Réservez votre place et commencez votre voyage de bien-être dès aujourd'hui.",
       "features": {
         "scheduling": "Horaires Flexibles",
         "classSize": "Petites Classes",

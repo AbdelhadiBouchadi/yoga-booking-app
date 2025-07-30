@@ -4,12 +4,21 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Clock, Users, Star, Calendar } from "lucide-react";
+import { Clock, Users, Star, Calendar, MapPin } from "lucide-react";
 import Link from "next/link";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import { PublishedLessonType } from "@/app/data/lessons/lesson-actions";
+import { cn } from "@/lib/utils";
+import { format } from "date-fns";
 
-export default function ClassesSection() {
+interface ClassesSectionProps {
+  lessons: PublishedLessonType[];
+}
+
+export default function ClassesSection({ lessons }: ClassesSectionProps) {
   const t = useTranslations("classes");
+  const locale = useLocale();
+  const isFrench = locale === "fr";
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
 
@@ -52,6 +61,24 @@ export default function ClassesSection() {
     },
   ];
 
+  const hasLessonPassed = (startTime: Date) => {
+    return new Date() > new Date(startTime);
+  };
+
+  const calculateDuration = (startTime: Date, endTime: Date) => {
+    const start = new Date(startTime);
+    const end = new Date(endTime);
+    const diffInMinutes = Math.round(
+      (end.getTime() - start.getTime()) / (1000 * 60),
+    );
+    return `${diffInMinutes} min`;
+  };
+
+  const getAvailableSpots = (maxCapacity: number, bookingCount: number) => {
+    const available = maxCapacity - bookingCount;
+    return available > 0 ? `${available} spots left` : "Full";
+  };
+
   return (
     <section className="from-secondary/10 to-background relative w-full overflow-hidden bg-gradient-to-b py-20 md:py-32">
       {/* Background Elements */}
@@ -86,99 +113,138 @@ export default function ClassesSection() {
 
         {/* Classes Grid */}
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {classes.map((yogaClass, index) => (
-            <motion.div
-              key={yogaClass.title}
-              initial={{ opacity: 0, y: 40 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-              transition={{
-                duration: 0.6,
-                ease: "easeInOut",
-              }}
-              whileHover={{ y: -8, scale: 1.02 }}
-              className="group border-border/40 from-card/60 to-card/20 relative overflow-hidden rounded-3xl border bg-gradient-to-br backdrop-blur-sm"
-            >
-              {/* Card Background Gradient */}
-              <div
-                className={`absolute inset-0 bg-gradient-to-br ${yogaClass.gradient} opacity-0 transition-opacity duration-300 group-hover:opacity-100`}
-              />
+          {lessons.map((lesson, index) => {
+            const isPastLesson = hasLessonPassed(lesson.startTime);
+            const duration = calculateDuration(
+              lesson.startTime,
+              lesson.endTime,
+            );
+            const availableSpots = getAvailableSpots(
+              lesson.maxCapacity,
+              lesson._count.Booking,
+            );
+            const lessonDate = format(
+              new Date(lesson.startTime),
+              "MMM dd, yyyy",
+            );
+            const lessonTime = format(new Date(lesson.startTime), "h:mm a");
 
-              {/* Image */}
-              <div className="relative h-48 overflow-hidden">
-                <img
-                  src={yogaClass.image}
-                  alt={yogaClass.title}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+            return (
+              <motion.div
+                key={lesson.id}
+                initial={{ opacity: 0, y: 40 }}
+                animate={
+                  isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }
+                }
+                transition={{
+                  duration: 0.6,
+                  ease: "easeInOut",
+                }}
+                whileHover={{ y: -8, scale: 1.02 }}
+                className={cn(
+                  "group border-border/40 from-card/60 to-card/20 relative overflow-hidden rounded-3xl border bg-gradient-to-br backdrop-blur-sm",
+                  isPastLesson && "opacity-70",
+                )}
+              >
+                {/* Card Background Gradient */}
+                <div className="from-primary/20 to-secondary/5 absolute inset-0 bg-gradient-to-br opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-                {/* Price Badge */}
-                <div className="absolute top-4 right-4">
+                {/* Image */}
+                <div className="relative h-48 overflow-hidden">
+                  <img
+                    src={lesson.imageUrl}
+                    alt={lesson.titleEn}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+
+                  {/* Price Badge */}
+                  {/* <div className="absolute top-4 right-4">
                   <Badge className="bg-primary/90 text-secondary-foreground backdrop-blur-sm">
                     {yogaClass.price}
                   </Badge>
-                </div>
-              </div>
+                </div> */}
 
-              {/* Content */}
-              <div className="relative z-10 p-6">
-                <div className="mb-3 flex items-center justify-between font-sans">
-                  <h3 className="text-foreground text-2xl font-bold">
-                    {yogaClass.title}
-                  </h3>
-                  <div className="flex items-center gap-1">
-                    <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                    <span className="text-muted-foreground text-sm font-medium">
-                      {yogaClass.rating}
-                    </span>
-                  </div>
+                  {/* Status Badge */}
+                  {isPastLesson && (
+                    <div className="absolute top-4 left-4">
+                      <Badge variant="destructive" className="backdrop-blur-sm">
+                        {isFrench ? "Séance passée" : "Past Session"}
+                      </Badge>
+                    </div>
+                  )}
                 </div>
 
-                <p className="text-muted-foreground mb-4 font-serif">
-                  {yogaClass.description}
-                </p>
+                {/* Content */}
+                <div className="relative z-10 p-6">
+                  <div className="mb-3 flex items-center justify-between font-sans">
+                    <h3 className="text-foreground text-2xl font-bold">
+                      {isFrench ? lesson.titleFr : lesson.titleEn}
+                    </h3>
+                  </div>
 
-                {/* Class Details */}
-                <div className="mb-6 grid grid-cols-3 gap-4 text-sm">
-                  <div className="flex items-center gap-2">
-                    <Clock className="text-primary h-4 w-4" />
-                    <span className="text-muted-foreground">
-                      {yogaClass.duration}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Users className="text-primary h-4 w-4" />
-                    <span className="text-muted-foreground">
-                      {yogaClass.capacity}
-                    </span>
-                  </div>
-                  <div>
-                    <Badge variant="secondary" className="text-xs">
-                      {yogaClass.level}
-                    </Badge>
-                  </div>
-                </div>
+                  <p className="text-muted-foreground mb-4 font-serif">
+                    {isFrench
+                      ? lesson.shortDescriptionFr
+                      : lesson.shortDescriptionEn}
+                  </p>
 
-                {/* Action Button */}
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Button
-                    asChild
-                    className="bg-primary text-primary-foreground w-full font-sans"
+                  {/* Class Details */}
+                  <div className="mb-6 grid grid-cols-3 gap-4 text-sm">
+                    <div className="flex items-center gap-2">
+                      <Clock className="text-primary h-4 w-4" />
+                      <span className="text-muted-foreground">
+                        {lesson.duration}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Users className="text-primary h-4 w-4" />
+                      <span className="text-muted-foreground">
+                        {availableSpots}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <MapPin className="text-primary h-4 w-4" />
+                      <span className="text-muted-foreground">
+                        {lesson.location}
+                      </span>
+                    </div>
+                    <div>
+                      <Badge variant="secondary" className="text-xs">
+                        {lesson.level}
+                      </Badge>
+                    </div>
+                  </div>
+
+                  {/* Action Button */}
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                   >
-                    <Link
-                      href={`/book-class/${yogaClass.title.toLowerCase().replace(" ", "-")}`}
-                    >
-                      <Calendar className="mr-2 h-4 w-4" />
-                      {t("bookClass")}
-                    </Link>
-                  </Button>
-                </motion.div>
-              </div>
-            </motion.div>
-          ))}
+                    {isPastLesson ? (
+                      <Button
+                        disabled
+                        className="w-full font-sans"
+                        variant="secondary"
+                      >
+                        Session Date Has Passed
+                      </Button>
+                    ) : (
+                      <Button
+                        asChild
+                        className="bg-primary text-primary-foreground w-full font-sans"
+                      >
+                        <Link href={`/sessions/${lesson.id}`}>
+                          <Calendar className="mr-2 h-4 w-4" />
+                          {t("bookClass")}
+                        </Link>
+                      </Button>
+                    )}
+                  </motion.div>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* CTA */}
@@ -195,7 +261,7 @@ export default function ClassesSection() {
               size="lg"
               className="border-border/40 bg-background/50 backdrop-blur-sm"
             >
-              <Link href="/classes">{t("viewAll")}</Link>
+              <Link href="/sessions">{t("viewAll")}</Link>
             </Button>
           </motion.div>
         </motion.div>

@@ -48,7 +48,7 @@ export default function AboutSection() {
 
       <div className="relative z-10 container mx-auto px-4 md:px-6">
         {/* Header Section */}
-        <motion.div
+        {/* <motion.div
           ref={aboutRef}
           initial={{ opacity: 0, y: 30 }}
           animate={aboutInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
@@ -64,10 +64,10 @@ export default function AboutSection() {
           <p className="text-muted-foreground font-serif text-xl md:text-2xl">
             {t("description")}
           </p>
-        </motion.div>
+        </motion.div> */}
 
         {/* Mission & Vision Cards */}
-        <div className="mb-24 grid gap-8 md:grid-cols-2">
+        <div className="mb-24 grid gap-8 md:grid-cols-2" ref={aboutRef}>
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={

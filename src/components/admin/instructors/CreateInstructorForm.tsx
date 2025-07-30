@@ -39,6 +39,7 @@ import { Uploader } from "@/components/file-uploader/Uploader";
 import { SpecialtyInput } from "./SpecialtyInput";
 import { MultiImageUploader } from "@/components/file-uploader/MultipleImageUploader";
 import { PhoneInput } from "@/components/ui/phone-input";
+import { RichTextEditor } from "../rich-text-editor/Editor";
 
 export default function CreateInstructorForm() {
   const [isPending, startTransition] = useTransition();
@@ -51,6 +52,8 @@ export default function CreateInstructorForm() {
       email: "",
       bioEn: "",
       bioFr: "",
+      descriptionEn: "",
+      descriptionFr: "",
       specialties: [],
       certifications: [],
       experience: 0,
@@ -257,6 +260,46 @@ export default function CreateInstructorForm() {
                   </FormItem>
                 )}
               />
+
+              {/* Full Descriptions */}
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                <FormField
+                  control={form.control}
+                  name="descriptionEn"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="flex items-center gap-2">
+                        <span className="bg-primary/20 text-primary rounded px-2 py-1 text-xs">
+                          EN
+                        </span>
+                        Full Description (English)
+                      </FormLabel>
+                      <FormControl>
+                        <RichTextEditor field={field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="descriptionFr"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="flex items-center gap-2">
+                        <span className="bg-primary/20 text-primary rounded px-2 py-1 text-xs">
+                          FR
+                        </span>
+                        Full Description (French)
+                      </FormLabel>
+                      <FormControl>
+                        <RichTextEditor field={field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
             </CardContent>
           </Card>
 

@@ -44,6 +44,7 @@ import {
 } from "@/app/admin/instructors/actions";
 import { SpecialtyInput } from "./SpecialtyInput";
 import { MultiImageUploader } from "@/components/file-uploader/MultipleImageUploader";
+import { RichTextEditor } from "../rich-text-editor/Editor";
 
 interface EditInstructorFormProps {
   instructor: NonNullable<GetInstructorByIdType>;
@@ -63,6 +64,8 @@ export default function EditInstructorForm({
       phone: instructor.phone || "",
       bioEn: instructor.bioEn || "",
       bioFr: instructor.bioFr || "",
+      descriptionEn: instructor.descriptionEn || "",
+      descriptionFr: instructor.descriptionFr || "",
       specialties: instructor.specialties || [],
       certifications: instructor.certifications || [],
       experience: instructor.experience || 0,
@@ -261,6 +264,46 @@ export default function EditInstructorForm({
                 </FormItem>
               )}
             />
+
+            {/* Full Descriptions */}
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              <FormField
+                control={form.control}
+                name="descriptionEn"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="flex items-center gap-2">
+                      <span className="bg-primary/20 text-primary rounded px-2 py-1 text-xs">
+                        EN
+                      </span>
+                      Full Description (English)
+                    </FormLabel>
+                    <FormControl>
+                      <RichTextEditor field={field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="descriptionFr"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="flex items-center gap-2">
+                      <span className="bg-primary/20 text-primary rounded px-2 py-1 text-xs">
+                        FR
+                      </span>
+                      Full Description (French)
+                    </FormLabel>
+                    <FormControl>
+                      <RichTextEditor field={field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
           </CardContent>
         </Card>
 

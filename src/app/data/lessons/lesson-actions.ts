@@ -8,9 +8,9 @@ export async function getPublishedLessons() {
     const lessons = await db.lesson.findMany({
       where: {
         status: LessonStatus.Published,
-        startTime: {
-          gte: new Date(), // Only show future lessons
-        },
+        // startTime: {
+        //   gte: new Date(), // Only show future lessons
+        // },
       },
       include: {
         instructor: {

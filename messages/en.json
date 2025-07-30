@@ -58,9 +58,9 @@
   },
   "hero": {
     "badge": "Find Your Inner Peace",
-    "title": "Transform Your",
-    "titleHighlight": "Mind & Body",
-    "description": "Join our serene yoga community and discover the perfect balance between strength, flexibility, and mindfulness. Book your transformative session today.",
+    "title": "Welcome to",
+    "titleHighlight": "La Fabrique du Bonheur",
+    "description": "At La Fabrique du Bonheur, we believe that the body is a powerful gateway to emotional, physical, and mental well-being. We know it is possible to feel better through movement, breath, and creative expression.",
     "bookSession": "Book Your Session",
     "exploreClasses": "Explore Classes",
     "stats": {
@@ -74,11 +74,11 @@
     "description": "At our studio, we believe yoga is more than just physical exercise—it's a path to discovering your authentic self and finding peace in the present moment.",
     "mission": {
       "title": "Our Mission",
-      "description": "To create a sacred space where individuals can reconnect with their inner wisdom, build physical strength, and cultivate lasting peace through the ancient practice of yoga."
+      "description": "We offer a unique, holistic approach to embodiment that includes yoga, pranayama (breathwork), meditation, dance, art therapy, and other creative practices we’re excited to explore with you."
     },
     "vision": {
       "title": "Our Vision",
-      "description": "To inspire a global community where yoga becomes a transformative force for healing, self-discovery, and conscious living, one breath at a time."
+      "description": "La Fabrique du Bonheur was born out of a deep reflection on the lack of creative community spaces in our town. For us, creativity starts in the body. Everything begins there. A body that embraces movement can think more clearly, create more freely, and engage more openly. As your body transforms, so does your mind"
     },
     "values": {
       "title": "Our Core Values",
@@ -269,9 +269,9 @@
   "sessions": {
     "hero": {
       "badge": "Find your perfect practice",
-      "title": "Yoga",
-      "titleHighlight": "Classes",
-      "description": "Discover transformative yoga sessions led by expert instructors. Book your spot and begin your wellness journey today.",
+      "title": "Our",
+      "titleHighlight": "Sessions",
+      "description": "Discover transformative sessions led by expert instructors. Book your spot and begin your wellness journey today.",
       "features": {
         "scheduling": "Flexible Scheduling",
         "classSize": "Small Class Sizes",

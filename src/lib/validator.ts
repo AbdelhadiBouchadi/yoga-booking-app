@@ -68,6 +68,8 @@ export const instructorSchema = z.object({
     ),
   bioFr: z.string().min(1, "Bio in french is required"),
   bioEn: z.string().min(1, { message: "English bio in required" }),
+  descriptionEn: z.string().min(1, "English description is required"),
+  descriptionFr: z.string().min(1, "French description is required"),
   specialties: z.array(z.string()).min(1, "At least one specialty is required"),
   certifications: z.array(z.string()).optional(),
   experience: z.number().min(0, "Experience must be 0 or greater"),
