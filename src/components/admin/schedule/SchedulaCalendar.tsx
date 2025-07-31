@@ -24,9 +24,9 @@ export default function ScheduleCalendar({ lessons }: ScheduleCalendarProps) {
       <Card className="border-border/40 from-card/60 to-card/20 border bg-gradient-to-br backdrop-blur-sm">
         <CardContent className="py-12 text-center">
           <Calendar className="text-muted-foreground mx-auto mb-4 h-12 w-12" />
-          <h3 className="mb-2 text-lg font-semibold">No Classes Scheduled</h3>
+          <h3 className="mb-2 text-lg font-semibold">No Sessions Scheduled</h3>
           <p className="text-muted-foreground">
-            Create your first yoga class to see it on the calendar.
+            Create your session to see it on the calendar.
           </p>
         </CardContent>
       </Card>

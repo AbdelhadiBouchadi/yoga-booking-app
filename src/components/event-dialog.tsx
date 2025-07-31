@@ -1,18 +1,18 @@
-'use client';
+"use client";
 
-import { useEffect, useMemo, useState } from 'react';
-import { RiCalendarLine, RiDeleteBinLine } from '@remixicon/react';
-import { format, isBefore } from 'date-fns';
+import { useEffect, useMemo, useState } from "react";
+import { RiCalendarLine, RiDeleteBinLine } from "@remixicon/react";
+import { format, isBefore } from "date-fns";
 import {
   DefaultEndHour,
   DefaultStartHour,
   EndHour,
   StartHour,
-} from '@/components/constants';
-import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
-import { Calendar } from '@/components/ui/calendar';
-import { Checkbox } from '@/components/ui/checkbox';
+} from "@/components/constants";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Dialog,
   DialogContent,
@@ -20,24 +20,24 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@/components/ui/popover';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+} from "@/components/ui/popover";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { Textarea } from '@/components/ui/textarea';
-import { CalendarEvent, EventColor } from './types';
+} from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { CalendarEvent, EventColor } from "./types";
 
 interface EventDialogProps {
   event: CalendarEvent | null;
@@ -54,28 +54,28 @@ export function EventDialog({
   onSave,
   onDelete,
 }: EventDialogProps) {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   const [startDate, setStartDate] = useState<Date>(new Date());
   const [endDate, setEndDate] = useState<Date>(new Date());
   const [startTime, setStartTime] = useState(`${DefaultStartHour}:00`);
   const [endTime, setEndTime] = useState(`${DefaultEndHour}:00`);
   const [allDay, setAllDay] = useState(false);
-  const [location, setLocation] = useState('');
-  const [color, setColor] = useState<EventColor>('sky');
+  const [location, setLocation] = useState("");
+  const [color, setColor] = useState<EventColor>("sky");
   const [error, setError] = useState<string | null>(null);
   const [startDateOpen, setStartDateOpen] = useState(false);
   const [endDateOpen, setEndDateOpen] = useState(false);
 
   // Debug log to check what event is being passed
   useEffect(() => {
-    console.log('EventDialog received event:', event);
+    console.log("EventDialog received event:", event);
   }, [event]);
 
   useEffect(() => {
     if (event) {
-      setTitle(event.title || '');
-      setDescription(event.description || '');
+      setTitle(event.title || "");
+      setDescription(event.description || "");
 
       const start = new Date(event.start);
       const end = new Date(event.end);
@@ -85,8 +85,8 @@ export function EventDialog({
       setStartTime(formatTimeForInput(start));
       setEndTime(formatTimeForInput(end));
       setAllDay(event.allDay || false);
-      setLocation(event.location || '');
-      setColor((event.color as EventColor) || 'sky');
+      setLocation(event.location || "");
+      setColor((event.color as EventColor) || "sky");
       setError(null); // Reset error when opening dialog
     } else {
       resetForm();
@@ -94,22 +94,22 @@ export function EventDialog({
   }, [event]);
 
   const resetForm = () => {
-    setTitle('');
-    setDescription('');
+    setTitle("");
+    setDescription("");
     setStartDate(new Date());
     setEndDate(new Date());
     setStartTime(`${DefaultStartHour}:00`);
     setEndTime(`${DefaultEndHour}:00`);
     setAllDay(false);
-    setLocation('');
-    setColor('sky');
+    setLocation("");
+    setColor("sky");
     setError(null);
   };
 
   const formatTimeForInput = (date: Date) => {
-    const hours = date.getHours().toString().padStart(2, '0');
+    const hours = date.getHours().toString().padStart(2, "0");
     const minutes = Math.floor(date.getMinutes() / 15) * 15;
-    return `${hours}:${minutes.toString().padStart(2, '0')}`;
+    return `${hours}:${minutes.toString().padStart(2, "0")}`;
   };
 
   // Memoize time options so they're only calculated once
@@ -117,12 +117,12 @@ export function EventDialog({
     const options = [];
     for (let hour = StartHour; hour <= EndHour; hour++) {
       for (let minute = 0; minute < 60; minute += 15) {
-        const formattedHour = hour.toString().padStart(2, '0');
-        const formattedMinute = minute.toString().padStart(2, '0');
+        const formattedHour = hour.toString().padStart(2, "0");
+        const formattedMinute = minute.toString().padStart(2, "0");
         const value = `${formattedHour}:${formattedMinute}`;
         // Use a fixed date to avoid unnecessary date object creations
         const date = new Date(2000, 0, 1, hour, minute);
-        const label = format(date, 'h:mm a');
+        const label = format(date, "h:mm a");
         options.push({ value, label });
       }
     }
@@ -135,9 +135,9 @@ export function EventDialog({
 
     if (!allDay) {
       const [startHours = 0, startMinutes = 0] = startTime
-        .split(':')
+        .split(":")
         .map(Number);
-      const [endHours = 0, endMinutes = 0] = endTime.split(':').map(Number);
+      const [endHours = 0, endMinutes = 0] = endTime.split(":").map(Number);
 
       if (
         startHours < StartHour ||
@@ -146,7 +146,7 @@ export function EventDialog({
         endHours > EndHour
       ) {
         setError(
-          `Selected time must be between ${StartHour}:00 and ${EndHour}:00`
+          `Selected time must be between ${StartHour}:00 and ${EndHour}:00`,
         );
         return;
       }
@@ -160,15 +160,15 @@ export function EventDialog({
 
     // Validate that end date is not before start date
     if (isBefore(end, start)) {
-      setError('End date cannot be before start date');
+      setError("End date cannot be before start date");
       return;
     }
 
     // Use generic title if empty
-    const eventTitle = title.trim() ? title : '(no title)';
+    const eventTitle = title.trim() ? title : "(no title)";
 
     onSave({
-      id: event?.id || '',
+      id: event?.id || "",
       title: eventTitle,
       description,
       start,
@@ -193,40 +193,40 @@ export function EventDialog({
     borderClass: string;
   }> = [
     {
-      value: 'sky',
-      label: 'Sky',
-      bgClass: 'bg-sky-400 data-[state=checked]:bg-sky-400',
-      borderClass: 'border-sky-400 data-[state=checked]:border-sky-400',
+      value: "sky",
+      label: "Sky",
+      bgClass: "bg-sky-400 data-[state=checked]:bg-sky-400",
+      borderClass: "border-sky-400 data-[state=checked]:border-sky-400",
     },
     {
-      value: 'amber',
-      label: 'Amber',
-      bgClass: 'bg-amber-400 data-[state=checked]:bg-amber-400',
-      borderClass: 'border-amber-400 data-[state=checked]:border-amber-400',
+      value: "amber",
+      label: "Amber",
+      bgClass: "bg-amber-400 data-[state=checked]:bg-amber-400",
+      borderClass: "border-amber-400 data-[state=checked]:border-amber-400",
     },
     {
-      value: 'violet',
-      label: 'Violet',
-      bgClass: 'bg-violet-400 data-[state=checked]:bg-violet-400',
-      borderClass: 'border-violet-400 data-[state=checked]:border-violet-400',
+      value: "violet",
+      label: "Violet",
+      bgClass: "bg-violet-400 data-[state=checked]:bg-violet-400",
+      borderClass: "border-violet-400 data-[state=checked]:border-violet-400",
     },
     {
-      value: 'rose',
-      label: 'Rose',
-      bgClass: 'bg-rose-400 data-[state=checked]:bg-rose-400',
-      borderClass: 'border-rose-400 data-[state=checked]:border-rose-400',
+      value: "rose",
+      label: "Rose",
+      bgClass: "bg-rose-400 data-[state=checked]:bg-rose-400",
+      borderClass: "border-rose-400 data-[state=checked]:border-rose-400",
     },
     {
-      value: 'emerald',
-      label: 'Emerald',
-      bgClass: 'bg-emerald-400 data-[state=checked]:bg-emerald-400',
-      borderClass: 'border-emerald-400 data-[state=checked]:border-emerald-400',
+      value: "emerald",
+      label: "Emerald",
+      bgClass: "bg-emerald-400 data-[state=checked]:bg-emerald-400",
+      borderClass: "border-emerald-400 data-[state=checked]:border-emerald-400",
     },
     {
-      value: 'orange',
-      label: 'Orange',
-      bgClass: 'bg-orange-400 data-[state=checked]:bg-orange-400',
-      borderClass: 'border-orange-400 data-[state=checked]:border-orange-400',
+      value: "orange",
+      label: "Orange",
+      bgClass: "bg-orange-400 data-[state=checked]:bg-orange-400",
+      borderClass: "border-orange-400 data-[state=checked]:border-orange-400",
     },
   ];
 
@@ -234,11 +234,13 @@ export function EventDialog({
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>{event?.id ? 'Edit Event' : 'Create Event'}</DialogTitle>
+          <DialogTitle>
+            {event?.id ? "Edit Session" : "Create Session"}
+          </DialogTitle>
           <DialogDescription className="sr-only">
             {event?.id
-              ? 'Edit the details of this event'
-              : 'Add a new event to your calendar'}
+              ? "Edit the details of this session"
+              : "Add a new session to your calendar"}
           </DialogDescription>
         </DialogHeader>
         {error && (
@@ -273,19 +275,19 @@ export function EventDialog({
                 <PopoverTrigger asChild>
                   <Button
                     id="start-date"
-                    variant={'outline'}
+                    variant={"outline"}
                     className={cn(
-                      'group bg-background hover:bg-background border-input w-full justify-between px-3 font-normal outline-offset-0 outline-none focus-visible:outline-[3px]',
-                      !startDate && 'text-muted-foreground'
+                      "group bg-background hover:bg-background border-input w-full justify-between px-3 font-normal outline-offset-0 outline-none focus-visible:outline-[3px]",
+                      !startDate && "text-muted-foreground",
                     )}
                   >
                     <span
                       className={cn(
-                        'truncate',
-                        !startDate && 'text-muted-foreground'
+                        "truncate",
+                        !startDate && "text-muted-foreground",
                       )}
                     >
-                      {startDate ? format(startDate, 'PPP') : 'Pick a date'}
+                      {startDate ? format(startDate, "PPP") : "Pick a date"}
                     </span>
                     <RiCalendarLine
                       size={16}
@@ -341,19 +343,19 @@ export function EventDialog({
                 <PopoverTrigger asChild>
                   <Button
                     id="end-date"
-                    variant={'outline'}
+                    variant={"outline"}
                     className={cn(
-                      'group bg-background hover:bg-background border-input w-full justify-between px-3 font-normal outline-offset-0 outline-none focus-visible:outline-[3px]',
-                      !endDate && 'text-muted-foreground'
+                      "group bg-background hover:bg-background border-input w-full justify-between px-3 font-normal outline-offset-0 outline-none focus-visible:outline-[3px]",
+                      !endDate && "text-muted-foreground",
                     )}
                   >
                     <span
                       className={cn(
-                        'truncate',
-                        !endDate && 'text-muted-foreground'
+                        "truncate",
+                        !endDate && "text-muted-foreground",
                       )}
                     >
-                      {endDate ? format(endDate, 'PPP') : 'Pick a date'}
+                      {endDate ? format(endDate, "PPP") : "Pick a date"}
                     </span>
                     <RiCalendarLine
                       size={16}
@@ -416,31 +418,6 @@ export function EventDialog({
               onChange={(e) => setLocation(e.target.value)}
             />
           </div>
-          <fieldset className="space-y-4">
-            <legend className="text-foreground text-sm leading-none font-medium">
-              Etiquette
-            </legend>
-            <RadioGroup
-              className="flex gap-1.5"
-              defaultValue={colorOptions[0]?.value}
-              value={color}
-              onValueChange={(value: EventColor) => setColor(value)}
-            >
-              {colorOptions.map((colorOption) => (
-                <RadioGroupItem
-                  key={colorOption.value}
-                  id={`color-${colorOption.value}`}
-                  value={colorOption.value}
-                  aria-label={colorOption.label}
-                  className={cn(
-                    'size-6 shadow-none',
-                    colorOption.bgClass,
-                    colorOption.borderClass
-                  )}
-                />
-              ))}
-            </RadioGroup>
-          </fieldset>
         </div>
         <DialogFooter className="flex-row sm:justify-between">
           {event?.id && (
