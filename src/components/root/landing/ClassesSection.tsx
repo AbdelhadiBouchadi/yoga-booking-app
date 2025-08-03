@@ -158,13 +158,6 @@ export default function ClassesSection({ lessons }: ClassesSectionProps) {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
 
-                  {/* Price Badge */}
-                  {/* <div className="absolute top-4 right-4">
-                  <Badge className="bg-primary/90 text-secondary-foreground backdrop-blur-sm">
-                    {yogaClass.price}
-                  </Badge>
-                </div> */}
-
                   {/* Status Badge */}
                   {isPastLesson && (
                     <div className="absolute top-4 left-4">

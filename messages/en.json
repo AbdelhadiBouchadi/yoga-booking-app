@@ -54,7 +54,9 @@
     "bookings": "Bookings",
     "admin": "Dashboard",
     "signIn": "Sign In",
-    "bookSession": "Book A Session"
+    "bookSession": "Book A Session",
+    "followUs": "Follow Us",
+    "stayConnected": "Stay Connected With Us"
   },
   "hero": {
     "badge": "Find Your Inner Peace",
@@ -137,7 +139,7 @@
   "instructors": {
     "title": "Meet Your",
     "titleHighlight": "Guiding Teachers",
-    "description": "Our experienced instructors are here to support you on every step of your yoga journey with wisdom, compassion, and expertise.",
+    "description": "Our experienced instructors are here to support you on every step of your journey with wisdom, compassion, and expertise.",
     "experience": "experience",
     "specialties": "Specialties",
     "certifications": "Certifications",
@@ -193,6 +195,20 @@
         }
       }
     }
+  },
+  "instructorDetail": {
+    "backToInstructors": "Back to Instructors",
+    "reviews": "reviews",
+    "yearsExperience": "years of experience",
+    "upcomingClasses": "Upcoming Classes",
+    "upcomingClassesDescription": "Join {instructorName} for their next inspiring sessions.",
+    "bookClass": "Book Class",
+    "studentReviews": "Student Reviews",
+    "reviewsDescription": "See what students are saying about {instructorName}.",
+    "anonymous": "Anonymous",
+    "gallery": "Image Gallery",
+    "galleryDescription": "Explore more photos ",
+    "viewImage": "View Image"
   },
   "testimonials": {
     "title": "Stories of",

@@ -38,6 +38,8 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { CalendarEvent, EventColor } from "./types";
+import { PencilIcon, XIcon } from "lucide-react";
+import Link from "next/link";
 
 interface EventDialogProps {
   event: CalendarEvent | null;
@@ -432,9 +434,15 @@ export function EventDialog({
           )}
           <div className="flex flex-1 justify-end gap-2">
             <Button variant="outline" onClick={onClose}>
-              Cancel
+              Close
+              <XIcon />
             </Button>
-            <Button onClick={handleSave}>Save</Button>
+            <Button asChild>
+              <Link href={`/admin/sessions/${event?.id}/edit`}>
+                Edit
+                <PencilIcon />
+              </Link>
+            </Button>
           </div>
         </DialogFooter>
       </DialogContent>

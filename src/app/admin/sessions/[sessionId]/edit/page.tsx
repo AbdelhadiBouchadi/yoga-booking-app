@@ -31,40 +31,21 @@ export default async function EditLessonPage({ params }: { params: Params }) {
           {data!.titleEn}
         </span>
       </h1>
-      <Tabs defaultValue="basic-info" className="w-full">
-        <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="basic-info">Basic Info</TabsTrigger>
-          <TabsTrigger value="lesson-bookings">Lesson Bookings</TabsTrigger>
-        </TabsList>
-        <TabsContent value="basic-info">
-          <Card>
-            <CardHeader>
-              <CardTitle>Basic Info</CardTitle>
-              <CardDescription>
-                Edit basic information about the lesson
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <EditLessonForm
-                data={data}
-                initialCategories={categories}
-                initialInstructors={instructors}
-              />
-            </CardContent>
-          </Card>
-        </TabsContent>
-        <TabsContent value="lesson-bookings">
-          <Card>
-            <CardHeader>
-              <CardTitle>Lesson Bookings</CardTitle>
-              <CardDescription>
-                Here you can edit your lesson structure
-              </CardDescription>
-            </CardHeader>
-            <CardContent>{/* <CourseStructure data={data} /> */}</CardContent>
-          </Card>
-        </TabsContent>
-      </Tabs>
+      <Card>
+        <CardHeader>
+          <CardTitle>Basic Info</CardTitle>
+          <CardDescription>
+            Edit basic information about the lesson
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <EditLessonForm
+            data={data}
+            initialCategories={categories}
+            initialInstructors={instructors}
+          />
+        </CardContent>
+      </Card>
     </div>
   );
 }

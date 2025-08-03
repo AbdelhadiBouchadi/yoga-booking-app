@@ -8,7 +8,9 @@
     "bookings": "Réservations",
     "admin": "Gestionnaire",
     "signIn": "Se Connecter",
-    "bookSession": "Réserver une Séance"
+    "bookSession": "Réserver une Séance",
+    "followUs": "Suivez-nous",
+    "stayConnected": "Restez connectés avec nous"
   },
   "auth": {
     "signIn": {
@@ -137,7 +139,7 @@
   "instructors": {
     "title": "Rencontrez Vos",
     "titleHighlight": "Professeurs Guides",
-    "description": "Nos instructeurs expérimentés sont là pour vous accompagner à chaque étape de votre parcours de yoga avec sagesse, compassion et expertise.",
+    "description": "Nos instructeurs expérimentés sont là pour vous accompagner à chaque étape de votre parcours avec sagesse, compassion et expertise.",
     "experience": "d'expérience",
     "specialties": "Spécialités",
     "certifications": "Certifications",
@@ -192,6 +194,20 @@
         }
       }
     }
+  },
+  "instructorDetail": {
+    "backToInstructors": "Retour aux instructeurs",
+    "reviews": "avis",
+    "yearsExperience": "années d'expérience",
+    "upcomingClasses": "Cours à venir",
+    "upcomingClassesDescription": "Rejoignez  pour ses prochaines séances inspirantes.",
+    "bookClass": "Réserver un cours",
+    "studentReviews": "Avis des élèves",
+    "reviewsDescription": "Découvrez ce que les élèves disent de .",
+    "anonymous": "Anonyme",
+    "gallery": "Galerie d'images",
+    "galleryDescription": "Explorez plus de photos",
+    "viewImage": "Voir l'image"
   },
   "testimonials": {
     "title": "Histoires de",

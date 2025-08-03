@@ -1,37 +1,37 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import Link from 'next/link';
-import NextLink from 'next/link';
-import React, { useRef, useState } from 'react';
-import { adminNavItem, navItems } from '@/lib/data';
-import { ModeToggle } from '@/components/ui/theme-toggle';
-import { authClient } from '@/lib/auth-client';
-import { Button, buttonVariants } from '@/components/ui/button';
-import UserDropdown, { UserDropdownSkeleton } from './UserDropdown';
-import { usePathname } from 'next/navigation';
+import Image from "next/image";
+import Link from "next/link";
+import React, { useRef, useState } from "react";
+import { adminNavItem, navItems } from "@/lib/data";
+import { ModeToggle } from "@/components/ui/theme-toggle";
+import { authClient } from "@/lib/auth-client";
+import { Button, buttonVariants } from "@/components/ui/button";
+import UserDropdown, { UserDropdownSkeleton } from "./UserDropdown";
+import { usePathname } from "next/navigation";
 import {
   motion,
   AnimatePresence,
   useScroll,
   useMotionValueEvent,
   Variants,
-} from 'framer-motion';
-import { cn } from '@/lib/utils';
-import { LeafIcon, LogInIcon, Menu, X } from 'lucide-react';
-import LogoGreen from '../../../public/logo-green.webp';
-import LogoOrange from '../../../public/logo-orange.webp';
-import { useTheme } from 'next-themes';
-import { useLocale, useTranslations } from 'next-intl';
-import { LocaleSwitcher } from './LocaleSwitcher';
+} from "framer-motion";
+import { cn } from "@/lib/utils";
+import { LeafIcon, LogInIcon, Menu, X } from "lucide-react";
+import LogoGreen from "../../../public/logo-green.webp";
+import LogoOrange from "../../../public/logo-orange.webp";
+import { useTheme } from "next-themes";
+import { useLocale, useTranslations } from "next-intl";
+import { LocaleSwitcher } from "./LocaleSwitcher";
+import SocialDropdown from "./SocialDropdown";
 
 const mobileMenuVariants: Variants = {
   closed: {
     opacity: 0,
-    x: '100%',
+    x: "100%",
     transition: {
       duration: 0.3,
-      ease: 'easeInOut',
+      ease: "easeInOut",
     },
   },
   open: {
@@ -39,7 +39,7 @@ const mobileMenuVariants: Variants = {
     x: 0,
     transition: {
       duration: 0.3,
-      ease: 'easeInOut',
+      ease: "easeInOut",
       staggerChildren: 0.1,
     },
   },
@@ -56,28 +56,28 @@ const Navbar = () => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll({
     target: ref,
-    offset: ['start start', 'end start'],
+    offset: ["start start", "end start"],
   });
   const [visible, setVisible] = useState<boolean>(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [hovered, setHovered] = useState<number | null>(null);
   const { theme } = useTheme();
-  const t = useTranslations('nav');
+  const t = useTranslations("nav");
   const locale = useLocale();
-  const isAdmin = session?.user.role === 'admin';
+  const isAdmin = session?.user.role === "admin";
 
   const isRouteActive = (href: string) => {
-    if (href === '/admin') {
-      return pathname === '/admin' || pathname.startsWith('/admin/');
+    if (href === "/admin") {
+      return pathname === "/admin" || pathname.startsWith("/admin/");
     }
 
-    const pathWithoutLocale = pathname.replace(`/${locale}`, '') || '/';
-    return href === '/'
-      ? pathWithoutLocale === '/'
+    const pathWithoutLocale = pathname.replace(`/${locale}`, "") || "/";
+    return href === "/"
+      ? pathWithoutLocale === "/"
       : pathWithoutLocale.startsWith(href);
   };
 
-  useMotionValueEvent(scrollY, 'change', (latest) => {
+  useMotionValueEvent(scrollY, "change", (latest) => {
     if (latest > 100) {
       setVisible(true);
     } else {
@@ -91,29 +91,29 @@ const Navbar = () => {
       className="sticky inset-x-0 top-0 z-50 w-full"
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
     >
       {/* Desktop Navigation */}
       <motion.div
         animate={{
-          backdropFilter: visible ? 'blur(10px)' : 'none',
+          backdropFilter: visible ? "blur(10px)" : "none",
           boxShadow: visible
-            ? '0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset'
-            : 'none',
-          width: visible ? '70%' : '100%',
+            ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
+            : "none",
+          width: visible ? "70%" : "100%",
           y: visible ? 20 : 0,
         }}
         transition={{
-          type: 'spring',
+          type: "spring",
           stiffness: 200,
           damping: 50,
         }}
         style={{
-          minWidth: '800px',
+          minWidth: "800px",
         }}
         className={cn(
-          'relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full bg-transparent px-6 py-3 lg:flex',
-          visible && ' border border-border/50'
+          "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full bg-transparent px-6 py-3 lg:flex",
+          visible && "border-border/50 border",
         )}
       >
         {/* Logo */}
@@ -124,7 +124,7 @@ const Navbar = () => {
         >
           <Link href="/" className="relative z-20 flex items-center space-x-2">
             <Image
-              src={theme === 'light' ? LogoGreen : LogoOrange}
+              src={theme === "light" ? LogoGreen : LogoOrange}
               alt="Yoga Studio Logo"
               width={48}
               height={48}
@@ -150,18 +150,18 @@ const Navbar = () => {
                 href={item.href}
                 onMouseEnter={() => setHovered(idx)}
                 className={cn(
-                  'relative flex items-center justify-center space-x-1 rounded-full px-4 py-2 transition-colors',
+                  "relative flex items-center justify-center space-x-1 rounded-full px-4 py-2 transition-colors",
                   isActive
-                    ? 'text-foreground'
-                    : 'text-muted-foreground hover:text-foreground'
+                    ? "text-foreground"
+                    : "text-muted-foreground hover:text-foreground",
                 )}
               >
                 {(hovered === idx || isActive) && (
                   <motion.div
                     layoutId="hovered"
                     className={cn(
-                      'absolute inset-0 h-full w-full rounded-full',
-                      isActive ? 'bg-primary' : 'bg-primary/30'
+                      "absolute inset-0 h-full w-full rounded-full",
+                      isActive ? "bg-primary" : "bg-primary/30",
                     )}
                   />
                 )}
@@ -177,10 +177,10 @@ const Navbar = () => {
               href={adminNavItem.href}
               onMouseEnter={() => setHovered(navItems.length)}
               className={cn(
-                'relative flex items-center justify-center space-x-1 rounded-full px-4 py-2 transition-colors',
+                "relative flex items-center justify-center space-x-1 rounded-full px-4 py-2 transition-colors",
                 isRouteActive(adminNavItem.href)
-                  ? 'text-foreground'
-                  : 'text-muted-foreground hover:text-foreground'
+                  ? "text-foreground"
+                  : "text-muted-foreground hover:text-foreground",
               )}
             >
               {(hovered === navItems.length ||
@@ -188,15 +188,15 @@ const Navbar = () => {
                 <motion.div
                   layoutId="hovered"
                   className={cn(
-                    'absolute inset-0 h-full w-full rounded-full',
+                    "absolute inset-0 h-full w-full rounded-full",
                     isRouteActive(adminNavItem.href)
-                      ? 'bg-primary'
-                      : 'bg-primary/30'
+                      ? "bg-primary"
+                      : "bg-primary/30",
                   )}
                 />
               )}
               <adminNavItem.icon size={16} className="relative z-20" />
-              <span className="relative z-20">{t('admin')}</span>
+              <span className="relative z-20">{t("admin")}</span>
             </a>
           )}
         </motion.div>
@@ -209,6 +209,7 @@ const Navbar = () => {
           className="flex items-center space-x-2"
         >
           <ModeToggle />
+          <SocialDropdown variant="desktop" />
           <LocaleSwitcher variant="desktop" />
           {isPending ? (
             <UserDropdownSkeleton />
@@ -222,7 +223,7 @@ const Navbar = () => {
           ) : (
             <Button asChild className="z-20">
               <Link href="/sign-in">
-                {t('signIn')}
+                {t("signIn")}
                 <LogInIcon className="ml-2 size-4" />
               </Link>
             </Button>
@@ -233,31 +234,31 @@ const Navbar = () => {
       {/* Mobile Navigation */}
       <motion.div
         animate={{
-          backdropFilter: visible ? 'blur(10px)' : 'none',
+          backdropFilter: visible ? "blur(10px)" : "none",
           boxShadow: visible
-            ? '0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset'
-            : 'none',
-          width: visible ? '90%' : '100%',
-          paddingRight: visible ? '12px' : '0px',
-          paddingLeft: visible ? '12px' : '0px',
-          borderRadius: visible ? '16px' : '0px',
+            ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
+            : "none",
+          width: visible ? "90%" : "100%",
+          paddingRight: visible ? "12px" : "0px",
+          paddingLeft: visible ? "12px" : "0px",
+          borderRadius: visible ? "16px" : "0px",
           y: visible ? 20 : 0,
         }}
         transition={{
-          type: 'spring',
+          type: "spring",
           stiffness: 200,
           damping: 50,
         }}
         className={cn(
-          'relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between bg-transparent px-4 py-3 lg:hidden',
-          visible && 'bg-background/80 border border-border/50'
+          "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between bg-transparent px-4 py-3 lg:hidden",
+          visible && "bg-background/80 border-border/50 border",
         )}
       >
         {/* Mobile Header */}
         <div className="flex w-full flex-row items-center justify-between">
           <Link href="/" className="flex items-center space-x-2">
             <Image
-              src={theme === 'light' ? LogoGreen : LogoOrange}
+              src={theme === "light" ? LogoGreen : LogoOrange}
               alt="Yoga Studio Logo"
               width={48}
               height={48}
@@ -277,7 +278,7 @@ const Navbar = () => {
               />
             ) : null}
             <motion.button
-              className="rounded-lg p-2 text-foreground transition-colors duration-200 hover:bg-accent dark:hover:bg-sidebar lg:hidden"
+              className="text-foreground hover:bg-accent dark:hover:bg-sidebar rounded-lg p-2 transition-colors duration-200 lg:hidden"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               variants={mobileItemVariants}
               whileTap={{ scale: 0.95 }}
@@ -296,7 +297,7 @@ const Navbar = () => {
           {mobileMenuOpen && (
             <>
               <motion.div
-                className="fixed inset-0 z-40 bg-background/20 backdrop-blur-sm lg:hidden"
+                className="bg-background/20 fixed inset-0 z-40 backdrop-blur-sm lg:hidden"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -304,7 +305,7 @@ const Navbar = () => {
               />
 
               <motion.div
-                className="fixed right-4 top-16 z-50 w-80 overflow-hidden rounded-2xl border border-border bg-background shadow-2xl lg:hidden"
+                className="border-border bg-background fixed top-16 right-4 z-50 w-80 overflow-hidden rounded-2xl border shadow-2xl lg:hidden"
                 variants={mobileMenuVariants}
                 initial="closed"
                 animate="open"
@@ -326,10 +327,10 @@ const Navbar = () => {
                             href={item.href}
                             onClick={() => setMobileMenuOpen(false)}
                             className={cn(
-                              'flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
+                              "flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
                               isActive
-                                ? 'bg-primary/10 text-primary'
-                                : 'text-muted-foreground hover:bg-accent hover:text-foreground'
+                                ? "bg-primary/10 text-primary"
+                                : "text-muted-foreground hover:bg-accent hover:text-foreground",
                             )}
                           >
                             <Icon size={18} />
@@ -341,19 +342,23 @@ const Navbar = () => {
                   </div>
 
                   <motion.div
-                    className="space-y-3 border-t border-border pt-6"
+                    className="border-border space-y-3 border-t pt-6"
                     variants={mobileItemVariants}
                   >
+                    <SocialDropdown
+                      variant="mobile"
+                      onLinkClick={() => setMobileMenuOpen(false)}
+                    />
                     {!session ? (
                       <Link
                         href="/sign-in"
                         onClick={() => setMobileMenuOpen(false)}
                         className={cn(
-                          buttonVariants({ variant: 'default', size: 'sm' }),
-                          'w-full justify-center'
+                          buttonVariants({ variant: "default", size: "sm" }),
+                          "w-full justify-center",
                         )}
                       >
-                        {t('signIn')}
+                        {t("signIn")}
                         <LogInIcon className="ml-2 size-4" />
                       </Link>
                     ) : (
@@ -361,11 +366,11 @@ const Navbar = () => {
                         href="/sign-in"
                         onClick={() => setMobileMenuOpen(false)}
                         className={cn(
-                          buttonVariants({ variant: 'default', size: 'sm' }),
-                          'w-full justify-center'
+                          buttonVariants({ variant: "default", size: "sm" }),
+                          "w-full justify-center",
                         )}
                       >
-                        {t('bookSession')}
+                        {t("bookSession")}
                         <LeafIcon className="ml-2 size-4" />
                       </Link>
                     )}
