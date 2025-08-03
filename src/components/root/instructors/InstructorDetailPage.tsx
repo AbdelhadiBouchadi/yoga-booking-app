@@ -8,23 +8,22 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Star, Users, Mail, Phone, ArrowLeft } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import type { PublicInstructorDetailType } from "@/app/data/instructors/get-instructors";
 import { RenderDescription } from "@/components/admin/rich-text-editor/RenderDescription";
 import ImageModalSlider from "./image-modal-slider";
 
 interface InstructorDetailPageProps {
   instructor: NonNullable<PublicInstructorDetailType>;
-  locale: string;
 }
 
 export default function InstructorDetailPage({
   instructor,
-  locale,
 }: InstructorDetailPageProps) {
   const t = useTranslations("instructorDetail");
   const heroRef = useRef(null);
   const isInView = useInView(heroRef, { once: true, amount: 0.3 });
+  const locale = useLocale();
   const isFrench = locale === "fr";
 
   // Parse description JSON for RenderDescription component
