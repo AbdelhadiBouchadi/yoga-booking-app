@@ -59,11 +59,6 @@ export default function ContactSection() {
       content: t("info.visit.address"),
     },
     {
-      icon: Phone,
-      title: t("info.call.title"),
-      content: t("info.call.phone"),
-    },
-    {
       icon: Mail,
       title: t("info.email.title"),
       content: t("info.email.address"),

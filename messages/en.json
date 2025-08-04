@@ -137,9 +137,9 @@
     }
   },
   "instructors": {
-    "title": "Meet Your",
-    "titleHighlight": "Guiding Teachers",
-    "description": "Our experienced instructors are here to support you on every step of your journey with wisdom, compassion, and expertise.",
+    "title": "Meet",
+    "titleHighlight": "The Founders",
+    "description": "Our experienced founders are here to support you on every step of your journey with wisdom, compassion, and expertise.",
     "experience": "experience",
     "specialties": "Specialties",
     "certifications": "Certifications",
@@ -210,6 +210,15 @@
     "galleryDescription": "Explore more photos ",
     "viewImage": "View Image"
   },
+  "fluidGlass": {
+    "typographyText": "Find Your Inner Peace",
+    "navItems": {
+      "home": "Home",
+      "classes": "Classes",
+      "instructors": "Instructors",
+      "contact": "Contact"
+    }
+  },
   "testimonials": {
     "title": "Stories of",
     "titleHighlight": "Transformation",
@@ -243,7 +252,7 @@
   "contact": {
     "title": "Connect With",
     "titleHighlight": "Our Community",
-    "description": "Have questions about our classes or want to start your yoga journey? We're here to guide you every step of the way.",
+    "description": "Have questions about our classes or want to start your journey? We're here to guide you every step of the way.",
     "form": {
       "title": "Send us a message",
       "subtitle": "We'd love to hear from you and help you begin your wellness journey.",

@@ -5,6 +5,7 @@ import { useRef } from "react";
 import { Sparkles } from "lucide-react";
 import { AnimatedShinyText } from "./AnimatedShinyText";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 
 export default function HeroSection() {
   const t = useTranslations("hero");
@@ -113,6 +114,25 @@ export default function HeroSection() {
           </motion.div>
         </div>
       </div>
+
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={
+          isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
+        }
+        transition={{ duration: 1, delay: 1.2 }}
+        className="absolute top-10 right-10 hidden lg:block"
+      >
+        <div className="border-border/20 bg-card/50 rounded-2xl border p-4 backdrop-blur-sm">
+          <Image
+            src="/yoga-cert.png"
+            alt={"Yoga Certification Badge"}
+            width={80}
+            height={80}
+            className="h-20 w-20 object-contain"
+          />
+        </div>
+      </motion.div>
     </section>
   );
 }

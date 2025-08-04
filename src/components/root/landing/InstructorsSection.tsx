@@ -212,9 +212,7 @@ export default function InstructorsSection({
           </div>
         ) : (
           <div className="py-12 text-center">
-            <p className="text-muted-foreground text-lg">
-              {t("noInstructors")}
-            </p>
+            <p className="text-muted-foreground text-lg">No Founders Found</p>
           </div>
         )}
       </div>

@@ -64,7 +64,7 @@ export default function InstructorDetailPage({
             className="mb-8"
           >
             <Button variant="ghost" asChild>
-              <Link href={`/${locale}/instructors`}>
+              <Link href="/">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 {t("backToInstructors")}
               </Link>
@@ -141,14 +141,6 @@ export default function InstructorDetailPage({
                     <Mail className="text-primary h-5 w-5" />
                     <span className="text-muted-foreground">
                       {instructor.email}
-                    </span>
-                  </div>
-                )}
-                {instructor.phone && (
-                  <div className="flex items-center gap-3">
-                    <Phone className="text-primary h-5 w-5" />
-                    <span className="text-muted-foreground">
-                      {instructor.phone}
                     </span>
                   </div>
                 )}

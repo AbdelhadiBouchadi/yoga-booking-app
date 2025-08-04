@@ -5,7 +5,6 @@ import { Calendar } from "lucide-react";
 import LessonCard, {
   LessonCardSkeleton,
 } from "@/components/root/lessons/LessonCard";
-import { Suspense } from "react";
 import { SessionsHero } from "@/components/root/lessons/SessionsHero";
 import { getTranslations } from "next-intl/server";
 

@@ -137,9 +137,9 @@
     }
   },
   "instructors": {
-    "title": "Rencontrez Vos",
-    "titleHighlight": "Professeurs Guides",
-    "description": "Nos instructeurs expérimentés sont là pour vous accompagner à chaque étape de votre parcours avec sagesse, compassion et expertise.",
+    "title": "Rencontrez ",
+    "titleHighlight": "Les Fondatrices",
+    "description": "Nos fondatrices expérimentés sont là pour vous accompagner à chaque étape de votre parcours avec sagesse, compassion et expertise.",
     "experience": "d'expérience",
     "specialties": "Spécialités",
     "certifications": "Certifications",
@@ -209,6 +209,15 @@
     "galleryDescription": "Explorez plus de photos",
     "viewImage": "Voir l'image"
   },
+  "fluidGlass": {
+    "typographyText": "Trouvez Votre Paix Intérieure",
+    "navItems": {
+      "home": "Accueil",
+      "classes": "Cours",
+      "instructors": "Instructeurs",
+      "contact": "Contact"
+    }
+  },
   "testimonials": {
     "title": "Histoires de",
     "titleHighlight": "Transformation",
@@ -242,7 +251,7 @@
   "contact": {
     "title": "Connectez-vous avec",
     "titleHighlight": "Notre Communauté",
-    "description": "Vous avez des questions sur nos cours ou voulez commencer votre parcours de yoga? Nous sommes là pour vous guider à chaque étape.",
+    "description": "Vous avez des questions sur nos cours ou voulez commencer votre parcours? Nous sommes là pour vous guider à chaque étape.",
     "form": {
       "title": "Envoyez-nous un message",
       "subtitle": "Nous aimerions avoir de vos nouvelles et vous aider à commencer votre parcours de bien-être.",
