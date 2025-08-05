@@ -138,22 +138,15 @@ export default function InstructorsSection({
                             {t("specialties")}
                           </h4>
                           <div className="flex flex-wrap gap-2">
-                            {instructor.specialties
-                              .slice(0, 3)
-                              .map((specialty) => (
-                                <Badge
-                                  key={specialty}
-                                  variant="secondary"
-                                  className="text-xs"
-                                >
-                                  {specialty}
-                                </Badge>
-                              ))}
-                            {instructor.specialties.length > 3 && (
-                              <Badge variant="outline" className="text-xs">
-                                +{instructor.specialties.length - 3} {t("more")}
+                            {instructor.specialties.map((specialty) => (
+                              <Badge
+                                key={specialty}
+                                variant="secondary"
+                                className="text-xs"
+                              >
+                                {specialty}
                               </Badge>
-                            )}
+                            ))}
                           </div>
                         </div>
                       )}

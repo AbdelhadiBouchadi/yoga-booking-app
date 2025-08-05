@@ -115,13 +115,14 @@ export default function HeroSection() {
         </div>
       </div>
 
+      {/* Yoga Certification Badge  */}
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         animate={
           isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
         }
         transition={{ duration: 1, delay: 1.2 }}
-        className="absolute top-10 right-10 hidden lg:block"
+        className="absolute top-4 right-4 z-20" // Adjusted positioning for all screens
       >
         <div className="border-border/20 bg-card/50 rounded-2xl border p-4 backdrop-blur-sm">
           <Image

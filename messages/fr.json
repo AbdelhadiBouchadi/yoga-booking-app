@@ -139,7 +139,7 @@
   "instructors": {
     "title": "Rencontrez ",
     "titleHighlight": "Les Fondatrices",
-    "description": "Nos fondatrices expérimentés sont là pour vous accompagner à chaque étape de votre parcours avec sagesse, compassion et expertise.",
+    "description": "Nos fondatrices expérimentées sont là pour vous accompagner à chaque étape de votre parcours avec sagesse, compassion et expertise.",
     "experience": "d'expérience",
     "specialties": "Spécialités",
     "certifications": "Certifications",
@@ -209,14 +209,10 @@
     "galleryDescription": "Explorez plus de photos",
     "viewImage": "Voir l'image"
   },
-  "fluidGlass": {
-    "typographyText": "Trouvez Votre Paix Intérieure",
-    "navItems": {
-      "home": "Accueil",
-      "classes": "Cours",
-      "instructors": "Instructeurs",
-      "contact": "Contact"
-    }
+  "menuDownload": {
+    "title": "Frais et De Saison",
+    "description": "Explorez notre éventail complet d'expériences. Des séances de yoga sereines au café artisanal et à l'art inspirant, découvrez chaque facette de La Fabrique Du Bonheur.",
+    "buttonText": "Télécharger Notre Menu"
   },
   "testimonials": {
     "title": "Histoires de",
@@ -269,7 +265,7 @@
       "title": "Contactez-nous",
       "visit": {
         "title": "Visitez-nous",
-        "address": "MAGAZIN N 7 RESIDENCE IKBAL C MEKNES (M)"
+        "address": "Numéro 7 Résidence Ikbal C, Hamria, perpendiculaire à Avenue Des FAR, MEKNES"
       },
       "call": {
         "title": "Appelez-nous",
@@ -280,8 +276,8 @@
         "address": "contact@lafabriquedubonheur.com"
       },
       "hours": {
-        "title": "Heures du Studio",
-        "schedule": "Lun-Ven: 6h-21h\nSam-Dim: 7h-19h"
+        "title": "Heures de travail",
+        "schedule": "A Confirmer"
       }
     }
   },

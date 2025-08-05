@@ -50,7 +50,7 @@ export default function GallerySection() {
       alt: "Yoga image 3",
       size: "small",
       position: {
-        desktop: { top: "55%", left: "8%" },
+        desktop: { top: "45%", left: "8%" },
         mobile: { top: "55%", left: "10%" },
       },
       rotate: -15,
@@ -80,7 +80,7 @@ export default function GallerySection() {
       alt: "Yoga image 5",
       size: "medium",
       position: {
-        desktop: { bottom: "8%", left: "35%" },
+        desktop: { bottom: "0%", left: "15%" },
         mobile: { bottom: "5%", left: "5%" },
       },
       rotate: -5,

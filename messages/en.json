@@ -210,14 +210,10 @@
     "galleryDescription": "Explore more photos ",
     "viewImage": "View Image"
   },
-  "fluidGlass": {
-    "typographyText": "Find Your Inner Peace",
-    "navItems": {
-      "home": "Home",
-      "classes": "Classes",
-      "instructors": "Instructors",
-      "contact": "Contact"
-    }
+  "menuDownload": {
+    "title": "Fresh and seasonal",
+    "description": "Explore our full spectrum of experiences. From serene yoga sessions to artisanal coffee and inspiring art, discover every facet of La Fabrique Du Bonheur.",
+    "buttonText": "Download Our Menu"
   },
   "testimonials": {
     "title": "Stories of",
@@ -270,7 +266,7 @@
       "title": "Get in Touch",
       "visit": {
         "title": "Visit Us",
-        "address": "MAGAZIN N 7 RESIDENCE IKBAL C MEKNES (M)"
+        "address": "Numéro 7 Résidence Ikbal C, Hamria, perpendiculaire à Avenue Des FAR, MEKNES"
       },
       "call": {
         "title": "Call Us",
@@ -281,8 +277,8 @@
         "address": "contact@lafabriquedubonheur.com"
       },
       "hours": {
-        "title": "Studio Hours",
-        "schedule": "Mon-Fri: 6AM-9PM\nSat-Sun: 7AM-7PM"
+        "title": "Working Hours",
+        "schedule": "To Be Confirmed"
       }
     }
   },
