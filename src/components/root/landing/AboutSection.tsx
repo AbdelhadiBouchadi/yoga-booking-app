@@ -12,7 +12,7 @@ export default function AboutSection() {
   const aboutInView = useInView(aboutRef, { once: true, amount: 0.3 });
 
   return (
-    <section className="from-background to-secondary/10 relative w-full overflow-hidden bg-gradient-to-b py-20 md:py-32">
+    <section className="relative w-full overflow-hidden py-20 md:py-32">
       {/* Ambient Background */}
       <div
         className="absolute top-1/2 left-0 h-96 w-96 -translate-y-1/2 rounded-full opacity-5 blur-3xl"

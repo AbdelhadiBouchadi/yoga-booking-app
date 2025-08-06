@@ -14,26 +14,30 @@ export default function HeroSection() {
 
   return (
     <section className="from-background via-secondary/15 to-foreground/45 relative min-h-screen w-full overflow-hidden bg-gradient-to-br">
-      {/* Ambient Background Elements */}
-      <div
-        className="absolute top-1/4 left-1/4 h-96 w-96 rounded-full opacity-10 blur-3xl"
-        style={{
-          background: `radial-gradient(circle at center, hsl(var(--primary)), transparent 70%)`,
-        }}
+      {/* Blurry Background Dots (New Implementation) */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={
+          isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
+        }
+        transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+        className="bg-primary/45 absolute top-[-6rem] right-[11rem] -z-10 h-[31.25rem] w-[31.25rem] rounded-full blur-[10rem] sm:w-[68.75rem] dark:bg-[#524B4A]"
       />
-      <div
-        className="absolute right-1/4 bottom-1/4 h-80 w-80 rounded-full opacity-5 blur-3xl"
-        style={{
-          background: `radial-gradient(circle at center, hsl(var(--accent)), transparent 70%)`,
-        }}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={
+          isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
+        }
+        transition={{ duration: 1, delay: 0.7, ease: "easeOut" }}
+        className="bg-primary/60 absolute top-[-1rem] left-[-35rem] -z-10 h-[31.25rem] w-[50rem] rounded-full blur-[10rem] sm:w-[68.75rem] md:left-[-33rem] lg:left-[-28rem] xl:left-[-15rem] 2xl:left-[-5rem] dark:bg-[#4A4B52]"
       />
 
+      {/* Main Hero Content */}
       <div
         className="relative z-10 container mx-auto px-4 md:px-6"
         ref={heroRef}
       >
         <div className="flex min-h-screen flex-col items-center justify-center text-center">
-          {/* Main Hero Content */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
@@ -53,7 +57,6 @@ export default function HeroSection() {
                 {t("badge")}
               </AnimatedShinyText>
             </motion.div>
-
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -65,7 +68,6 @@ export default function HeroSection() {
                 {t("titleHighlight")}
               </span>
             </motion.h1>
-
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -75,7 +77,6 @@ export default function HeroSection() {
               {t("description")}
             </motion.p>
           </motion.div>
-
           {/* Floating Elements */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -94,7 +95,6 @@ export default function HeroSection() {
               </div>
             </div>
           </motion.div>
-
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={
@@ -114,7 +114,6 @@ export default function HeroSection() {
           </motion.div>
         </div>
       </div>
-
       {/* Yoga Certification Badge  */}
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}

@@ -80,7 +80,7 @@ export default function ClassesSection({ lessons }: ClassesSectionProps) {
   };
 
   return (
-    <section className="from-secondary/10 to-background relative w-full overflow-hidden bg-gradient-to-b py-20 md:py-32">
+    <section className="relative w-full overflow-hidden py-20 md:py-32">
       {/* Background Elements */}
       <div
         className="absolute top-1/4 right-0 h-80 w-80 rounded-full opacity-5 blur-3xl"

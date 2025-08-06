@@ -104,10 +104,10 @@
     }
   },
   "classes": {
-    "title": "Découvrez Votre",
-    "titleHighlight": "Pratique Parfaite",
-    "description": "Des débuts doux aux flux avancés, trouvez le cours qui résonne avec votre parcours et vos besoins actuels.",
-    "viewAll": "Voir Tous les Cours",
+    "title": "Les Ateliers ",
+    "titleHighlight": "Hebdomadaires du Mois",
+    "description": "Des débuts doux aux flux avancés, trouvez l'atelier qui résonne avec votre parcours et vos besoins actuels.",
+    "viewAll": "Voir Tous les Ateliers",
     "bookClass": "Réserver ce Cours",
     "types": {
       "hatha": {

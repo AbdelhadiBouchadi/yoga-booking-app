@@ -27,33 +27,15 @@ interface SocialLink {
 const socialLinks: SocialLink[] = [
   {
     name: "Instagram",
-    href: "https://instagram.com/youryogastudio",
+    href: "https://instagram.com/lafabriquedubonheur",
     icon: Instagram,
     color: "hover:text-pink-500",
   },
   {
     name: "LinkTree",
-    href: "https://linktr.ee/youryogastudio",
+    href: "https://linktr.ee/lafabriquedubonheur",
     icon: ExternalLink,
     color: "hover:text-green-500",
-  },
-  {
-    name: "Facebook",
-    href: "https://facebook.com/youryogastudio",
-    icon: Facebook,
-    color: "hover:text-blue-500",
-  },
-  {
-    name: "Twitter",
-    href: "https://twitter.com/youryogastudio",
-    icon: Twitter,
-    color: "hover:text-sky-500",
-  },
-  {
-    name: "YouTube",
-    href: "https://youtube.com/@youryogastudio",
-    icon: Youtube,
-    color: "hover:text-red-500",
   },
   {
     name: "Email",

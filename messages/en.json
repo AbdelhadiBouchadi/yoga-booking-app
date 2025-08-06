@@ -104,10 +104,10 @@
     }
   },
   "classes": {
-    "title": "Discover Your",
-    "titleHighlight": "Perfect Practice",
-    "description": "From gentle beginnings to advanced flows, find the class that resonates with your journey and current needs.",
-    "viewAll": "View All Classes",
+    "title": "This Month’s ",
+    "titleHighlight": "Workshops",
+    "description": "From gentle beginnings to advanced flows, find the workshop that resonates with your journey and current needs.",
+    "viewAll": "View All Workshops",
     "bookClass": "Book This Class",
     "types": {
       "hatha": {

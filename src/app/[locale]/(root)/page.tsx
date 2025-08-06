@@ -25,10 +25,10 @@ export default async function Home() {
       <HeroSection />
       <AboutSection />
       <ClassesSection lessons={featuredLessons} />
+      <DownloadMenuSection />
       <InstructorsSection instructors={featuredInstructors} />
       <ParallaxImageGallery />
       <QuoteSection />
-      <DownloadMenuSection />
       <ContactSection />
       <SubQuoteSection />
       <FooterCopyright />
