@@ -1,14 +1,15 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import {
-  UploadCloudIcon as CloudUploadIcon,
+  CloudUploadIcon,
   FileUpIcon,
-  ImageIcon,
+  FileTextIcon,
   XIcon,
   Loader2Icon,
   RefreshCwIcon,
 } from "lucide-react";
-import Image from "next/image";
 
 export function RenderEmptyState({ isDragActive }: { isDragActive: boolean }) {
   return (
@@ -29,7 +30,7 @@ export function RenderEmptyState({ isDragActive }: { isDragActive: boolean }) {
 
       <div className="space-y-2">
         <p className="text-foreground text-lg font-semibold">
-          Drop Your Files Here
+          Drop Your PDF Here
         </p>
         <p className="text-muted-foreground text-sm">
           or{" "}
@@ -41,10 +42,10 @@ export function RenderEmptyState({ isDragActive }: { isDragActive: boolean }) {
 
       <Button type="button" className="mt-2 gap-2 px-6">
         <FileUpIcon className="size-4" />
-        Select File
+        Select PDF
       </Button>
 
-      <p className="text-muted-foreground text-xs">Maximum file size: 8MB</p>
+      <p className="text-muted-foreground text-xs">Maximum file size: 10MB</p>
     </div>
   );
 }
@@ -57,13 +58,13 @@ export function RenderErrorState({ onRetry }: RenderErrorStateProps) {
   return (
     <div className="flex flex-col items-center justify-center space-y-4 text-center">
       <div className="bg-destructive/30 mx-auto flex size-16 animate-pulse items-center justify-center rounded-full">
-        <ImageIcon className="text-destructive size-8" />
+        <FileTextIcon className="text-destructive size-8" />
       </div>
 
       <div className="space-y-2">
         <p className="text-foreground text-lg font-semibold">Upload Failed</p>
         <p className="text-muted-foreground text-sm">
-          Something went wrong while uploading your file
+          Something went wrong while uploading your PDF
         </p>
       </div>
 
@@ -89,7 +90,7 @@ export function RenderUploadingState({
       </div>
 
       <div className="w-full space-y-2">
-        <p className="text-foreground text-lg font-semibold">Uploading File</p>
+        <p className="text-foreground text-lg font-semibold">Uploading PDF</p>
         {file && (
           <p className="text-muted-foreground mx-auto max-w-xs truncate text-sm">
             {file.name}
@@ -111,30 +112,51 @@ export function RenderUploadingState({
 }
 
 interface RenderUploadedStateProps {
-  previewUrl: string;
+  fileName: string;
+  fileSize?: number;
   isDeleting: boolean;
   onDelete: () => void;
 }
 
 export function RenderUploadedState({
-  previewUrl,
+  fileName,
+  fileSize,
   isDeleting,
   onDelete,
 }: RenderUploadedStateProps) {
+  const formatFileSize = (bytes: number) => {
+    if (bytes === 0) return "0 Bytes";
+    const k = 1024;
+    const sizes = ["Bytes", "KB", "MB", "GB"];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return (
+      Number.parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i]
+    );
+  };
+
   return (
-    <div className="group relative h-full w-full">
-      <Image
-        src={previewUrl}
-        alt="Preview Image"
-        className="object-contain"
-        fill
-      />
+    <div className="group relative flex h-full w-full flex-col items-center justify-center space-y-4 p-6">
+      <div className="bg-primary/10 flex size-20 items-center justify-center rounded-full">
+        <FileTextIcon className="text-primary size-10" />
+      </div>
+
+      <div className="space-y-2 text-center">
+        <p className="text-foreground font-semibold">PDF Uploaded</p>
+        <p className="text-muted-foreground max-w-xs truncate text-sm">
+          {fileName}
+        </p>
+        {fileSize && (
+          <p className="text-muted-foreground text-xs">
+            {formatFileSize(fileSize)}
+          </p>
+        )}
+      </div>
 
       <Button
         type="button"
-        size="icon"
+        size="sm"
         variant="destructive"
-        className="absolute top-2 right-2 size-8"
+        className="gap-2"
         onClick={onDelete}
         disabled={isDeleting}
       >
@@ -143,6 +165,7 @@ export function RenderUploadedState({
         ) : (
           <XIcon className="size-4" />
         )}
+        Remove PDF
       </Button>
     </div>
   );

@@ -44,19 +44,6 @@ export default function HeroSection() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="mx-auto max-w-4xl"
           >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={
-                isInView ? { scale: 1, opacity: 1 } : { scale: 0.9, opacity: 0 }
-              }
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="border-primary/20 bg-primary/10 dark:bg-secondary/10 text-muted-foreground mb-6 inline-flex items-center gap-2 rounded-full border px-4 py-2 font-sans text-sm font-medium backdrop-blur-sm"
-            >
-              <AnimatedShinyText className="flex items-center justify-center gap-x-2 transition ease-out hover:text-neutral-600 hover:duration-300 hover:dark:text-neutral-400">
-                <Sparkles className="text-primary fill-primary h-4 w-4" />
-                {t("badge")}
-              </AnimatedShinyText>
-            </motion.div>
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -76,41 +63,6 @@ export default function HeroSection() {
             >
               {t("description")}
             </motion.p>
-          </motion.div>
-          {/* Floating Elements */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={
-              isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
-            }
-            transition={{ duration: 1, delay: 0.8 }}
-            className="absolute bottom-32 left-10 hidden lg:block"
-          >
-            <div className="border-border/20 bg-card/50 rounded-2xl border p-4 backdrop-blur-sm">
-              <div className="flex items-center gap-3">
-                <div className="bg-primary h-3 w-3 rounded-full"></div>
-                <span className="text-muted-foreground text-sm">
-                  500+ {t("stats.happyYogis")}
-                </span>
-              </div>
-            </div>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={
-              isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
-            }
-            transition={{ duration: 1, delay: 1 }}
-            className="absolute right-10 bottom-32 hidden lg:block"
-          >
-            <div className="border-border/20 bg-card/50 rounded-2xl border p-4 backdrop-blur-sm">
-              <div className="flex items-center gap-3">
-                <div className="bg-primary h-3 w-3 rounded-full"></div>
-                <span className="text-muted-foreground text-sm">
-                  {t("stats.expertInstructors")}
-                </span>
-              </div>
-            </div>
           </motion.div>
         </div>
       </div>

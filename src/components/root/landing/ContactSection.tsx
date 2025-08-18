@@ -6,15 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import {
-  Check,
-  Loader2,
-  MapPin,
-  Phone,
-  Mail,
-  Clock,
-  MailIcon,
-} from "lucide-react";
+import { Check, Loader2, MapPin, Phone, Mail, Clock } from "lucide-react";
 import BlurVignette from "@/components/ui/blur-vignette";
 import { useTranslations } from "next-intl";
 
@@ -207,7 +199,7 @@ export default function ContactSection() {
                   ) : (
                     <>
                       {t("form.send")}
-                      <MailIcon />
+                      <Mail />
                     </>
                   )}
                 </Button>
@@ -233,14 +225,14 @@ export default function ContactSection() {
                     const IconComponent = info.icon;
                     return (
                       <motion.div
-                        key={info.title}
+                        key={index}
                         initial={{ opacity: 0, x: 10 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.6 + index * 0.1 }}
                         className="flex items-start gap-4"
                       >
-                        <div className="bg-primary/20 flex h-12 w-12 items-center justify-center rounded-xl">
-                          <IconComponent className="text-primary h-6 w-6" />
+                        <div className="bg-primary/20 flex size-12 items-center justify-center rounded-xl p-4">
+                          <IconComponent className="text-primary size-8" />
                         </div>
                         <div>
                           <h4 className="text-foreground font-semibold">
@@ -254,31 +246,6 @@ export default function ContactSection() {
                     );
                   })}
                 </div>
-
-                {/* Studio Image */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={
-                    isInView
-                      ? { opacity: 1, scale: 1 }
-                      : { opacity: 0, scale: 0.9 }
-                  }
-                  transition={{ duration: 0.8, delay: 0.8 }}
-                  className="mt-8 overflow-hidden rounded-2xl"
-                >
-                  <BlurVignette
-                    inset="20px"
-                    transitionLength="120px"
-                    blur="4px"
-                    className="rounded-2xl"
-                  >
-                    <img
-                      src="https://images.pexels.com/photos/3822864/pexels-photo-3822864.jpeg?auto=compress&cs=tinysrgb&w=600"
-                      alt="Yoga Studio Interior"
-                      className="h-48 w-full object-cover"
-                    />
-                  </BlurVignette>
-                </motion.div>
               </motion.div>
             </div>
           </div>

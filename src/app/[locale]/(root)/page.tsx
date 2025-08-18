@@ -1,3 +1,4 @@
+import { getActiveDownloadDocument } from "@/app/data/admin/menu-download-actions";
 import { getPublicInstructors } from "@/app/data/instructors/get-instructors";
 import { getPublishedLessons } from "@/app/data/lessons/lesson-actions";
 import AboutSection from "@/components/root/landing/AboutSection";
@@ -12,9 +13,10 @@ import QuoteSection from "@/components/root/landing/QuoteSection";
 import SubQuoteSection from "@/components/root/landing/SubQuoteSection";
 
 export default async function Home() {
-  const [lessons, instructors] = await Promise.all([
+  const [lessons, instructors, document] = await Promise.all([
     getPublishedLessons(),
     getPublicInstructors(),
+    getActiveDownloadDocument(),
   ]);
 
   const featuredLessons = lessons.slice(0, 3);
@@ -25,7 +27,7 @@ export default async function Home() {
       <HeroSection />
       <AboutSection />
       <ClassesSection lessons={featuredLessons} />
-      <DownloadMenuSection />
+      <DownloadMenuSection document={document} />
       <InstructorsSection instructors={featuredInstructors} />
       <ParallaxImageGallery />
       <QuoteSection />

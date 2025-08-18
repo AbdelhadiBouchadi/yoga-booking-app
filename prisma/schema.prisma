@@ -249,3 +249,17 @@ model Notification {
   @@index([isRead])
   @@index([createdAt])
 }
+
+model DownloadDocument {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  url         String
+  fileSize    Int? // File size in bytes
+  isActive    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([isActive])
+  @@index([createdAt])
+}

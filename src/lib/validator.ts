@@ -100,6 +100,15 @@ export const markAttendanceSchema = z.object({
     .min(1, "At least one booking must be selected"),
 });
 
+export const downloadDocumentSchema = z.object({
+  name: z.string().min(1, "Document name is required"),
+  url: z.string().url("Valid URL is required"),
+  fileSize: z.number().optional(),
+  mimeType: z.string().optional(),
+});
+
+export type DownloadDocumentSchemaType = z.infer<typeof downloadDocumentSchema>;
+
 export type InstructorSchemaType = z.infer<typeof instructorSchema>;
 export type CategorySchemaType = z.infer<typeof categorySchema>;
 export type LessonSchemaType = z.infer<typeof lessonSchema>;

@@ -2,9 +2,9 @@
 
 import * as React from "react";
 import {
+  IconBlender,
   IconCalendar,
   IconChalkboardTeacher,
-  IconChartBar,
   IconDashboard,
   IconFolder,
   IconTicket,
@@ -59,6 +59,11 @@ const data = {
       title: "Bookings",
       url: "/admin/bookings",
       icon: IconTicket,
+    },
+    {
+      title: "Menu",
+      url: "/admin/menu-document",
+      icon: IconBlender,
     },
   ],
 };
