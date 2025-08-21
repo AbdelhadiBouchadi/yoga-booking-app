@@ -204,3 +204,25 @@ export async function checkInstructorAvailability(
     return timeSlots;
   }
 }
+
+export async function deleteLesson(lessonId: string): Promise<APIResponse> {
+  await requireAdmin();
+
+  try {
+    await db.lesson.delete({
+      where: {
+        id: lessonId,
+      },
+    });
+
+    return {
+      status: "success",
+      message: "Workshop Removed Successfully",
+    };
+  } catch {
+    return {
+      status: "error",
+      message: "An Error Occured",
+    };
+  }
+}

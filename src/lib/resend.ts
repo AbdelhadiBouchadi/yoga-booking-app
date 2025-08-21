@@ -44,7 +44,7 @@ export async function sendBookingConfirmationEmail(
     const { data, error } = await resend.emails.send({
       from: "contact@lafabriquedubonheur.co",
       to: [email],
-      subject: "🧘‍♀️ Your Yoga Session is Confirmed - La Fabrique Du Bonheur",
+      subject: "Your Booking has been confirmed - La Fabrique Du Bonheur",
       react: BookingConfirmationTemplate({
         firstName,
         lessonTitle,

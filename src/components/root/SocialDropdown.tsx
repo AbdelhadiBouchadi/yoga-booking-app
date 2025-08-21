@@ -27,7 +27,7 @@ interface SocialLink {
 const socialLinks: SocialLink[] = [
   {
     name: "Instagram",
-    href: "https://instagram.com/lafabriquedubonheur",
+    href: "https://www.instagram.com/lafabriquedubonheur_meknes",
     icon: Instagram,
     color: "hover:text-pink-500",
   },

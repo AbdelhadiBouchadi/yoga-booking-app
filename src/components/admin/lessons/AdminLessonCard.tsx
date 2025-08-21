@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { DeleteLesson } from "./DeleteLesson";
 
 interface AdminLessonCardProps {
   data: AdminLessonType;
@@ -48,10 +49,7 @@ export function AdminLessonCard({ data }: AdminLessonCardProps) {
               </Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <Trash2Icon />
-              Delete Session
-            </DropdownMenuItem>
+            <DeleteLesson lessonId={data.id} />
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
