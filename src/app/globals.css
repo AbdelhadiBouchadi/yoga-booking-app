@@ -23,7 +23,7 @@
   --primary-foreground: oklch(0.98 0.005 120);
 
   /* Secondary - warm earth tone, harmonized */
-  --secondary: oklch(0.6872 0.1298 46.78);
+  --secondary: oklch(0.7169 0.1777 52.01);
   --secondary-foreground: oklch(0.98 0.005 50);
 
   /* Muted areas with gentle warmth */
@@ -114,11 +114,11 @@
   --popover-foreground: oklch(0.8426 0.0357 58.105);
 
   /* Primary maintains its calming presence */
-  --primary: oklch(0.6872 0.1298 46.78);
+  --primary: oklch(0.7169 0.1777 52.01);
   --primary-foreground: oklch(0.15 0.01 120);
 
   /* Secondary with better dark mode harmony */
-  --secondary: oklch(0.7015 0.0353 159.02);
+  --secondary: oklch(0.6501 0.1273 153.7);
   --secondary-foreground: oklch(0.15 0.01 50);
 
   /* Muted with gentle contrast */
