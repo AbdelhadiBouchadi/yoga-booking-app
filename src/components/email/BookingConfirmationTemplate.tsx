@@ -1,4 +1,4 @@
-import React from "react";
+import type React from "react";
 import {
   Html,
   Head,
@@ -7,13 +7,9 @@ import {
   Body,
   Container,
   Section,
-  Row,
-  Column,
   Heading,
   Text,
   Button,
-  Hr,
-  Img,
 } from "@react-email/components";
 
 interface BookingConfirmationTemplateProps {
@@ -179,7 +175,9 @@ export const BookingConfirmationTemplate: React.FC<
         fontStyle="normal"
       />
     </Head>
-    <Preview>Your yoga session is confirmed! See you on the mat 🧘‍♀️</Preview>
+    <Preview>
+      Your workshop is confirmed! We can't wait to see you there ✨
+    </Preview>
     <Body style={main}>
       <Container style={container}>
         <Section style={header}>
@@ -188,7 +186,7 @@ export const BookingConfirmationTemplate: React.FC<
         </Section>
 
         <Section style={content}>
-          <Text style={greeting}>Namaste {firstName},</Text>
+          <Text style={greeting}>Hello {firstName},</Text>
 
           <div style={confirmationBox}>
             <Heading style={confirmationTitle}>✨ Booking Confirmed ✨</Heading>
@@ -201,12 +199,12 @@ export const BookingConfirmationTemplate: React.FC<
                 lineHeight: "1.5",
               }}
             >
-              Your spot is secured! We can't wait to see you on the mat.
+              Your spot is secured! We can't wait to see you there.
             </Text>
           </div>
 
           <div style={detailRow}>
-            <Text style={detailLabel}>Session:</Text>
+            <Text style={detailLabel}>Workshop:</Text>
             <Text style={detailValue}>{lessonTitle}</Text>
           </div>
 
@@ -235,15 +233,12 @@ export const BookingConfirmationTemplate: React.FC<
           <div style={warningBox}>
             <Text style={warningText}>
               <strong>Cancellation Policy:</strong> Please cancel at least 24
-              hours before your session to avoid charges and allow others to
+              hours before your workshop to avoid charges and allow others to
               join from the waitlist.
             </Text>
           </div>
 
-          <Button
-            style={ctaButton}
-            href="https://lafabriquedubonheur.co/bookings"
-          >
+          <Button style={ctaButton} href="https://lafabriquedubonheur.co/">
             View My Bookings
           </Button>
 
@@ -256,13 +251,10 @@ export const BookingConfirmationTemplate: React.FC<
             }}
           >
             <strong>What to bring:</strong>
-            <br />
-            • Your yoga mat (or rent one of ours)
-            <br />
-            • Comfortable clothing you can move in
-            <br />
-            • A water bottle to stay hydrated
-            <br />• An open heart and peaceful mind 🕊️
+            <br />• Any materials specified for your workshop
+            <br />• Comfortable clothing appropriate for the activity
+            <br />• A water bottle to stay hydrated
+            <br />• An open mind and positive energy 🌟
           </Text>
         </Section>
 

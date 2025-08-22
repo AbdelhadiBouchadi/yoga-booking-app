@@ -197,7 +197,7 @@
     }
   },
   "instructorDetail": {
-    "backToInstructors": "Back to Instructors",
+    "backToInstructors": "Back",
     "reviews": "reviews",
     "yearsExperience": "years of experience",
     "upcomingClasses": "Upcoming Classes",
@@ -208,7 +208,8 @@
     "anonymous": "Anonymous",
     "gallery": "Image Gallery",
     "galleryDescription": "Explore more photos ",
-    "viewImage": "View Image"
+    "viewImage": "View Image",
+    "specialties": "Specialties"
   },
   "menuDownload": {
     "title": "Fresh and seasonal",
@@ -291,7 +292,7 @@
     "hero": {
       "badge": "Find your perfect practice",
       "title": "Our",
-      "titleHighlight": "Sessions",
+      "titleHighlight": "Workshops",
       "description": "Discover transformative sessions led by expert instructors. Book your spot and begin your wellness journey today.",
       "features": {
         "scheduling": "Flexible Scheduling",

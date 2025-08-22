@@ -196,7 +196,7 @@
     }
   },
   "instructorDetail": {
-    "backToInstructors": "Retour aux instructeurs",
+    "backToInstructors": "Retour",
     "reviews": "avis",
     "yearsExperience": "années d'expérience",
     "upcomingClasses": "Cours à venir",
@@ -207,7 +207,8 @@
     "anonymous": "Anonyme",
     "gallery": "Galerie d'images",
     "galleryDescription": "Explorez plus de photos",
-    "viewImage": "Voir l'image"
+    "viewImage": "Voir l'image",
+    "specialties": "Spécialités"
   },
   "menuDownload": {
     "title": "Frais et De Saison",
@@ -290,7 +291,7 @@
     "hero": {
       "badge": "Trouvez Votre Pratique Parfaite",
       "title": "Nos",
-      "titleHighlight": "Séances",
+      "titleHighlight": "Ateliers",
       "description": "Découvrez des séances transformatrices dirigées par des instructeurs experts. Réservez votre place et commencez votre voyage de bien-être dès aujourd'hui.",
       "features": {
         "scheduling": "Horaires Flexibles",

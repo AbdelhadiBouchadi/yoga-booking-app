@@ -1,4 +1,4 @@
-import React from "react";
+import type React from "react";
 import {
   Html,
   Head,
@@ -7,13 +7,9 @@ import {
   Body,
   Container,
   Section,
-  Row,
-  Column,
   Heading,
   Text,
   Button,
-  Hr,
-  Img,
 } from "@react-email/components";
 
 interface WaitlistNotificationTemplateProps {
@@ -194,7 +190,7 @@ export const WaitlistNotificationTemplate: React.FC<
       />
     </Head>
     <Preview>
-      You're on the waitlist! We'll notify you if a spot opens up 🙏
+      You're on the waitlist! We'll notify you if a spot opens up ✨
     </Preview>
     <Body style={main}>
       <Container style={container}>
@@ -204,10 +200,10 @@ export const WaitlistNotificationTemplate: React.FC<
         </Section>
 
         <Section style={content}>
-          <Text style={greeting}>Namaste {firstName},</Text>
+          <Text style={greeting}>Hello {firstName},</Text>
 
           <div style={waitlistBox}>
-            <Heading style={waitlistTitle}>🙏 You're on the Waitlist</Heading>
+            <Heading style={waitlistTitle}>✨ You're on the Waitlist</Heading>
             <div style={{ textAlign: "center", margin: "16px 0" }}>
               <span style={positionBadge}>Position #{position}</span>
             </div>
@@ -220,13 +216,13 @@ export const WaitlistNotificationTemplate: React.FC<
                 lineHeight: "1.5",
               }}
             >
-              The class is currently full, but don't worry! We'll automatically
-              notify you if a spot becomes available.
+              The workshop is currently full, but don't worry! We'll
+              automatically notify you if a spot becomes available.
             </Text>
           </div>
 
           <div style={detailRow}>
-            <Text style={detailLabel}>Session:</Text>
+            <Text style={detailLabel}>Workshop:</Text>
             <Text style={detailValue}>{lessonTitle}</Text>
           </div>
 
@@ -258,10 +254,8 @@ export const WaitlistNotificationTemplate: React.FC<
             </Text>
             <Text style={infoText}>
               • You'll receive an automatic email if a spot opens up
-              <br />
-              • Your position moves up as others cancel
-              <br />
-              • No payment required until you're confirmed
+              <br />• Your position moves up as others cancel
+              <br />• No payment required until you're confirmed
               <br />• You can cancel your waitlist position anytime
             </Text>
             <Text
@@ -271,10 +265,7 @@ export const WaitlistNotificationTemplate: React.FC<
             </Text>
           </div>
 
-          <Button
-            style={ctaButton}
-            href="https://lafabriquedubonheur.co/bookings"
-          >
+          <Button style={ctaButton} href="https://lafabriquedubonheur.co/">
             View My Bookings
           </Button>
 
@@ -287,13 +278,11 @@ export const WaitlistNotificationTemplate: React.FC<
             }}
           >
             <strong>While you wait:</strong>
-            <br />
-            • Browse our other available classes
-            <br />
-            • Follow us on social media for wellness tips
-            <br />
-            • Practice some gentle stretches at home
-            <br />• Remember: the right class will find you at the right time 🌸
+            <br />• Browse our other available workshops
+            <br />• Follow us on social media for wellness tips
+            <br />• Take some time for self-care at home
+            <br />• Remember: the right experience will find you at the right
+            time 🌸
           </Text>
         </Section>
 

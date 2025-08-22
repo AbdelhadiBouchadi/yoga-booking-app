@@ -195,7 +195,7 @@ export const EmailTemplate: React.FC<EmailTemplateProps> = ({
     </Head>
     <Preview>
       Welcome to La Fabrique Du Bonheur! Verify your email to begin your
-      wellness journey 🧘‍♀️
+      wellness journey
     </Preview>
     <Body style={main}>
       <Container style={container}>
@@ -226,8 +226,7 @@ export const EmailTemplate: React.FC<EmailTemplateProps> = ({
             <Text style={description}>
               Welcome to La Fabrique Du Bonheur! We're excited to have you join
               our wellness community. Please use the verification code below to
-              confirm your email address and begin your journey to inner peace
-              and physical well-being.
+              confirm your email address and begin your journey with us.
             </Text>
           </div>
 
@@ -275,10 +274,8 @@ export const EmailTemplate: React.FC<EmailTemplateProps> = ({
             <br />
             • Complete your profile setup
             <br />
-            • Browse our yoga and wellness sessions
-            <br />
-            • Book your first class and begin your transformation
-            <br />• Connect with our mindful community 🌸
+            • Browse our workshops
+            <br />• Book your first class and begin your journey
           </Text>
         </Section>
 

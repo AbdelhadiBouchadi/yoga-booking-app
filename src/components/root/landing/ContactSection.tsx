@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Check, Loader2, MapPin, Phone, Mail, Clock } from "lucide-react";
 import BlurVignette from "@/components/ui/blur-vignette";
 import { useTranslations } from "next-intl";
+import { sendEmail } from "@/lib/sendEmail";
 
 export default function ContactSection() {
   const [name, setName] = useState("");
@@ -16,6 +17,7 @@ export default function ContactSection() {
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const formRef = useRef(null);
   const isInView = useInView(formRef, { once: true, amount: 0.3 });
@@ -25,20 +27,30 @@ export default function ContactSection() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(null);
 
     try {
-      // Simulate form submission
-      console.log("Form submitted:", { name, email, message });
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      setName("");
-      setEmail("");
-      setMessage("");
-      setIsSubmitted(true);
-      setTimeout(() => {
-        setIsSubmitted(false);
-      }, 5000);
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("email", email);
+      formData.append("message", message);
+
+      const result = await sendEmail(formData);
+
+      if (result.error) {
+        setError(result.error);
+      } else {
+        setName("");
+        setEmail("");
+        setMessage("");
+        setIsSubmitted(true);
+        setTimeout(() => {
+          setIsSubmitted(false);
+        }, 5000);
+      }
     } catch (error) {
       console.error("Error submitting form:", error);
+      setError("Failed to send message. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
