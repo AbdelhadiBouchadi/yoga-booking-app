@@ -3,8 +3,8 @@
 import { requireAdmin } from "@/app/data/admin/require-admin";
 import { aj, detectBot, fixedWindow } from "@/lib/arcjet";
 import { db } from "@/lib/db";
-import { instructorSchema, InstructorSchemaType } from "@/lib/validator";
-import { APIResponse } from "@/types";
+import { instructorSchema, type InstructorSchemaType } from "@/lib/validator";
+import type { APIResponse } from "@/types";
 import { request } from "@arcjet/next";
 import { revalidatePath } from "next/cache";
 import { randomUUID } from "crypto";
@@ -78,7 +78,8 @@ export async function createInstructor(
         name: values.name,
         email: values.email,
         emailVerified: false,
-        role: "instructor",
+        role: "instructor", // Keep for backward compatibility
+        isInstructor: true,
         phone: values.phone,
         bioFr: values.bioFr,
         bioEn: values.bioEn,
@@ -107,6 +108,93 @@ export async function createInstructor(
     return {
       status: "error",
       message: "Failed to create instructor",
+    };
+  }
+}
+
+export async function promoteToAdmin(id: string): Promise<APIResponse> {
+  const session = await requireAdmin();
+
+  try {
+    const req = await request();
+
+    const decision = await arcjet.protect(req, {
+      fingerprint: session?.user.id as string,
+    });
+
+    if (decision.isDenied()) {
+      return {
+        status: "error",
+        message: "Access denied",
+      };
+    }
+
+    // Update user to have both instructor and admin roles
+    await db.user.update({
+      where: {
+        id,
+        isInstructor: true, // Only promote existing instructors
+      },
+      data: {
+        isAdmin: true,
+        updatedAt: new Date(),
+      },
+    });
+
+    revalidatePath("/admin/instructors");
+
+    return {
+      status: "success",
+      message: "Instructor promoted to admin successfully",
+    };
+  } catch (error) {
+    console.error("Error promoting instructor to admin:", error);
+    return {
+      status: "error",
+      message: "Failed to promote instructor to admin",
+    };
+  }
+}
+
+export async function removeAdminRole(id: string): Promise<APIResponse> {
+  const session = await requireAdmin();
+
+  try {
+    const req = await request();
+
+    const decision = await arcjet.protect(req, {
+      fingerprint: session?.user.id as string,
+    });
+
+    if (decision.isDenied()) {
+      return {
+        status: "error",
+        message: "Access denied",
+      };
+    }
+
+    await db.user.update({
+      where: {
+        id,
+        isAdmin: true,
+      },
+      data: {
+        isAdmin: false,
+        updatedAt: new Date(),
+      },
+    });
+
+    revalidatePath("/admin/instructors");
+
+    return {
+      status: "success",
+      message: "Admin role removed successfully",
+    };
+  } catch (error) {
+    console.error("Error removing admin role:", error);
+    return {
+      status: "error",
+      message: "Failed to remove admin role",
     };
   }
 }
@@ -150,7 +238,7 @@ export async function deleteInstructor(id: string): Promise<APIResponse> {
     await db.user.update({
       where: {
         id,
-        role: "instructor",
+        isInstructor: true,
       },
       data: {
         isActive: false,
@@ -179,7 +267,7 @@ export async function getInstructors() {
   try {
     const instructors = await db.user.findMany({
       where: {
-        role: "instructor",
+        isInstructor: true,
         isActive: true,
       },
       select: {
@@ -197,6 +285,8 @@ export async function getInstructors() {
         rating: true,
         image: true,
         createdAt: true,
+        isAdmin: true,
+        isInstructor: true,
         _count: {
           select: {
             lessonsAsInstructor: {
@@ -275,7 +365,7 @@ export async function updateInstructor(
     await db.user.update({
       where: {
         id,
-        role: "instructor",
+        isInstructor: true,
       },
       data: {
         name: values.name,
@@ -316,7 +406,7 @@ export async function getInstructorById(id: string) {
     const instructor = await db.user.findUnique({
       where: {
         id,
-        role: "instructor",
+        isInstructor: true,
         isActive: true,
       },
       select: {
@@ -335,6 +425,8 @@ export async function getInstructorById(id: string) {
         image: true,
         images: true,
         createdAt: true,
+        isAdmin: true,
+        isInstructor: true,
         lessonsAsInstructor: {
           select: {
             id: true,

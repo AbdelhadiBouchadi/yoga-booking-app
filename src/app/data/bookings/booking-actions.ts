@@ -21,6 +21,7 @@ import {
   sendWaitlistNotificationEmail,
 } from "@/lib/resend";
 import { format } from "date-fns";
+import { formatInTimeZone } from "date-fns-tz";
 
 const arcjet = aj
   .withRule(
@@ -193,11 +194,6 @@ export async function createBooking(
       return { booking, isWaitingList, user, lesson };
     });
 
-    const lessonDate = format(
-      new Date(result.lesson.startTime),
-      "EEEE, MMMM do, yyyy",
-    );
-    const lessonTime = format(new Date(result.lesson.startTime), "h:mm a");
     const instructorName =
       result.user.role === "instructor"
         ? `${result.lesson.instructor!.name} `
@@ -210,8 +206,7 @@ export async function createBooking(
           result.user.email,
           result.user.name,
           result.lesson.titleEn,
-          lessonDate,
-          lessonTime,
+          new Date(result.lesson.startTime), // Pass Date object instead of formatted strings
           result.lesson.location,
           result.booking.position!,
           instructorName,
@@ -221,8 +216,7 @@ export async function createBooking(
           result.user.email,
           result.user.name,
           result.lesson.titleEn,
-          lessonDate,
-          lessonTime,
+          new Date(result.lesson.startTime), // Pass Date object instead of formatted strings
           result.lesson.location,
           instructorName,
         );

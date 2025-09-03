@@ -40,7 +40,7 @@ export async function getPublishedLessons() {
         },
       },
       orderBy: {
-        startTime: "asc",
+        startTime: "desc",
       },
     });
 

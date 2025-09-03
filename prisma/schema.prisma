@@ -28,6 +28,9 @@ model User {
   banReason     String?
   banExpires    DateTime?
 
+  isAdmin      Boolean @default(false)
+  isInstructor Boolean @default(false)
+
   phone               String?
   bioEn               String?
   bioFr               String?

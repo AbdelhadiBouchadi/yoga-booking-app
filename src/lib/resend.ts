@@ -3,6 +3,7 @@ import { env } from "./env";
 import { EmailTemplate } from "@/components/email/EmailTemplate";
 import { BookingConfirmationTemplate } from "@/components/email/BookingConfirmationTemplate";
 import { WaitlistNotificationTemplate } from "@/components/email/WaitlistNotificationTemplate";
+import { formatDateForEmail, formatTimeForEmail } from "./email-utils";
 
 const resend = new Resend(env.RESEND_API_KEY);
 
@@ -35,12 +36,14 @@ export async function sendBookingConfirmationEmail(
   email: string,
   firstName: string,
   lessonTitle: string,
-  lessonDate: string,
-  lessonTime: string,
+  lessonStartTime: Date, // Accept Date object instead of formatted strings
   location: string,
   instructorName?: string,
 ) {
   try {
+    const lessonDate = formatDateForEmail(lessonStartTime);
+    const lessonTime = formatTimeForEmail(lessonStartTime);
+
     const { data, error } = await resend.emails.send({
       from: "contact@lafabriquedubonheur.co",
       to: [email],
@@ -71,13 +74,15 @@ export async function sendWaitlistNotificationEmail(
   email: string,
   firstName: string,
   lessonTitle: string,
-  lessonDate: string,
-  lessonTime: string,
+  lessonStartTime: Date, // Accept Date object instead of formatted strings
   location: string,
   position: number,
   instructorName?: string,
 ) {
   try {
+    const lessonDate = formatDateForEmail(lessonStartTime);
+    const lessonTime = formatTimeForEmail(lessonStartTime);
+
     const { data, error } = await resend.emails.send({
       from: "contact@lafabriquedubonheur.co",
       to: [email],
@@ -109,12 +114,14 @@ export async function sendWaitlistPromotionEmail(
   email: string,
   firstName: string,
   lessonTitle: string,
-  lessonDate: string,
-  lessonTime: string,
+  lessonStartTime: Date, // Accept Date object instead of formatted strings
   location: string,
   instructorName?: string,
 ) {
   try {
+    const lessonDate = formatDateForEmail(lessonStartTime);
+    const lessonTime = formatTimeForEmail(lessonStartTime);
+
     const { data, error } = await resend.emails.send({
       from: "contact@lafabriquedubonheur.co",
       to: [email],
