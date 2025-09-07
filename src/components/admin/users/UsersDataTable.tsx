@@ -34,6 +34,7 @@ import {
   IconUser,
   IconShield,
   IconUserCheck,
+  IconShieldCheck,
 } from "@tabler/icons-react";
 import {
   ColumnDef,
@@ -96,9 +97,17 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   GetUserType,
   deleteUser,
+  toggleAdminRole,
+  toggleInstructorRole,
   updateUserRole,
 } from "@/app/admin/users/actions";
 import GeneratedAvatar from "@/components/generated-avatar";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 // Create a separate component for the drag handle
 function DragHandle({ id }: { id: string }) {
@@ -128,19 +137,36 @@ const getUserInitials = (name: string) => {
     .toUpperCase();
 };
 
-const getRoleBadgeVariant = (role: string) => {
-  switch (role?.toLowerCase()) {
+const getUserRole = (user: GetUserType): string => {
+  if (user.isAdmin && user.isInstructor) {
+    return "admin-instructor";
+  } else if (user.isAdmin) {
+    return "admin";
+  } else if (user.isInstructor) {
+    return "instructor";
+  } else {
+    return "user";
+  }
+};
+
+const getRoleLabel = (role: string): string => {
+  switch (role) {
+    case "admin-instructor":
+      return "Admin & Instructor";
     case "admin":
-      return "destructive";
+      return "Admin";
     case "instructor":
-      return "secondary";
+      return "Instructor";
+    case "user":
     default:
-      return "outline";
+      return "User";
   }
 };
 
 const getRoleIcon = (role: string) => {
-  switch (role?.toLowerCase()) {
+  switch (role) {
+    case "admin-instructor":
+      return <IconShieldCheck className="h-3 w-3" />;
     case "admin":
       return <IconShield className="h-3 w-3" />;
     case "instructor":
@@ -202,14 +228,76 @@ export function UsersDataTable({ data: initialData }: { data: GetUserType[] }) {
     try {
       await updateUserRole(userId, newRole);
       toast.success("User role updated successfully");
+
+      // Update local state
       setData((prev) =>
-        prev.map((user) =>
-          user.id === userId ? { ...user, role: newRole } : user,
-        ),
+        prev.map((user) => {
+          if (user.id !== userId) return user;
+
+          let updatedUser = { ...user };
+          switch (newRole) {
+            case "admin":
+              updatedUser.isAdmin = true;
+              updatedUser.isInstructor = false;
+              updatedUser.role = "admin";
+              break;
+            case "instructor":
+              updatedUser.isAdmin = false;
+              updatedUser.isInstructor = true;
+              updatedUser.role = "instructor";
+              break;
+            case "admin-instructor":
+              updatedUser.isAdmin = true;
+              updatedUser.isInstructor = true;
+              updatedUser.role = "admin";
+              break;
+            case "user":
+            default:
+              updatedUser.isAdmin = false;
+              updatedUser.isInstructor = false;
+              updatedUser.role = null;
+              break;
+          }
+          return updatedUser;
+        }),
       );
     } catch (error) {
       toast.error("Failed to update user role");
       console.error("Error updating user role:", error);
+    }
+  };
+
+  const handleToggleAdmin = async (userId: string) => {
+    try {
+      await toggleAdminRole(userId);
+      toast.success("Admin role toggled successfully");
+
+      setData((prev) =>
+        prev.map((user) =>
+          user.id === userId ? { ...user, isAdmin: !user.isAdmin } : user,
+        ),
+      );
+    } catch (error) {
+      toast.error("Failed to toggle admin role");
+      console.error("Error toggling admin role:", error);
+    }
+  };
+
+  const handleToggleInstructor = async (userId: string) => {
+    try {
+      await toggleInstructorRole(userId);
+      toast.success("Instructor role toggled successfully");
+
+      setData((prev) =>
+        prev.map((user) =>
+          user.id === userId
+            ? { ...user, isInstructor: !user.isInstructor }
+            : user,
+        ),
+      );
+    } catch (error) {
+      toast.error("Failed to toggle instructor role");
+      console.error("Error toggling instructor role:", error);
     }
   };
 
@@ -282,40 +370,91 @@ export function UsersDataTable({ data: initialData }: { data: GetUserType[] }) {
       header: "Role",
       cell: ({ row }) => {
         const user = row.original;
-        const currentRole = user.role || "user";
+        const currentRole = getUserRole(user);
 
         return (
-          <Select
-            value={currentRole}
-            onValueChange={(newRole) => handleRoleUpdate(user.id, newRole)}
-          >
-            <SelectTrigger className="hover:bg-input/30 focus-visible:bg-background h-8 w-32 border-transparent bg-transparent shadow-none focus-visible:border">
-              <div className="flex items-center gap-2">
-                {/* {getRoleIcon(currentRole)} */}
-                <SelectValue />
-              </div>
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="user">
+          <div className="flex items-center gap-2">
+            <Select
+              value={currentRole}
+              onValueChange={(newRole) => handleRoleUpdate(user.id, newRole)}
+            >
+              <SelectTrigger className="hover:bg-input/30 focus-visible:bg-background h-8 w-40 border-transparent bg-transparent shadow-none focus-visible:border">
                 <div className="flex items-center gap-2">
-                  <IconUser className="h-3 w-3" />
-                  User
+                  <SelectValue />
                 </div>
-              </SelectItem>
-              <SelectItem value="instructor">
-                <div className="flex items-center gap-2">
-                  <IconUserCheck className="h-3 w-3" />
-                  Instructor
-                </div>
-              </SelectItem>
-              <SelectItem value="admin">
-                <div className="flex items-center gap-2">
-                  <IconShield className="h-3 w-3" />
-                  Admin
-                </div>
-              </SelectItem>
-            </SelectContent>
-          </Select>
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="user">
+                  <div className="flex items-center gap-2">
+                    <IconUser className="h-3 w-3" />
+                    User
+                  </div>
+                </SelectItem>
+                <SelectItem value="instructor">
+                  <div className="flex items-center gap-2">
+                    <IconUserCheck className="h-3 w-3" />
+                    Instructor
+                  </div>
+                </SelectItem>
+                <SelectItem value="admin">
+                  <div className="flex items-center gap-2">
+                    <IconShield className="h-3 w-3" />
+                    Admin
+                  </div>
+                </SelectItem>
+                <SelectItem value="admin-instructor">
+                  <div className="flex items-center gap-2">
+                    <IconShieldCheck className="h-3 w-3" />
+                    Admin & Instructor
+                  </div>
+                </SelectItem>
+              </SelectContent>
+            </Select>
+
+            <div className="flex items-center gap-1">
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant={user.isAdmin ? "default" : "outline"}
+                      size="sm"
+                      onClick={() => handleToggleAdmin(user.id)}
+                      className="h-6 w-6 p-0"
+                    >
+                      <IconShield className="h-3 w-3" />
+                      <span className="sr-only">Toggle Admin</span>
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>{user.isAdmin ? "Remove Admin" : "Make Admin"}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant={user.isInstructor ? "default" : "outline"}
+                      size="sm"
+                      onClick={() => handleToggleInstructor(user.id)}
+                      className="h-6 w-6 p-0"
+                    >
+                      <IconUserCheck className="h-3 w-3" />
+                      <span className="sr-only">Toggle Instructor</span>
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>
+                      {user.isInstructor
+                        ? "Remove Instructor"
+                        : "Make Instructor"}
+                    </p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </div>
+          </div>
         );
       },
     },

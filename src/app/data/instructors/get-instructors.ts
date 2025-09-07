@@ -6,7 +6,7 @@ export async function getPublicInstructors() {
   try {
     const instructors = await db.user.findMany({
       where: {
-        role: "instructor",
+        isInstructor: true,
         isActive: true,
       },
       select: {
@@ -83,7 +83,7 @@ export async function getPublicInstructorById(id: string) {
     const instructor = await db.user.findUnique({
       where: {
         id,
-        role: "instructor",
+        isInstructor: true,
         isActive: true,
       },
       select: {

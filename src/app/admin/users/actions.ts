@@ -15,6 +15,8 @@ export async function getUsers() {
         image: true,
         role: true,
         createdAt: true,
+        isAdmin: true,
+        isInstructor: true,
         bookings: {
           select: {
             id: true,
@@ -119,18 +121,110 @@ export async function updateUserRole(userId: string, role: string) {
   await requireAdmin();
 
   try {
+    // Determine boolean flags based on role
+    let updateData: {
+      isAdmin: boolean;
+      isInstructor: boolean;
+      role?: string;
+      updatedAt: Date;
+    } = {
+      isAdmin: false,
+      isInstructor: false,
+      updatedAt: new Date(),
+    };
+
+    switch (role) {
+      case "admin":
+        updateData.isAdmin = true;
+        updateData.isInstructor = false;
+        updateData.role = "admin";
+        break;
+      case "instructor":
+        updateData.isAdmin = false;
+        updateData.isInstructor = true;
+        updateData.role = "instructor";
+        break;
+      case "admin-instructor":
+        updateData.isAdmin = true;
+        updateData.isInstructor = true;
+        updateData.role = "admin"; // Keep role as admin for backward compatibility
+        break;
+      case "user":
+      default:
+        updateData.isAdmin = false;
+        updateData.isInstructor = false;
+        updateData.role = "user";
+        break;
+    }
+
     await db.user.update({
       where: {
         id: userId,
       },
-      data: {
-        role: role,
-      },
+      data: updateData,
     });
+
     return { success: true };
   } catch (error) {
     console.error("Error updating user role:", error);
     throw new Error("Failed to update user role");
+  }
+}
+
+// New functions for more granular role management
+export async function toggleAdminRole(userId: string) {
+  await requireAdmin();
+
+  try {
+    const user = await db.user.findUnique({
+      where: { id: userId },
+      select: { isAdmin: true },
+    });
+
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    await db.user.update({
+      where: { id: userId },
+      data: {
+        isAdmin: !user.isAdmin,
+        updatedAt: new Date(),
+      },
+    });
+
+    return { success: true };
+  } catch (error) {
+    console.error("Error toggling admin role:", error);
+    throw new Error("Failed to toggle admin role");
+  }
+}
+
+export async function toggleInstructorRole(userId: string) {
+  await requireAdmin();
+
+  try {
+    const user = await db.user.findUnique({
+      where: { id: userId },
+      select: { isInstructor: true },
+    });
+
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    await db.user.update({
+      where: { id: userId },
+      data: {
+        isInstructor: !user.isInstructor,
+        updatedAt: new Date(),
+      },
+    });
+
+    return { success: true };
+  } catch (error) {
+    console.error("Error toggling instructor role:", error);
+    throw new Error("Failed to toggle instructor role");
   }
 }
 
