@@ -182,7 +182,7 @@ export const BookingConfirmationTemplate: React.FC<
       <Container style={container}>
         <Section style={header}>
           <Heading style={headerTitle}>La Fabrique Du Bonheur</Heading>
-          <Text style={headerSubtitle}>Your wellness journey continues</Text>
+          <Text style={headerSubtitle}>Your inner journey continues</Text>
         </Section>
 
         <Section style={content}>
@@ -255,6 +255,7 @@ export const BookingConfirmationTemplate: React.FC<
             <br />• Comfortable clothing appropriate for the activity
             <br />• A water bottle to stay hydrated
             <br />• An open mind and positive energy 🌟
+            <br />• Your participation fee
           </Text>
         </Section>
 
