@@ -122,7 +122,7 @@ export async function updateUserRole(userId: string, role: string) {
 
   try {
     // Determine boolean flags based on role
-    let updateData: {
+    const updateData: {
       isAdmin: boolean;
       isInstructor: boolean;
       role?: string;

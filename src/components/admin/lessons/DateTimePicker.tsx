@@ -42,13 +42,6 @@ export default function DateTimePicker({
   const [isLoadingSlots, setIsLoadingSlots] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  // Load availability when date or instructor changes
-  useEffect(() => {
-    if (instructorId && selectedDate && isOpen) {
-      loadAvailability();
-    }
-  }, [instructorId, selectedDate, isOpen]);
-
   const loadAvailability = async () => {
     if (!instructorId) return;
 
@@ -68,6 +61,13 @@ export default function DateTimePicker({
       setIsLoadingSlots(false);
     }
   };
+
+  // Load availability when date or instructor changes
+  useEffect(() => {
+    if (instructorId && selectedDate && isOpen) {
+      loadAvailability();
+    }
+  }, [instructorId, selectedDate, isOpen, loadAvailability]);
 
   const generateDefaultTimeSlots = (): TimeSlot[] => {
     const slots: TimeSlot[] = [];

@@ -234,7 +234,7 @@ export function UsersDataTable({ data: initialData }: { data: GetUserType[] }) {
         prev.map((user) => {
           if (user.id !== userId) return user;
 
-          let updatedUser = { ...user };
+          const updatedUser = { ...user };
           switch (newRole) {
             case "admin":
               updatedUser.isAdmin = true;
