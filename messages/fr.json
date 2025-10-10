@@ -103,6 +103,77 @@
       }
     }
   },
+  "pricing": {
+    "badge": "Options Flexibles",
+    "title": "Choisissez Votre",
+    "titleHighlight": "Formule Idéale",
+    "description": "Des tarifs simples et transparents pour votre parcours de bien-être. Aucun frais caché, juste de la transformation pure.",
+    "currency": "DHS",
+    "popularBadge": "Meilleur Rapport",
+    "tabs": {
+      "perSession": "Par Séance",
+      "total": "Prix Total"
+    },
+    "plans": {
+      "trial": {
+        "name": "Séance d'Essai",
+        "price": "100",
+        "pricePerSession": "100",
+        "description": "Parfait pour découvrir nos ateliers et notre communauté",
+        "features": [
+          "1 séance d'atelier",
+          "Accès à toutes les installations",
+          "Rencontrez nos instructeurs",
+          "Découvrez notre approche"
+        ],
+        "cta": "Réserver l'Essai"
+      },
+      "pack5": {
+        "name": "Forfait 5 Séances",
+        "price": "600",
+        "pricePerSession": "120",
+        "description": "Excellent pack de démarrage pour une pratique régulière",
+        "features": [
+          "5 séances d'atelier",
+          "Valable 2 mois",
+          "120 DHS par séance",
+          "Horaires flexibles",
+          "Réservation prioritaire"
+        ],
+        "cta": "Prendre le Pack 5"
+      },
+      "pack10": {
+        "name": "Forfait 10 Séances",
+        "price": "1000",
+        "pricePerSession": "100",
+        "description": "Meilleur rapport qualité-prix pour les pratiquants engagés",
+        "features": [
+          "10 séances d'atelier",
+          "Valable 3 mois",
+          "100 DHS par séance",
+          "Horaires flexibles",
+          "Réservation prioritaire",
+          "Consultation bien-être gratuite"
+        ],
+        "cta": "Prendre le Pack 10"
+      },
+      "unlimited": {
+        "name": "Illimité 3 Mois",
+        "price": "800/mois",
+        "pricePerSession": "N/A",
+        "description": "Immersion complète dans votre parcours de bien-être",
+        "features": [
+          "Accès illimité aux ateliers",
+          "Engagement de 3 mois",
+          "Tous types d'ateliers inclus",
+          "Réservation prioritaire",
+          "Consultation bien-être gratuite",
+          "Accès aux événements communautaires"
+        ],
+        "cta": "Passer à l'Illimité"
+      }
+    }
+  },
   "classes": {
     "title": "Les Ateliers ",
     "titleHighlight": "Hebdomadaires du Mois",

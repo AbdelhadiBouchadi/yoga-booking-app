@@ -211,6 +211,77 @@
     "viewImage": "View Image",
     "specialties": "Specialties"
   },
+  "pricing": {
+    "badge": "Flexible Options",
+    "title": "Choose Your",
+    "titleHighlight": "Perfect Plan",
+    "description": "Simple, transparent pricing for your wellness journey. No hidden fees, just pure transformation.",
+    "currency": "DHS",
+    "popularBadge": "Best Value",
+    "tabs": {
+      "perSession": "Per Session",
+      "total": "Total Price"
+    },
+    "plans": {
+      "trial": {
+        "name": "Trial Session",
+        "price": "100",
+        "pricePerSession": "100",
+        "description": "Perfect for discovering our workshops and community",
+        "features": [
+          "1 workshop session",
+          "Access to all facilities",
+          "Meet our instructors",
+          "Experience our approach"
+        ],
+        "cta": "Book Trial"
+      },
+      "pack5": {
+        "name": "5 Sessions Pack",
+        "price": "600",
+        "pricePerSession": "120",
+        "description": "Great starter pack for regular practice",
+        "features": [
+          "5 workshop sessions",
+          "Valid for 2 months",
+          "120 DHS per session",
+          "Flexible scheduling",
+          "Priority booking"
+        ],
+        "cta": "Get 5 Pack"
+      },
+      "pack10": {
+        "name": "10 Sessions Pack",
+        "price": "1000",
+        "pricePerSession": "100",
+        "description": "Best value for committed practitioners",
+        "features": [
+          "10 workshop sessions",
+          "Valid for 3 months",
+          "100 DHS per session",
+          "Flexible scheduling",
+          "Priority booking",
+          "Free wellness consultation"
+        ],
+        "cta": "Get 10 Pack"
+      },
+      "unlimited": {
+        "name": "3-Month Unlimited",
+        "price": "800/month",
+        "pricePerSession": "N/A",
+        "description": "Complete immersion in your wellness journey",
+        "features": [
+          "Unlimited workshop access",
+          "3-month commitment",
+          "All workshop types included",
+          "Priority booking",
+          "Free wellness consultation",
+          "Community events access"
+        ],
+        "cta": "Go Unlimited"
+      }
+    }
+  },
   "menuDownload": {
     "title": "Fresh and seasonal",
     "description": "We offer a unique experience that combines coffee shop, movement, and creativity.",

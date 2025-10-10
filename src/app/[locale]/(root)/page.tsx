@@ -9,6 +9,7 @@ import FooterCopyright from "@/components/root/landing/FooterCopyright";
 import HeroSection from "@/components/root/landing/HeroSection";
 import InstructorsSection from "@/components/root/landing/InstructorsSection";
 import ParallaxImageGallery from "@/components/root/landing/ParallaxImageGallery";
+import PricingSection from "@/components/root/landing/PricingSection";
 import QuoteSection from "@/components/root/landing/QuoteSection";
 import SubQuoteSection from "@/components/root/landing/SubQuoteSection";
 
@@ -27,6 +28,7 @@ export default async function Home() {
       <HeroSection />
       <AboutSection />
       <ClassesSection lessons={featuredLessons} />
+      <PricingSection />
       <DownloadMenuSection document={document} />
       <InstructorsSection instructors={featuredInstructors} />
       <ParallaxImageGallery />
