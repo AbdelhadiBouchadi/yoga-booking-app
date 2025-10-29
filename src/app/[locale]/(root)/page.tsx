@@ -21,7 +21,7 @@ export default async function Home() {
   ]);
 
   const featuredLessons = lessons.slice(0, 3);
-  const featuredInstructors = instructors.slice(0, 2); // Show top 2 instructors
+  const featuredInstructors = instructors.slice(0, 3); // Show top 2 instructors
 
   return (
     <>
