@@ -57,7 +57,7 @@ export default function InstructorsSection({
 
         {/* Instructors Grid */}
         {instructors.length > 0 ? (
-          <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-8 md:grid-cols-2">
             {instructors.map((instructor, index) => (
               <motion.div
                 key={instructor.id}

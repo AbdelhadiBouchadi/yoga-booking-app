@@ -50,7 +50,7 @@ export async function getPublicInstructors() {
         },
       },
       orderBy: {
-        createdAt: "desc",
+        createdAt: "asc",
       },
     });
 
