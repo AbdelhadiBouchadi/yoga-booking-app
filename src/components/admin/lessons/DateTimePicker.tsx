@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -41,10 +41,12 @@ export default function DateTimePicker({
   const [timeSlots, setTimeSlots] = useState<TimeSlot[]>([]);
   const [isLoadingSlots, setIsLoadingSlots] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const loadingRef = useRef(false);
 
-  const loadAvailability = async () => {
-    if (!instructorId) return;
+  const loadAvailability = useCallback(async () => {
+    if (!instructorId || loadingRef.current) return;
 
+    loadingRef.current = true;
     setIsLoadingSlots(true);
     try {
       const slots = await checkInstructorAvailability(
@@ -59,8 +61,9 @@ export default function DateTimePicker({
       setTimeSlots(generateDefaultTimeSlots());
     } finally {
       setIsLoadingSlots(false);
+      loadingRef.current = false;
     }
-  };
+  }, [instructorId, selectedDate, excludeLessonId]);
 
   // Load availability when date or instructor changes
   useEffect(() => {

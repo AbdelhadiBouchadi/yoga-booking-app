@@ -115,9 +115,17 @@ export default function EditLessonForm({
 
   useEffect(() => {
     if (watchedStartTime && watchedDuration) {
+      const currentEndTime = form.getValues("endTime");
       const endTime = new Date(watchedStartTime);
       endTime.setMinutes(endTime.getMinutes() + watchedDuration);
-      form.setValue("endTime", endTime);
+
+      // Only update if endTime is significantly different (prevent infinite loops)
+      if (
+        !currentEndTime ||
+        Math.abs(currentEndTime.getTime() - endTime.getTime()) > 60000
+      ) {
+        form.setValue("endTime", endTime);
+      }
     }
   }, [watchedStartTime, watchedDuration, form]);
 
