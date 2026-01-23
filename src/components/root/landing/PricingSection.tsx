@@ -19,7 +19,7 @@ import {
   Flower2,
   Heart,
   Leaf,
-  Infinity,
+  Palette, // Added for Art Therapy
 } from "lucide-react";
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
@@ -27,10 +27,11 @@ import { useTranslations } from "next-intl";
 import Link from "next/link";
 
 const planIcons = {
-  trial: Flower2,
+  welcome: Sparkles,
+  singleYoga: Flower2,
   pack5: Heart,
   pack10: Leaf,
-  unlimited: Infinity,
+  artTherapy: Palette,
 };
 
 export default function PricingSection() {
@@ -39,10 +40,16 @@ export default function PricingSection() {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
+  // Updated plans list to match the 5 new options
   const plans = [
     {
-      id: "trial",
-      icon: planIcons.trial,
+      id: "welcome",
+      icon: planIcons.welcome,
+      popular: true, // Marking Welcome offer as popular/highlighted
+    },
+    {
+      id: "singleYoga",
+      icon: planIcons.singleYoga,
       popular: false,
     },
     {
@@ -53,11 +60,11 @@ export default function PricingSection() {
     {
       id: "pack10",
       icon: planIcons.pack10,
-      popular: true,
+      popular: false,
     },
     {
-      id: "unlimited",
-      icon: planIcons.unlimited,
+      id: "artTherapy",
+      icon: planIcons.artTherapy,
       popular: false,
     },
   ];
@@ -155,8 +162,10 @@ export default function PricingSection() {
             </Tabs>
           </motion.div>
 
-          {/* Pricing Cards */}
-          <div className="mt-8 grid w-full max-w-6xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {/* Pricing Cards 
+              UPDATED GRID: Used lg:grid-cols-3 and flex-wrap justify-center to handle 5 items gracefully 
+          */}
+          <div className="mt-8 grid w-full max-w-7xl grid-cols-1 justify-center gap-6 md:grid-cols-2 lg:grid-cols-3">
             {plans.map((plan, index) => {
               const Icon = plan.icon;
               return (
@@ -166,7 +175,7 @@ export default function PricingSection() {
                   animate={
                     isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
                   }
-                  //   transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
+                  // transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
                   whileHover={{ y: -5 }}
                   className="flex"
                 >
@@ -264,10 +273,6 @@ export default function PricingSection() {
                                 ? { opacity: 1, x: 0 }
                                 : { opacity: 0, x: -5 }
                             }
-                            // transition={{
-                            //   duration: 0.3,
-                            //   delay: 0.6 + index * 0.1 + featureIndex * 0.05,
-                            // }}
                             className="flex items-center gap-2 text-sm"
                           >
                             <div
@@ -295,39 +300,22 @@ export default function PricingSection() {
                     </CardContent>
 
                     <CardFooter>
-                      {plan.id === "trial" ? (
-                        <Button
-                          variant={plan.popular ? "default" : "outline"}
-                          className={cn(
-                            "group w-full font-medium transition-all duration-300",
-                            plan.popular
-                              ? "bg-primary hover:bg-primary/90 hover:shadow-primary/20 hover:shadow-md"
-                              : "hover:border-primary/30 hover:bg-primary/5 hover:text-primary",
-                          )}
-                          asChild
-                        >
-                          <Link href={`/sessions`}>
-                            {t(`plans.${plan.id}.cta`)}
-                            <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                          </Link>
-                        </Button>
-                      ) : (
-                        <Button
-                          variant={plan.popular ? "default" : "outline"}
-                          className={cn(
-                            "group w-full font-medium transition-all duration-300",
-                            plan.popular
-                              ? "bg-primary hover:bg-primary/90 hover:shadow-primary/20 hover:shadow-md"
-                              : "hover:border-primary/30 hover:bg-primary/5 hover:text-primary",
-                          )}
-                          asChild
-                        >
-                          <a href="mailto:contact@lafabriquedubonheur.co">
-                            {t(`plans.${plan.id}.cta`)}
-                            <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                          </a>
-                        </Button>
-                      )}
+                      {/* Simplified Button logic */}
+                      <Button
+                        variant={plan.popular ? "default" : "outline"}
+                        className={cn(
+                          "group w-full font-medium transition-all duration-300",
+                          plan.popular
+                            ? "bg-primary hover:bg-primary/90 hover:shadow-primary/20 hover:shadow-md"
+                            : "hover:border-primary/30 hover:bg-primary/5 hover:text-primary",
+                        )}
+                        asChild
+                      >
+                        <a href="mailto:contact@lafabriquedubonheur.co">
+                          {t(`plans.${plan.id}.cta`)}
+                          <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                        </a>
+                      </Button>
                     </CardFooter>
 
                     {/* Subtle gradient effects */}

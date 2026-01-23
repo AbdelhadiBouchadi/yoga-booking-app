@@ -109,68 +109,79 @@
     "titleHighlight": "Formule Idéale",
     "description": "Des tarifs simples et transparents pour votre parcours de bien-être. Aucun frais caché, juste de la transformation pure.",
     "currency": "DHS",
-    "popularBadge": "Meilleur Rapport",
+    "popularBadge": "Offre Spéciale",
     "tabs": {
       "perSession": "Par Séance",
       "total": "Prix Total"
     },
     "plans": {
-      "trial": {
-        "name": "Séance d'Essai",
-        "price": "100",
+      "welcome": {
+        "name": "Offre Bienvenue",
+        "price": "300",
         "pricePerSession": "100",
-        "description": "Parfait pour découvrir nos ateliers et notre communauté",
+        "description": "3 cours de 60min pour découvrir notre studio",
         "features": [
-          "1 séance d'atelier",
-          "Accès à toutes les installations",
-          "Rencontrez nos instructeurs",
-          "Découvrez notre approche"
+          "3 cours de yoga (60min)",
+          "Valable 2 semaines",
+          "100 DHS par cours",
+          "Idéal pour commencer"
         ],
-        "cta": "Réserver l'Essai"
+        "cta": "Profiter de l'offre"
+      },
+      "singleYoga": {
+        "name": "Cours à l'Unité",
+        "price": "150",
+        "pricePerSession": "150",
+        "description": "Flexibilité totale sans engagement",
+        "features": [
+          "1 cours de yoga",
+          "Accès à tout moment",
+          "Sans engagement",
+          "Tous niveaux acceptés"
+        ],
+        "cta": "Réserver un cours"
       },
       "pack5": {
-        "name": "Forfait 5 Séances",
-        "price": "600",
-        "pricePerSession": "120",
-        "description": "Excellent pack de démarrage pour une pratique régulière",
+        "name": "Carnet 5 Cours",
+        "price": "700",
+        "pricePerSession": "140",
+        "description": "Pour une pratique régulière et flexible",
         "features": [
-          "5 séances d'atelier",
+          "5 cours de yoga",
           "Valable 2 mois",
-          "120 DHS par séance",
+          "140 DHS par cours",
           "Horaires flexibles",
           "Réservation prioritaire"
         ],
-        "cta": "Prendre le Pack 5"
+        "cta": "Prendre le carnet"
       },
       "pack10": {
-        "name": "Forfait 10 Séances",
-        "price": "1000",
-        "pricePerSession": "100",
-        "description": "Meilleur rapport qualité-prix pour les pratiquants engagés",
+        "name": "Carnet 10 Cours",
+        "price": "1200",
+        "pricePerSession": "120",
+        "description": "Notre meilleure offre pour les pratiquants",
         "features": [
-          "10 séances d'atelier",
+          "10 cours de yoga",
           "Valable 3 mois",
-          "100 DHS par séance",
-          "Horaires flexibles",
-          "Réservation prioritaire",
-          "Consultation bien-être gratuite"
+          "120 DHS par cours",
+          "Meilleur tarif régulier",
+          "Réservation prioritaire"
         ],
-        "cta": "Prendre le Pack 10"
+        "cta": "Prendre le carnet"
       },
-      "unlimited": {
-        "name": "Illimité 3 Mois",
-        "price": "800/mois",
-        "pricePerSession": "N/A",
-        "description": "Immersion complète dans votre parcours de bien-être",
+      "artTherapy": {
+        "name": "Art-Thérapie",
+        "price": "250",
+        "pricePerSession": "250",
+        "description": "Séance créative et thérapeutique de 90 min",
         "features": [
-          "Accès illimité aux ateliers",
-          "Engagement de 3 mois",
-          "Tous types d'ateliers inclus",
-          "Réservation prioritaire",
-          "Consultation bien-être gratuite",
-          "Accès aux événements communautaires"
+          "1 séance de 90 min",
+          "Matériel inclus",
+          "Accompagnement personnalisé",
+          "Approche créative",
+          "Sur rendez-vous"
         ],
-        "cta": "Passer à l'Illimité"
+        "cta": "Réserver une séance"
       }
     }
   },
