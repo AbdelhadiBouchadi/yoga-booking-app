@@ -56,6 +56,7 @@ import CreateCategoryDialog from "../categories/CreateCategoryDialog";
 import DateTimePicker from "./DateTimePicker";
 import { AdminLessonSingularType } from "@/app/data/admin/get-admin-lesson";
 import { editLesson } from "@/app/admin/sessions/[sessionId]/edit/actions";
+import { DuplicateLesson } from "./DuplicateLesson";
 
 interface EditLessonProps {
   data: AdminLessonSingularType;
@@ -609,19 +610,23 @@ export default function EditLessonForm({
         />
 
         {/* Submit Button */}
-        <Button type="submit" disabled={isPending} className="w-full">
-          {isPending ? (
-            <>
-              <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
-              Updating...
-            </>
-          ) : (
-            <>
-              <SaveIcon className="mr-2 h-4 w-4" />
-              Update Lesson
-            </>
-          )}
-        </Button>
+        <div className="flex flex-col gap-3">
+          <Button type="submit" disabled={isPending} className="w-full">
+            {isPending ? (
+              <>
+                <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
+                Updating...
+              </>
+            ) : (
+              <>
+                <SaveIcon className="mr-2 h-4 w-4" />
+                Update Lesson
+              </>
+            )}
+          </Button>
+
+          <DuplicateLesson lessonId={data!.id} triggerType="button" />
+        </div>
       </form>
     </Form>
   );

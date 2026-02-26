@@ -19,6 +19,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { DeleteLesson } from "./DeleteLesson";
+import { DuplicateLesson } from "./DuplicateLesson";
 
 interface AdminLessonCardProps {
   data: AdminLessonType;
@@ -49,6 +50,7 @@ export function AdminLessonCard({ data }: AdminLessonCardProps) {
               </Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
+            <DuplicateLesson lessonId={data.id} />
             <DeleteLesson lessonId={data.id} />
           </DropdownMenuContent>
         </DropdownMenu>

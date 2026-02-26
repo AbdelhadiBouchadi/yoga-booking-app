@@ -183,7 +183,7 @@ export default function LessonDetails({ lesson }: LessonDetailsProps) {
         >
           <Card className="border-border/40 from-card/60 to-card/20 border bg-gradient-to-br backdrop-blur-sm">
             <CardHeader>
-              <CardTitle>{t("instructor")}</CardTitle>
+              <CardTitle>{t("title")}</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex items-start gap-6">
