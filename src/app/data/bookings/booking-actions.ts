@@ -107,12 +107,11 @@ export async function createBooking(
         throw new Error("This lesson is not available for booking");
       }
 
-      // Check if lesson has already started
       if (new Date() > new Date(lesson.startTime)) {
         throw new Error("Cannot book a lesson that has already started");
       }
 
-      // Check if user already has a booking for this lesson
+      // 1. Fetch the existing booking (if any)
       const existingBooking = await tx.booking.findUnique({
         where: {
           userId_lessonId: {
@@ -122,11 +121,14 @@ export async function createBooking(
         },
       });
 
-      if (existingBooking) {
-        throw new Error("You already have a booking for this lesson");
+      // 2. ONLY throw the error if the booking exists AND is NOT cancelled
+      if (
+        existingBooking &&
+        existingBooking.status !== BookingStatus.CANCELLED
+      ) {
+        throw new Error("You already have an active booking for this lesson");
       }
 
-      // Get user details for email
       const user = await tx.user.findUnique({
         where: { id: values.userId },
         select: {
@@ -140,11 +142,9 @@ export async function createBooking(
         throw new Error("User not found");
       }
 
-      // Check capacity
       const currentBookings = lesson._count.Booking;
       const isWaitingList = currentBookings >= lesson.maxCapacity;
 
-      // Get position for waiting list
       let position = null;
       if (isWaitingList) {
         const lastWaitingListBooking = await tx.booking.findFirst({
@@ -162,34 +162,70 @@ export async function createBooking(
         position = (lastWaitingListBooking?.position || 0) + 1;
       }
 
-      // Create the booking
-      const booking = await tx.booking.create({
-        data: {
-          userId: values.userId,
-          lessonId: values.lessonId,
-          status: isWaitingList
-            ? BookingStatus.PENDING
-            : BookingStatus.CONFIRMED,
-          isWaitingList,
-          position,
-          confirmedAt: isWaitingList ? null : new Date(),
-        },
-        include: {
-          lesson: {
-            select: {
-              titleEn: true,
-              titleFr: true,
-              startTime: true,
-              location: true,
-              instructor: {
-                select: {
-                  name: true,
+      let booking;
+
+      // 3. Reactivate cancelled booking OR Create a new one
+      if (
+        existingBooking &&
+        existingBooking.status === BookingStatus.CANCELLED
+      ) {
+        // Update the existing cancelled record
+        booking = await tx.booking.update({
+          where: { id: existingBooking.id },
+          data: {
+            status: isWaitingList
+              ? BookingStatus.PENDING
+              : BookingStatus.CONFIRMED,
+            isWaitingList,
+            position,
+            bookedAt: new Date(), // Reset the booking time to right now
+            confirmedAt: isWaitingList ? null : new Date(),
+            cancelledAt: null, // Clear cancellation data
+            cancellationReason: null,
+            cancellationNote: null,
+          },
+          include: {
+            lesson: {
+              select: {
+                titleEn: true,
+                titleFr: true,
+                startTime: true,
+                location: true,
+                instructor: {
+                  select: { name: true },
                 },
               },
             },
           },
-        },
-      });
+        });
+      } else {
+        // Create a brand new record
+        booking = await tx.booking.create({
+          data: {
+            userId: values.userId,
+            lessonId: values.lessonId,
+            status: isWaitingList
+              ? BookingStatus.PENDING
+              : BookingStatus.CONFIRMED,
+            isWaitingList,
+            position,
+            confirmedAt: isWaitingList ? null : new Date(),
+          },
+          include: {
+            lesson: {
+              select: {
+                titleEn: true,
+                titleFr: true,
+                startTime: true,
+                location: true,
+                instructor: {
+                  select: { name: true },
+                },
+              },
+            },
+          },
+        });
+      }
 
       return { booking, isWaitingList, user, lesson };
     });
@@ -199,14 +235,13 @@ export async function createBooking(
         ? `${result.lesson.instructor!.name} `
         : undefined;
 
-    // Send appropriate email
     try {
       if (result.isWaitingList) {
         await sendWaitlistNotificationEmail(
           result.user.email,
           result.user.name,
           result.lesson.titleEn,
-          new Date(result.lesson.startTime), // Pass Date object instead of formatted strings
+          new Date(result.lesson.startTime),
           result.lesson.location,
           result.booking.position!,
           instructorName,
@@ -216,14 +251,13 @@ export async function createBooking(
           result.user.email,
           result.user.name,
           result.lesson.titleEn,
-          new Date(result.lesson.startTime), // Pass Date object instead of formatted strings
+          new Date(result.lesson.startTime),
           result.lesson.location,
           instructorName,
         );
       }
     } catch (emailError) {
       console.error("Failed to send booking email:", emailError);
-      // Don't fail the booking if email fails
     }
 
     revalidatePath("/bookings");

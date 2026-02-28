@@ -156,9 +156,12 @@ export default function AdminBookingsList({
             <SelectContent>
               <SelectItem value="all">All Sessions in this tab</SelectItem>
               {activeLessonsOptions.map((lesson) => (
-                <SelectItem key={lesson.id} value={lesson.id}>
-                  {lesson.titleEn} -{" "}
-                  {new Date(lesson.startTime).toLocaleDateString()}
+                <SelectItem
+                  key={lesson.id}
+                  value={lesson.id}
+                  className="truncate"
+                >
+                  {lesson.titleEn} - {new Date(lesson.startTime).toDateString()}
                 </SelectItem>
               ))}
             </SelectContent>
