@@ -11,6 +11,11 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
+        hostname: "**.ufs.sh",
+        port: "",
+      },
+      {
+        protocol: "https",
         hostname: "images.pexels.com",
         port: "",
       },

@@ -54,6 +54,8 @@ export function Uploader({ value, onValueChange, fileUrl }: UploaderProps) {
           progress: 100,
           isUploading: false,
           key: uploadedFile.key,
+          objectUrl: uploadedFile.url,
+          error: false,
         }));
 
         onValueChange?.(uploadedFile.url);
@@ -87,9 +89,8 @@ export function Uploader({ value, onValueChange, fileUrl }: UploaderProps) {
     }));
 
     try {
-      await startUpload([file]);
     } catch (error) {
-      console.error("Upload error:", error);
+      console.log("Upload error:", error);
       toast.error("Upload failed. Please try again.");
       setFileState((prev) => ({
         ...prev,
@@ -185,9 +186,6 @@ export function Uploader({ value, onValueChange, fileUrl }: UploaderProps) {
         ...prev,
         isDeleting: true,
       }));
-
-      // For UploadThing, we don't need to manually delete files
-      // They handle cleanup automatically
 
       if (fileState.objectUrl && !fileState.objectUrl.startsWith("http")) {
         URL.revokeObjectURL(fileState.objectUrl);
