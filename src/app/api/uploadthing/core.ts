@@ -19,20 +19,20 @@ export const ourFileRouter = {
 
       return { url: file.ufsUrl };
     }),
-  // pdfUploader: f({ "application/pdf": { maxFileSize: "8MB", maxFileCount: 1 } })
-  //   .middleware(async ({ req }) => {
-  //     const user = await auth(req);
+  pdfUploader: f({ "application/pdf": { maxFileSize: "8MB", maxFileCount: 1 } })
+    .middleware(async ({ req }) => {
+      const user = await auth(req);
 
-  //     if (!user) throw new UploadThingError("Unauthorized");
+      if (!user) throw new UploadThingError("Unauthorized");
 
-  //     return { userId: user.id };
-  //   })
-  //   .onUploadComplete(async ({ metadata, file }) => {
-  //     console.log("PDF upload complete for userId:", metadata.userId);
-  //     console.log("PDF file url", file.ufsUrl);
+      return { userId: user.id };
+    })
+    .onUploadComplete(async ({ metadata, file }) => {
+      console.log("PDF upload complete for userId:", metadata.userId);
+      console.log("PDF file url", file.ufsUrl);
 
-  //     return { uploadedBy: metadata.userId };
-  //   }),
+      return { uploadedBy: metadata.userId };
+    }),
 } satisfies FileRouter;
 
 export type OurFileRouter = typeof ourFileRouter;
