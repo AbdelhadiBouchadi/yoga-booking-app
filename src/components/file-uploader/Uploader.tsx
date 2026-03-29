@@ -89,6 +89,7 @@ export function Uploader({ value, onValueChange, fileUrl }: UploaderProps) {
     }));
 
     try {
+      startUpload([file]);
     } catch (error) {
       console.log("Upload error:", error);
       toast.error("Upload failed. Please try again.");
