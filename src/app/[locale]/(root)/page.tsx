@@ -25,7 +25,7 @@ export default function Home() {
       <Suspense fallback={<ClassesSkeleton />}>
         <ClassesSectionWrapper />
       </Suspense>
-      <PricingSection />
+      {/* <PricingSection /> */}
       <Suspense fallback={<DownloadMenuSkeleton />}>
         <DownloadMenuWrapper />
       </Suspense>
