@@ -15,9 +15,9 @@ export const ourFileRouter = {
       return { userId: user.id };
     })
     .onUploadComplete(async ({ file }) => {
-      console.log("file url", file.ufsUrl);
+      console.log("file url", file.url);
 
-      return { url: file.ufsUrl };
+      return { url: file.url };
     }),
   pdfUploader: f({ "application/pdf": { maxFileSize: "8MB", maxFileCount: 1 } })
     .middleware(async ({ req }) => {
@@ -29,7 +29,7 @@ export const ourFileRouter = {
     })
     .onUploadComplete(async ({ metadata, file }) => {
       console.log("PDF upload complete for userId:", metadata.userId);
-      console.log("PDF file url", file.ufsUrl);
+      console.log("PDF file url", file.url);
 
       return { uploadedBy: metadata.userId };
     }),
